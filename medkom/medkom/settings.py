@@ -13,9 +13,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
+        'NAME': 'medkom',
+        'USER': 'root',
+        'PASSWORD': 'root',
         'HOST': '',
         'PORT': '',
     }
@@ -80,6 +80,9 @@ INSTALLED_APPS = (
     'message',
     'wilayah',
     'accounts',
+    'smart_selects',
+    'autocomplete_light',
+    'chosen',
 )
 
 LOGGING = {

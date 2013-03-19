@@ -1,7 +1,8 @@
 from member.models import *
 from django.contrib import admin
 from django.forms.extras.widgets import SelectDateWidget
-from django.forms.widgets import CheckboxSelectMultiple
+from django.forms.widgets import CheckboxSelectMultiple, SelectMultiple
+from chosen import widgets as chosenwidg
 from django.forms import Select
 
 class PersonInline(admin.StackedInline):
@@ -9,7 +10,7 @@ class PersonInline(admin.StackedInline):
     extra = 1
     formfield_overrides = {
         models.DateField: {'widget': SelectDateWidget(years=range(1950,2020))},
-        models.ManyToManyField: {'widget': CheckboxSelectMultiple()},
+        models.ManyToManyField: {'widget': chosenwidg.ChosenSelectMultiple(), 'help_text':'Type and click, to select more than one. '},
     }
     
     fieldsets = (
@@ -35,6 +36,11 @@ class HandphoneInline(admin.StackedInline):
     model = Handphone
 
 class PersonAdmin(admin.ModelAdmin):
+    search_fields = ['nama_lengkap', 'nama_panggilan', 'no_handphone']
+    formfield_overrides = {
+        models.DateField: {'widget': SelectDateWidget(years=range(1950,2020))},
+        models.ManyToManyField: {'widget': chosenwidg.ChosenSelectMultiple(), 'help_text':'Type and click, to select more than one. '},
+    }
     inlines = [HandphoneInline]
 
 class KeluargaGangguanInline(admin.StackedInline):
