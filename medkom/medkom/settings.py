@@ -5,7 +5,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Admin', 'office@artikulpi.com'),
+    ('Admin', 'lantip@gmail.com'),
 )
 
 MANAGERS = ADMINS
