@@ -5,6 +5,8 @@ from member.models import (TemaInformasi, HubunganKeluarga, Agama, Organisasi,
                            StatusSosial, Person)
 from message.models import Broadcast
 from wilayah.models import (Desa, Dusun, Kampung, RT)
+from chosen import widgets as chosenwidg
+from chosen import forms as chosenforms
 
 class DeleteMessagesForm(forms.Form):
     queue = forms.CharField(
@@ -95,7 +97,7 @@ class BroadcastForm(forms.Form):
     domisili = forms.MultipleChoiceField(
         choices = DOMISILI_CHOICES,
         required = False,
-        widget = forms.CheckboxSelectMultiple,
+        widget = chosenwidg.ChosenSelectMultiple(),
     )
     
     domisili_rel = forms.ChoiceField(
@@ -114,10 +116,10 @@ class BroadcastForm(forms.Form):
         required = False,
     )
     
-    organisasi = forms.ModelMultipleChoiceField(
+    organisasi = chosenforms.ChosenModelMultipleChoiceField(
         queryset = Organisasi.objects.all(),
         required = False,
-        widget = forms.CheckboxSelectMultiple,
+        widget = chosenwidg.ChosenSelectMultiple()
     )
     
     organisasi_rel = forms.ChoiceField(

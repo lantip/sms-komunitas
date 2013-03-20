@@ -2,7 +2,7 @@ from django.db import models
 from smart_selects.db_fields import ChainedForeignKey,GroupedForeignKey
 
 YEAR_CHOICE = ()
-for i in range(1950,2020):
+for i in range(1910,2020):
     YEAR_ITEM = (i,i)
     YEAR_CHOICE += (YEAR_ITEM,)
 
