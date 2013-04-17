@@ -12,8 +12,11 @@ from message.models import Queue, Log, Broadcast
 from message.forms import (DeleteMessagesForm, BroadcastForm,
                            SettingBroadcastForm, ReplyForm, SearchForm)
 from member.models import Person, Usia, StatusSosial
+<<<<<<< HEAD
 from nonmember.models import nonmember
 from spammers.models import Spammers
+=======
+>>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
 import datetime
 
 @login_required
@@ -143,6 +146,7 @@ def new_message(request):
                     phones = form.cleaned_data["extra_phones"].split(',')
                     for phone in phones:
                         _send_single_sms(phone, message)
+<<<<<<< HEAD
                         
             #Send Non Member Receiver
             if form.cleaned_data["nonmembers"]:
@@ -159,6 +163,8 @@ def new_message(request):
                     for phone in phones:
                         person = Person.objects.get(id=phone).no_handphone
                         _send_single_sms(phone, message)
+=======
+>>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
             
             return HttpResponseRedirect(reverse('home'))
     else:
@@ -177,6 +183,7 @@ def decline(request, msg_id):
         queue.save()
     
     return HttpResponseRedirect(reverse('home'))
+<<<<<<< HEAD
     
 @login_required
 def spam(request, msg_id):
@@ -193,6 +200,8 @@ def spam(request, msg_id):
             spam.no_handphone = queue.sender
             spam.save()
     return HttpResponseRedirect(reverse('home'))
+=======
+>>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
 
 @login_required
 def delete(request, msg_id):

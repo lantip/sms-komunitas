@@ -22,6 +22,7 @@
                 {{ form.extra_phones.errors }}
                 {{ form.extra_phones }}
                 <p class="alert alert-info" style="width: 420px">
+<<<<<<< HEAD
                     Tambahkan beberapa nomor HP dipisahkan dengan koma.
                 </p>
             </div>
@@ -43,6 +44,12 @@
                     Pilih member yang ulang tahun hari ini.
                 </p>
             </div>
+=======
+                    Tambahkan beberapa nomoh HP dipisahkan dengan koma.
+                </p>
+            </div>
+            
+>>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
             <label>{{ form.member }} {{ form.member.label }}</label>
             <p></p><br>
             
@@ -416,6 +423,7 @@
             };
         });
         
+<<<<<<< HEAD
         $('#id_nonmembers').click(function(){
             if($('#id_nonmembers').is(':checked')) {
                 $('.nonmember').show();
@@ -424,6 +432,8 @@
             };
         });
         
+=======
+>>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
         $('#id_member').click(function(){
             if($('#id_member').is(':checked')) {
                 $('.member').show();
@@ -432,6 +442,7 @@
             };
         });
         
+<<<<<<< HEAD
         $('#id_ultah').click(function(){
             if($('#id_ultah').is(':checked')) {
                 $('.ultah').show();
@@ -443,6 +454,11 @@
         $(document).ready(function() {
             $('#id_message').limitCharacters();
             $('.external,.member,.nonmember,.ultah').hide();
+=======
+        $(document).ready(function() {
+            $('#id_message').limitCharacters();
+            $('.external,.member').hide();
+>>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
         });
     </script>
 {% endblock %}
