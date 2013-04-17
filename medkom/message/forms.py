@@ -5,8 +5,11 @@ from member.models import (TemaInformasi, HubunganKeluarga, Agama, Organisasi,
                            StatusSosial, Person)
 from message.models import Broadcast
 from wilayah.models import (Desa, Dusun, Kampung, RT)
+from nonmember.models import nonmember
 from chosen import widgets as chosenwidg
 from chosen import forms as chosenforms
+import datetime
+
 class DeleteMessagesForm(forms.Form):
     queue = forms.CharField(
         widget = forms.HiddenInput,
@@ -46,6 +49,12 @@ class BroadcastForm(forms.Form):
         required = False,
         label = "Nomor Handphone",
     )
+
+    
+    nonmembers = forms.BooleanField(
+        required = False,
+        label = "Non Member",
+    )
     
     member = forms.BooleanField(
         required = False,
@@ -55,6 +64,12 @@ class BroadcastForm(forms.Form):
     extra_phones = forms.CharField(
         required = False,
         widget=forms.TextInput(attrs={'class':'input-xlarge'},),
+    )
+    
+    non_member = chosenforms.ChosenModelMultipleChoiceField(
+        queryset = nonmember.objects.all(),
+        required = False,
+        widget = chosenwidg.ChosenSelectMultiple()
     )
     
     tema_informasi = forms.ModelMultipleChoiceField(
@@ -96,7 +111,7 @@ class BroadcastForm(forms.Form):
     domisili = forms.MultipleChoiceField(
         choices = DOMISILI_CHOICES,
         required = False,
-        widget = forms.CheckboxSelectMultiple,
+        widget = chosenwidg.ChosenSelectMultiple(),
     )
     
     domisili_rel = forms.ChoiceField(
@@ -118,11 +133,10 @@ class BroadcastForm(forms.Form):
     organisasi = chosenforms.ChosenModelMultipleChoiceField(
         queryset = Organisasi.objects.all(),
         required = False,
-        #widget = forms.CheckboxSelectMultiple,
         widget = chosenwidg.ChosenSelectMultiple()
     )
     
-    organisasi_rel = chosenforms.ChosenChoiceField(
+    organisasi_rel = forms.ChoiceField(
         choices = REL_CHOICES,
         required = False,
     )
@@ -268,6 +282,24 @@ class BroadcastForm(forms.Form):
         choices = REL_CHOICES,
         required = False,
     )
+    
+    # data member yang ultah hari ini
+    
+    ultah = forms.BooleanField(
+        required = False,
+        label = "Member Ulang Tahun",
+    )
+    
+    kalender = datetime.date.today()
+    bulan    = kalender.month
+    tanggal  = kalender.day
+    
+    ultah_today = forms.ModelMultipleChoiceField(
+        queryset = Person.objects.filter(tanggal_lahir__month=bulan, tanggal_lahir__day=tanggal),
+        widget = forms.CheckboxSelectMultiple,
+        required = False,
+    )
+    
     
 class SettingBroadcastForm(forms.ModelForm):
     error_css_class = 'alert alert-error'

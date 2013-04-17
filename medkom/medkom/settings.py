@@ -5,7 +5,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Admin', 'office@artikulpi.com'),
+    ('Admin', 'lantip@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -80,6 +80,8 @@ INSTALLED_APPS = (
     'message',
     'wilayah',
     'accounts',
+    'nonmember',
+    'spammers',
     'smart_selects',
     'autocomplete_light',
     'chosen',

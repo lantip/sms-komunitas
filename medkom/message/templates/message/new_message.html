@@ -22,10 +22,27 @@
                 {{ form.extra_phones.errors }}
                 {{ form.extra_phones }}
                 <p class="alert alert-info" style="width: 420px">
-                    Tambahkan beberapa nomoh HP dipisahkan dengan koma.
+                    Tambahkan beberapa nomor HP dipisahkan dengan koma.
                 </p>
             </div>
             
+            <label>{{ form.nonmembers }} {{ form.nonmembers.label }}</label>
+            <div class="nonmember">
+                {{ form.non_member.errors }}
+                {{ form.non_member }}
+                <p class="alert alert-info" style="width: 420px">
+                    Tambahkan nama pejabat/dinas, pisahkan dengan koma.
+                </p>
+            </div>
+            
+            <label>{{ form.ultah }} {{ form.ultah.label }}</label>
+            <div class="ultah">
+                {{ form.ultah_today.errors }}
+                {{ form.ultah_today }}
+                <p class="alert alert-info" style="width: 420px">
+                    Pilih member yang ulang tahun hari ini.
+                </p>
+            </div>
             <label>{{ form.member }} {{ form.member.label }}</label>
             <p></p><br>
             
@@ -112,7 +129,7 @@
                                 </a>
                             </div>
                             <div class="accordion-body collapse" id="organisasi">
-                                <div class="accordion-inner">
+                                <div class="accordion-inner" style="min-height: 250px;">
                                     {{ form.organisasi.errors }}
                                     <p>Penghubung</p>
                                     {{ form.organisasi_rel }}
@@ -206,7 +223,7 @@
                                 </a>
                             </div>
                             <div class="accordion-body collapse" id="domisili">
-                                <div class="accordion-inner">
+                                <div class="accordion-inner" style="min-height: 250px;">
                                     {{ form.domisili.errors }}
                                     <p>Penghubung</p>
                                     {{ form.domisili_rel }}
@@ -399,6 +416,14 @@
             };
         });
         
+        $('#id_nonmembers').click(function(){
+            if($('#id_nonmembers').is(':checked')) {
+                $('.nonmember').show();
+            } else {
+                $('.nonmember').hide();
+            };
+        });
+        
         $('#id_member').click(function(){
             if($('#id_member').is(':checked')) {
                 $('.member').show();
@@ -407,9 +432,17 @@
             };
         });
         
+        $('#id_ultah').click(function(){
+            if($('#id_ultah').is(':checked')) {
+                $('.ultah').show();
+            } else {
+                $('.ultah').hide();
+            };
+        });
+        
         $(document).ready(function() {
             $('#id_message').limitCharacters();
-            $('.external,.member').hide();
+            $('.external,.member,.nonmember,.ultah').hide();
         });
     </script>
 {% endblock %}

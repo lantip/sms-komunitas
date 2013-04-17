@@ -12,6 +12,8 @@ from message.models import Queue, Log, Broadcast
 from message.forms import (DeleteMessagesForm, BroadcastForm,
                            SettingBroadcastForm, ReplyForm, SearchForm)
 from member.models import Person, Usia, StatusSosial
+from nonmember.models import nonmember
+from spammers.models import Spammers
 import datetime
 
 @login_required
@@ -141,6 +143,22 @@ def new_message(request):
                     phones = form.cleaned_data["extra_phones"].split(',')
                     for phone in phones:
                         _send_single_sms(phone, message)
+                        
+            #Send Non Member Receiver
+            if form.cleaned_data["nonmembers"]:
+                if form.cleaned_data["non_member"]:
+                    phones = form.cleaned_data["non_member"]
+                    for phone in phones:
+                        person = nonmember.objects.get(id=phone).no_handphone
+                        _send_single_sms(phone, message)
+                        
+            #Send Member Ulang Tahun
+            if form.cleaned_data["ultah"]:
+                if form.cleaned_data["ultah_today"]:
+                    phones = form.cleaned_data["ultah_today"]
+                    for phone in phones:
+                        person = Person.objects.get(id=phone).no_handphone
+                        _send_single_sms(phone, message)
             
             return HttpResponseRedirect(reverse('home'))
     else:
@@ -158,6 +176,22 @@ def decline(request, msg_id):
         queue.resolution = 1
         queue.save()
     
+    return HttpResponseRedirect(reverse('home'))
+    
+@login_required
+def spam(request, msg_id):
+    if request.method == 'POST':
+        queue = get_object_or_404(Queue, pk=request.POST.get('msg-id'))
+        queue.status = 3
+        queue.resolution = 1
+        queue.save()
+        
+        try:
+            spam = Spammers.objects.get(no_handphone=queue.sender)
+        except:
+            spam = Spammers()
+            spam.no_handphone = queue.sender
+            spam.save()
     return HttpResponseRedirect(reverse('home'))
 
 @login_required

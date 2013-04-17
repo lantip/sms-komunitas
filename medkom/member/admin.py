@@ -4,12 +4,13 @@ from django.forms.extras.widgets import SelectDateWidget
 from django.forms.widgets import CheckboxSelectMultiple, SelectMultiple
 from chosen import widgets as chosenwidg
 from django.forms import Select
+import autocomplete_light
 
 class PersonInline(admin.StackedInline):
     model = Person
     extra = 1
     formfield_overrides = {
-        models.DateField: {'widget': SelectDateWidget(years=range(1950,2020))},
+        models.DateField: {'widget': SelectDateWidget(years=range(1910,2020))},
         models.ManyToManyField: {'widget': chosenwidg.ChosenSelectMultiple(), 'help_text':'Type and click, to select more than one. '},
     }
     
@@ -38,7 +39,7 @@ class HandphoneInline(admin.StackedInline):
 class PersonAdmin(admin.ModelAdmin):
     search_fields = ['nama_lengkap', 'nama_panggilan', 'no_handphone']
     formfield_overrides = {
-        models.DateField: {'widget': SelectDateWidget(years=range(1950,2020))},
+        models.DateField: {'widget': SelectDateWidget(years=range(1910,2020))},
         models.ManyToManyField: {'widget': chosenwidg.ChosenSelectMultiple(), 'help_text':'Type and click, to select more than one. '},
     }
     inlines = [HandphoneInline]
@@ -143,7 +144,7 @@ class PenghasilanBulananAdmin(admin.ModelAdmin):
     pass
 
 class OrganisasiAdmin(admin.ModelAdmin):
-    list_display = ('organisasi', 'jabatan', 'nama_desa', 'nama_dusun', 'nama_kampung', 'rt')
+    list_display = ('organisasi', 'jabatan')
 
 class MediaAdmin(admin.ModelAdmin):
     pass

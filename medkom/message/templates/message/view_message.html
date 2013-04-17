@@ -45,6 +45,17 @@
                             </td>
                             
                             <td>
+                                <form method="post" action="spam/" style="margin: 0">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="msg-id" value="{{message.id}}">
+                                    <button rel="tooltip" data-original-title="Tandai Spammer"
+                                        type="submit" class="btn" onclick="return confirmDelete()">
+                                        <i class="icon-flag"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            
+                            <td>
                                 <a data-toggle="tab" href="#new" class="btn"
                                 rel="tooltip" data-original-title="Moderasi Pesan">
                                     <i class="icon-ok"></i>

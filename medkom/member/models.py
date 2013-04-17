@@ -2,7 +2,7 @@ from django.db import models
 from smart_selects.db_fields import ChainedForeignKey,GroupedForeignKey
 
 YEAR_CHOICE = ()
-for i in range(1950,2020):
+for i in range(1910,2020):
     YEAR_ITEM = (i,i)
     YEAR_CHOICE += (YEAR_ITEM,)
 
@@ -59,7 +59,6 @@ class Person(models.Model):
     jenis_usaha = models.ManyToManyField('JenisUsaha', blank=True, null=True)
     penghasilan_bulanan = models.ForeignKey('PenghasilanBulanan', blank=True, null=True)
     organisasi = models.ManyToManyField('Organisasi', blank=True, null=True)
-    #organisasi = GroupedForeignKey('Organisasi', 'nama_desa',blank=True, null=True)
     media = models.ManyToManyField('Media', blank=True, null=True)
     tema_informasi = models.ManyToManyField('TemaInformasi', blank=True, null=True)
     alat_transportasi = models.ManyToManyField('AlatTransportasi', blank=True, null=True)

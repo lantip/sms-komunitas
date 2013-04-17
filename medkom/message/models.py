@@ -8,13 +8,13 @@ class Queue(models.Model):
     MSG_STATUS = (
         (0, 'Moderated'),
         (1, 'Pending'),
+        (3, 'Spam'),
     )
     status = models.IntegerField(choices=MSG_STATUS, default=0)
     
     MSG_RESOLUTION = (
         (0, 'Approved'),
         (1, 'Decline'),
-        (3, 'Spam')
     )
     resolution = models.IntegerField(choices=MSG_RESOLUTION, null=True)
     
