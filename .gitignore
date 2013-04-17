@@ -1,1 +1,15 @@
 *.pyc
+*.swp
+*.swo
+*.swn
+*.*~
+*.sqlite3
+.project
+.pydevproject
+.settings
+.vagrant
+.DS_Store
+.coverage
+htmlcov/*
+*.~lock*
+
