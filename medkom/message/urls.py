@@ -5,10 +5,7 @@ urlpatterns = patterns('',
     
     url(r'^(?P<msg_id>\d+)/$', 'message.views.view_message'),
     url(r'^(?P<msg_id>\d+)/decline/$', 'message.views.decline'),
-<<<<<<< HEAD
     url(r'^(?P<msg_id>\d+)/spam/$', 'message.views.spam'),
-=======
->>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
     url(r'^(?P<msg_id>\d+)/delete/$', 'message.views.delete'),
     url(r'^(?P<msg_id>\d+)/reply/$', 'message.views.reply'),
     

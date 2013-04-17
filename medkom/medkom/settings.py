@@ -80,11 +80,8 @@ INSTALLED_APPS = (
     'message',
     'wilayah',
     'accounts',
-<<<<<<< HEAD
     'nonmember',
     'spammers',
-=======
->>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
     'smart_selects',
     'autocomplete_light',
     'chosen',

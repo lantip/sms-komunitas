@@ -8,10 +8,7 @@ class Queue(models.Model):
     MSG_STATUS = (
         (0, 'Moderated'),
         (1, 'Pending'),
-<<<<<<< HEAD
         (3, 'Spam'),
-=======
->>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
     )
     status = models.IntegerField(choices=MSG_STATUS, default=0)
     

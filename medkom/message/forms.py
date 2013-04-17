@@ -5,15 +5,14 @@ from member.models import (TemaInformasi, HubunganKeluarga, Agama, Organisasi,
                            StatusSosial, Person)
 from message.models import Broadcast
 from wilayah.models import (Desa, Dusun, Kampung, RT)
-<<<<<<< HEAD
 from nonmember.models import nonmember
 from chosen import widgets as chosenwidg
 from chosen import forms as chosenforms
 import datetime
-=======
+
 from chosen import widgets as chosenwidg
 from chosen import forms as chosenforms
->>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
+
 
 class DeleteMessagesForm(forms.Form):
     queue = forms.CharField(
@@ -54,15 +53,12 @@ class BroadcastForm(forms.Form):
         required = False,
         label = "Nomor Handphone",
     )
-<<<<<<< HEAD
 
     
     nonmembers = forms.BooleanField(
         required = False,
         label = "Non Member",
     )
-=======
->>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
     
     member = forms.BooleanField(
         required = False,
@@ -74,15 +70,12 @@ class BroadcastForm(forms.Form):
         widget=forms.TextInput(attrs={'class':'input-xlarge'},),
     )
     
-<<<<<<< HEAD
     non_member = chosenforms.ChosenModelMultipleChoiceField(
         queryset = nonmember.objects.all(),
         required = False,
         widget = chosenwidg.ChosenSelectMultiple()
     )
     
-=======
->>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
     tema_informasi = forms.ModelMultipleChoiceField(
         queryset = TemaInformasi.objects.all(),
         required = False,
@@ -294,7 +287,6 @@ class BroadcastForm(forms.Form):
         required = False,
     )
     
-<<<<<<< HEAD
     # data member yang ultah hari ini
     
     ultah = forms.BooleanField(
@@ -313,8 +305,6 @@ class BroadcastForm(forms.Form):
     )
     
     
-=======
->>>>>>> 0da1a47e3668e247db5727015b137e16e1746573
 class SettingBroadcastForm(forms.ModelForm):
     error_css_class = 'alert alert-error'
     
