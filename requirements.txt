@@ -1,8 +1,6 @@
-MySQL-python==1.2.4
 Django==1.4
+MySQL-python==1.2.4
+SQLAlchemy==0.8.0b2
 django-smart-selects==1.0.8
 django-autocomplete-light==1.1.22
-SQLAlchemy==0.8.0b2
-distribute==0.6.45
-argparse==1.2.1
-
+django-chosen==0.1
