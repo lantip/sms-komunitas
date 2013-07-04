@@ -7,16 +7,16 @@
         <form method="post">
             {% csrf_token %}
             {{ form.non_field_errors }}
-            
+
             <div class="row">
                 <div class="span10">
                     {{ form.message.errors }}
                     {{ form.message }}
                 </div>
             </div>
-            
+
             <p></p>
-            
+
             <label>{{ form.external }} {{ form.external.label }}</label>
             <div class="external">
                 {{ form.extra_phones.errors }}
@@ -25,7 +25,7 @@
                     Tambahkan beberapa nomor HP dipisahkan dengan koma.
                 </p>
             </div>
-            
+
             <label>{{ form.nonmembers }} {{ form.nonmembers.label }}</label>
             <div class="nonmember">
                 {{ form.non_member.errors }}
@@ -34,7 +34,7 @@
                     Tambahkan nama pejabat/dinas, pisahkan dengan koma.
                 </p>
             </div>
-            
+
             <label>{{ form.ultah }} {{ form.ultah.label }}</label>
             <div class="ultah">
                 {{ form.ultah_today.errors }}
@@ -43,10 +43,10 @@
                     Pilih member yang ulang tahun hari ini.
                 </p>
             </div>
-            
+
             <label>{{ form.member }} {{ form.member.label }}</label>
             <p></p><br>
-            
+
             <div class="row member">
                 <div class="span5">
                     <div class="accordion" id="choice-member">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -103,7 +103,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -121,7 +121,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -139,7 +139,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -157,7 +157,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -175,7 +175,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -193,7 +193,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -213,7 +213,7 @@
                         </div>
                     </div> <!-- accordion -->
                 </div> <!-- Span5 -->
-                
+
                 <div class="span5">
                     <div class="accordion" id="choice-member2">
                         <div class="accordion-group">
@@ -233,7 +233,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -251,7 +251,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -269,7 +269,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -287,7 +287,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -305,7 +305,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Usia - Status Sosial -->
                         <div class="accordion-group">
                             <div class="accordion-heading">
@@ -324,7 +324,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -342,7 +342,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Wilayah -->
                         <div class="accordion-group">
                             <div class="accordion-heading">
@@ -355,35 +355,54 @@
                                 <div class="accordion-inner">
                                     <p>Penghubung</p>
                                     {{ form.wilayah_rel }}
-                                    
+
                                     <p>Desa</p>
                                     {{ form.desa.errors }}
                                     {{ form.desa }}
-                                    
+
                                     <p>Dusun</p>
                                     {{ form.dusun.errors }}
                                     {{ form.dusun }}
-                                    
+
                                     <p>Kampung</p>
                                     {{ form.kampung.errors }}
                                     {{ form.kampung }}
-                                    
+
                                     <p>RT</p>
                                     {{ form.rt.errors }}
                                     {{ form.rt }}
                                 </div>
                             </div>
                         </div>
-                        
+                        <!-- Hobi -->
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse"
+                                   data-parent="#choice-member2" href="#hobi">
+                                    Hobi
+                                </a>
+                            </div>
+                            <div class="accordion-body collapse" id="hobi">
+                                <div class="accordion-inner">
+                                    <p>Penghubung</p>
+                                    {{ form.hobi_rel }}
+
+                                    <p>Hobi</p>
+                                    {{ form.hobi.errors }}
+                                    {{ form.hobi }}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    
+
                 </div> <!-- Span5 -->
             </div> <!-- Row -->
-            
+
             <button type="submit" class="btn btn-primary">
                 <i class="icon-envelope icon-white"></i> Kirim
             </button>
-            
+
         </form>
     </div>
 </div>
@@ -395,20 +414,20 @@
         #id_message {
             width: 455px;
         }
-        
+
         select {
             width: 210px;
         }
-        
+
         ul {
             list-style-type: none;
         }
     </style>
-    
+
     <script type="text/javascript" src="{{ STATIC_URL }}js/box.js"></script>
     <script type="text/javascript">
         $('.errorlist').attr('class', 'alert alert-error');
-        
+
         $('#id_external').click(function(){
             if($('#id_external').is(':checked')) {
                 $('.external').show();
@@ -416,7 +435,7 @@
                 $('.external').hide();
             };
         });
-        
+
         $('#id_nonmembers').click(function(){
             if($('#id_nonmembers').is(':checked')) {
                 $('.nonmember').show();
@@ -424,7 +443,7 @@
                 $('.nonmember').hide();
             };
         });
-        
+
         $('#id_member').click(function(){
             if($('#id_member').is(':checked')) {
                 $('.member').show();
@@ -432,7 +451,7 @@
                 $('.member').hide();
             };
         });
-        
+
         $('#id_ultah').click(function(){
             if($('#id_ultah').is(':checked')) {
                 $('.ultah').show();
@@ -440,7 +459,7 @@
                 $('.ultah').hide();
             };
         });
-        
+
         $(document).ready(function() {
             $('#id_message').limitCharacters();
             $('.external,.member,.nonmember,.ultah').hide();
