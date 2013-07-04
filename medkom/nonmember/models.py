@@ -15,7 +15,7 @@ class nonmember(models.Model):
     wilayah         = models.CharField(max_length=255)
 
     def __unicode__(self):
-        return u'%s' %(self.nama_lengkap)
+        return u'%s' %(self.jabatan)
     class Meta:
         verbose_name_plural = 'Non Member'
         verbose_name        = 'Non Member'

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}View Message{% endblock %}
 {% block body %}
-    
+
     <div class="well">
         <div class="item-header" style="font-size: large">
             <strong>{{ message.sender }}</strong>
@@ -14,10 +14,10 @@
             <small>{{message.date|date:"d-M-Y"}}</small>
         </div>
     </div>
-    
+
     <div class="tab-content">
         <div class="tab-pane {% if not form.errors %}active{% endif %}" id="view">
-            
+
             {% if message.status %}
                 <div class="btn-tooltip">
                     <table cellpadding="4">
@@ -32,7 +32,7 @@
                                     </button>
                                 </form>
                             </td>
-                            
+
                             <td>
                                 <form method="post" action="decline/" style="margin: 0">
                                     {% csrf_token %}
@@ -43,7 +43,7 @@
                                     </button>
                                 </form>
                             </td>
-                            
+
                             <td>
                                 <form method="post" action="spam/" style="margin: 0">
                                     {% csrf_token %}
@@ -54,7 +54,7 @@
                                     </button>
                                 </form>
                             </td>
-                            
+
                             <td>
                                 <a data-toggle="tab" href="#new" class="btn"
                                 rel="tooltip" data-original-title="Moderasi Pesan">
@@ -69,16 +69,16 @@
                     Message has been moderated.
                 </div>
             {% endif %}
-            
+
         </div>
         <div class="tab-pane {% if form.errors %}active{% endif %}" id="new">
-            
+
             <div class="row">
                 <div class="span10">
                     <form method="post" class="form-horizontal">
                         {% csrf_token %}
                         {{ form.non_field_errors }}
-                        
+
                         <div class="accordion" id="editmessage">
                             <div class="accordion-group">
                                 <div class="accordion-heading">
@@ -89,7 +89,7 @@
                                         Sunting Pesan #
                                     </a>
                                 </div>
-                                
+
                                 <div id="message" class="accordion-body collapse">
                                     <div class="accordion-inner">
                                         {{ form.message.errors }}
@@ -98,9 +98,9 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <p></p>
-                        
+
                         <label>{{ form.external }} {{ form.external.label }}</label>
                         <div class="external">
                             {{ form.extra_phones.errors }}
@@ -109,10 +109,28 @@
                                 Tambahkan beberapa nomoh HP dipisahkan dengan koma.
                             </p>
                         </div>
-                        
+
+                        <label>{{ form.nonmembers }} {{ form.nonmembers.label }}</label>
+                        <div class="nonmember">
+                            {{ form.non_member.errors }}
+                            {{ form.non_member }}
+                            <p class="alert alert-info" style="width: 420px">
+                                Tambahkan nama pejabat/dinas, pisahkan dengan koma.
+                            </p>
+                        </div>
+
+                        <label>{{ form.ultah }} {{ form.ultah.label }}</label>
+                        <div class="ultah">
+                            {{ form.ultah_today.errors }}
+                            {{ form.ultah_today }}
+                            <p class="alert alert-info" style="width: 420px">
+                                Pilih member yang ulang tahun hari ini.
+                            </p>
+                        </div>
+
                         <label>{{ form.member }} {{ form.member.label }}</label>
                         <p></p><br>
-                        
+
                         <div class="row member">
                             <div class="span5">
                                 <div class="accordion" id="choice-member">
@@ -133,7 +151,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -151,7 +169,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -169,7 +187,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -187,7 +205,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -205,7 +223,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -223,7 +241,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -241,7 +259,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -259,7 +277,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -279,10 +297,10 @@
                                     </div>
                                 </div> <!-- accordion -->
                             </div> <!-- Span5 -->
-                            
+
                             <div class="span5">
                                 <div class="accordion" id="choice-member2">
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -300,7 +318,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -318,7 +336,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -336,7 +354,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -354,7 +372,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -372,7 +390,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- Usia - Status Sosial -->
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
@@ -391,7 +409,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse"
@@ -409,7 +427,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- Wilayah -->
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
@@ -422,45 +440,45 @@
                                             <div class="accordion-inner">
                                                 <p>Penghubung</p>
                                                 {{ form.wilayah_rel }}
-                                                
+
                                                 <p>Desa</p>
                                                 {{ form.desa.errors }}
                                                 {{ form.desa }}
-                                                
+
                                                 <p>Dusun</p>
                                                 {{ form.dusun.errors }}
                                                 {{ form.dusun }}
-                                                
+
                                                 <p>Kampung</p>
                                                 {{ form.kampung.errors }}
                                                 {{ form.kampung }}
-                                                
+
                                                 <p>RT</p>
                                                 {{ form.rt.errors }}
                                                 {{ form.rt }}
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div> <!-- Span5 -->
                         </div> <!-- Row -->
-                        
+
                         <button type="submit" class="btn btn-primary">
                             <i class="icon-envelope icon-white"></i> Kirim
                         </button>
-                        
+
                         <a href="#view" class="btn btn-inverse" data-toggle="tab">
                             Batal
                         </a>
                     </form>
                 </div> <!-- span10 -->
             </div> <!-- row -->
-            
+
         </div> <!-- tab-pane new -->
     </div>
-    
-    
+
+
 {% endblock %}
 
 {% block extrajs %}
@@ -468,30 +486,30 @@
         #id_message {
             width: 400px;
         }
-        
+
         select {
             width: 210px;
         }
-        
+
         ul {
             list-style-type: none;
         }
     </style>
-    
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('.btn-tooltip').tooltip({
                 selector: "button[rel=tooltip]"
             });
-            
+
             $('.btn-tooltip').tooltip({
                 selector: "a[rel=tooltip]"
             });
-            
+
             $('#id_message').limitCharacters();
-            $('.external,.member').hide();
+            $('.external,.member,.nonmember,.ultah').hide();
         });
-        
+
         $('#id_external').click(function(){
             if($('#id_external').is(':checked')) {
                 $('.external').show();
@@ -499,7 +517,17 @@
                 $('.external').hide();
             };
         });
-        
+
+        $('#id_nonmembers').click(function(){
+            if($('#id_nonmembers').is(':checked')) {
+                $('.nonmember').show();
+                $('#id_non_member_chzn').css("width", "200px");
+                $('.chzn-drop').css("width", "200px");
+            } else {
+                $('.nonmember').hide();
+            };
+        });
+
         $('#id_member').click(function(){
             if($('#id_member').is(':checked')) {
                 $('.member').show();
@@ -507,7 +535,15 @@
                 $('.member').hide();
             };
         });
-        
+
+        $('#id_ultah').click(function(){
+            if($('#id_ultah').is(':checked')) {
+                $('.ultah').show();
+            } else {
+                $('.ultah').hide();
+            };
+        });
+
         function confirmDelete() {
             var agree=confirm("Anda yakin?");
             if(agree)
@@ -515,9 +551,9 @@
             else
                 return false;
         }
-        
+
         $('.errorlist').attr('class', 'alert alert-error');
-        
+
     </script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/box.js"></script>
 {% endblock %}

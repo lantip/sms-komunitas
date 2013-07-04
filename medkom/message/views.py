@@ -25,11 +25,11 @@ def home(request):
                 list_messages = [x for x in form.cleaned_data["queue"].split(',')]
                 messages = Queue.objects.filter(id__in=list_messages)
                 messages.delete()
-            
+
             return HttpResponseRedirect(reverse('home'))
     else:
         form = DeleteMessagesForm()
-    
+
     queue_list = Queue.objects.filter(status__exact="1").order_by('-id')
     paginator = Paginator(queue_list, 5)
     page = request.GET.get('page')
@@ -39,7 +39,7 @@ def home(request):
         messages = paginator.page(1)
     except EmptyPage:
         messages = paginator.page(paginator.num_pages)
-    
+
     return render_to_response('message/home.html',
                               {"messages": messages, "form": form, },
                               context_instance=RequestContext(request))
@@ -57,16 +57,16 @@ def messages(request):
                 queryset.add(Q(
                     sender__icontains=person.no_handphone[1:]
                 ), Q.OR)
-            
+
             queryset.add(Q(
                 message__icontains=q
             ), Q.OR)
-            
+
             queue_list = Queue.objects.filter(queryset)
     else:
         form = SearchForm()
         queue_list = Queue.objects.all().order_by('-id')
-        
+
     paginator = Paginator(queue_list, 5)
     page = request.GET.get('page')
     try:
@@ -75,7 +75,7 @@ def messages(request):
         messages = paginator.page(1)
     except EmptyPage:
         messages = paginator.page(paginator.num_pages)
-        
+
     return render_to_response("message/messages.html",
                               {"messages": messages, "form":form, },
                               context_instance=RequestContext(request))
@@ -94,27 +94,43 @@ def view_message(request, msg_id):
                     persons = Person.objects.filter(queryset)
                 else:
                     persons = Person.objects.all()
-                    
+
                 _send_sms(persons, message)
                 _write_log(persons, message, queue)
-                
+
                 # Modify message
                 queue.status = 0 #processed
                 queue.resolution = 0 #approved
                 queue.save()
-            
+
+            #Send Non Member Receiver
+            if form.cleaned_data["nonmembers"]:
+                if form.cleaned_data["non_member"]:
+                    phones = form.cleaned_data["non_member"]
+                    for phone in phones:
+                        person = nonmember.objects.get(id=phone).no_handphone
+                        _send_single_sms(phone, message)
+
+            #Send Member Ulang Tahun
+            if form.cleaned_data["ultah"]:
+                if form.cleaned_data["ultah_today"]:
+                    phones = form.cleaned_data["ultah_today"]
+                    for phone in phones:
+                        person = Person.objects.get(id=phone).no_handphone
+                        _send_single_sms(phone, message)
+
             if form.cleaned_data["external"]:
                 if form.cleaned_data["extra_phones"]:
                     phones = form.cleaned_data["extra_phones"].split(',')
                     for phone in phones:
                         _send_single_sms(phone, message)
-                        
+
             return HttpResponseRedirect(reverse('home'))
     else:
         form = BroadcastForm(initial={
             'message': queue.message
         })
-    
+
     return render_to_response("message/view_message.html",
                               {"message": queue, "form": form, },
                               context_instance=RequestContext(request))
@@ -125,7 +141,7 @@ def new_message(request):
         form = BroadcastForm(request.POST)
         if form.is_valid():
             message = form.cleaned_data["message"]
-            
+
             #Send Member
             if form.cleaned_data["member"]:
                 queryset = _get_queryset(form)
@@ -133,17 +149,17 @@ def new_message(request):
                     persons = Person.objects.filter(queryset)
                 else:
                     persons = Person.objects.all()
-                    
+
                 _send_sms(persons, message)
                 _write_log(persons, message)
-            
+
             #Send External Receiver
             if form.cleaned_data["external"]:
                 if form.cleaned_data["extra_phones"]:
                     phones = form.cleaned_data["extra_phones"].split(',')
                     for phone in phones:
                         _send_single_sms(phone, message)
-                        
+
             #Send Non Member Receiver
             if form.cleaned_data["nonmembers"]:
                 if form.cleaned_data["non_member"]:
@@ -151,7 +167,7 @@ def new_message(request):
                     for phone in phones:
                         person = nonmember.objects.get(id=phone).no_handphone
                         _send_single_sms(phone, message)
-                        
+
             #Send Member Ulang Tahun
             if form.cleaned_data["ultah"]:
                 if form.cleaned_data["ultah_today"]:
@@ -159,11 +175,11 @@ def new_message(request):
                     for phone in phones:
                         person = Person.objects.get(id=phone).no_handphone
                         _send_single_sms(phone, message)
-            
+
             return HttpResponseRedirect(reverse('home'))
     else:
         form = BroadcastForm()
-    
+
     return render_to_response("message/new_message.html",
                               {"form": form,},
                               context_instance=RequestContext(request))
@@ -175,10 +191,10 @@ def decline(request, msg_id):
         queue.status = 0
         queue.resolution = 1
         queue.save()
-    
+
     return HttpResponseRedirect(reverse('home'))
-    
-    
+
+
 @login_required
 def spam(request, msg_id):
     if request.method == 'POST':
@@ -186,7 +202,7 @@ def spam(request, msg_id):
         queue.status = 3
         queue.resolution = 1
         queue.save()
-        
+
         try:
             spam = Spammers.objects.get(no_handphone=queue.sender)
         except:
@@ -200,7 +216,7 @@ def delete(request, msg_id):
     if request.method =='POST':
         message = get_object_or_404(Queue, pk=request.POST.get('del-id'))
         message.delete()
-    
+
     return HttpResponseRedirect(reverse('home'))
 
 @admin_required
@@ -209,13 +225,13 @@ def broadcast(request):
         form = SettingBroadcastForm(request.POST)
         if form.is_valid():
             form.save()
-            
+
             return HttpResponseRedirect(reverse('broadcast'))
     else:
         form = SettingBroadcastForm()
-        
+
     broadcasts = Broadcast.objects.all()
-    
+
     return render_to_response("message/broadcast.html",
                               {"broadcasts": broadcasts, "form":form,},
                               context_instance=RequestContext(request))
@@ -227,11 +243,11 @@ def view_broadcast(request, b_id):
         form = SettingBroadcastForm(request.POST, instance=broadcast)
         if form.is_valid():
             form.save()
-            
+
             return HttpResponseRedirect(reverse('broadcast'))
     else:
         form = SettingBroadcastForm(instance=broadcast)
-        
+
     return render_to_response("message/view_broadcast.html",
                               {"broadcast":broadcast, "form":form,},
                               context_instance=RequestContext(request))
@@ -241,7 +257,7 @@ def delete_broadcast(request, b_id):
     if request.method == "POST":
         broadcast = get_object_or_404(Broadcast, pk=request.POST.get('b-id'))
         broadcast.delete()
-        
+
     return HttpResponseRedirect(reverse('broadcast'))
 
 @login_required
@@ -249,14 +265,14 @@ def archive(request):
     log_list = Log.objects.all().order_by('-id')
     paginator = Paginator(log_list, 10)
     page = request.GET.get('page')
-    
+
     try:
         archives = paginator.page(page)
     except PageNotAnInteger:
         archives = paginator.page(1)
     except EmptyPage:
         archives = paginator.page(paginator.num_pages)
-        
+
     return render_to_response(
         "message/archive.html",
         {"archives": archives, },
@@ -274,7 +290,7 @@ def log(request):
         sentitems = paginator.page(1)
     except EmptyPage:
         sentitems = paginator.page(paginator.num_pages)
-    
+
     return render_to_response(
         "message/log.html",
         {"sentitems":sentitems,},
@@ -291,18 +307,18 @@ def reply(request, msg_id):
             destination = form.cleaned_data["destination"]
             _send_single_sms(destination, message)
             _write_single_log(message)
-            
+
             # Modify message
             msg.status = 0 #processed
             msg.resolution = 0 #approved
             msg.save()
-            
+
             return HttpResponseRedirect(reverse('home'))
     else:
         form = ReplyForm(
             initial={'destination': msg.sender}
         )
-    
+
     return render_to_response("message/reply.html",
                               {"msg": msg, "form": form, },
                               context_instance=RequestContext(request))
@@ -316,13 +332,13 @@ def new_single_message(request, no_hp):
             destination = form.cleaned_data["destination"]
             _send_single_sms(destination, message)
             _write_single_log(message)
-            
+
             return HttpResponseRedirect(reverse('home'))
     else:
         form = ReplyForm(
             initial={'destination': no_hp}
         )
-        
+
     return render_to_response('message/new_single_message.html',
                               {"form":form, "destination":no_hp,},
                               context_instance=RequestContext(request))
@@ -345,7 +361,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 tema_informasi__in=form.cleaned_data["tema_informasi"]
             ), Q.AND)
-    
+
     if form.cleaned_data["hubungan_keluarga"]:
         if form.cleaned_data["hubungan_keluarga_rel"] == '1':
             queryset.add(Q(
@@ -355,7 +371,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 hubungan_keluarga__in=form.cleaned_data["hubungan_keluarga"]
             ), Q.AND)
-            
+
     if form.cleaned_data["jenis_kelamin"]:
         if form.cleaned_data["jenis_kelamin_rel"] == '1':
             queryset.add(Q(
@@ -365,7 +381,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 jenis_kelamin__in=form.cleaned_data["jenis_kelamin"]
             ), Q.AND)
-            
+
     if form.cleaned_data["domisili"]:
         if form.cleaned_data["domisili_rel"] == '1':
             queryset.add(Q(
@@ -375,7 +391,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 domisili__in=form.cleaned_data["domisili"]
             ), Q.AND)
-            
+
     if form.cleaned_data["agama"]:
         if form.cleaned_data["agama_rel"] == '1':
             queryset.add(Q(
@@ -385,7 +401,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 agama__in=form.cleaned_data["agama"]
             ), Q.AND)
-            
+
     if form.cleaned_data["organisasi"]:
         if form.cleaned_data["organisasi_rel"] == '1':
             queryset.add(Q(
@@ -395,7 +411,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 organisasi__in=form.cleaned_data["organisasi"]
             ), Q.AND)
-            
+
     if form.cleaned_data["jenis_usaha"]:
         if form.cleaned_data["jenis_usaha_rel"] == '1':
             queryset.add(Q(
@@ -405,7 +421,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 jenis_usaha__in=form.cleaned_data["jenis_usaha"]
             ), Q.AND)
-            
+
     if form.cleaned_data["keahlian"]:
         if form.cleaned_data["keahlian_rel"] == '1':
             queryset.add(Q(
@@ -415,7 +431,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 keahlian__in=form.cleaned_data["keahlian"]
             ),Q.OR)
-            
+
     if form.cleaned_data["pendidikan_terakhir"]:
         if form.cleaned_data["pendidikan_terakhir_rel"] == '1':
             queryset.add(Q(
@@ -425,7 +441,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 pendidikan_terakhir__in=form.cleaned_data["pendidikan_terakhir"]
             ), Q.AND)
-            
+
     if form.cleaned_data["jurusan"]:
         if form.cleaned_data["jurusan_rel"] == '1':
             queryset.add(Q(
@@ -435,7 +451,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 jurusan__in=form.cleaned_data["jurusan"]
             ), Q.AND)
-            
+
     if form.cleaned_data["pekerjaan"]:
         if form.cleaned_data["pekerjaan_rel"] == '1':
             queryset.add(Q(
@@ -445,7 +461,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 pekerjaan__in=form.cleaned_data["pekerjaan"]
             ), Q.AND)
-            
+
     if form.cleaned_data["penerima_jaminan_sosial"]:
         if form.cleaned_data["penerima_jaminan_sosial_rel"] == '1':
             queryset.add(Q(
@@ -459,7 +475,7 @@ def _get_queryset(form):
                     "penerima_jaminan_sosial"
                 ]
             ), Q.AND)
-            
+
     if form.cleaned_data["golongan_darah"]:
         if form.cleaned_data["golongan_darah_rel"] == '1':
             queryset.add(Q(
@@ -469,7 +485,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 golongan_darah__in=form.cleaned_data["golongan_darah"]
             ), Q.AND)
-            
+
     if form.cleaned_data["jadwal_ronda"]:
         if form.cleaned_data["jadwal_ronda_rel"] == '1':
             queryset.add(Q(
@@ -479,11 +495,11 @@ def _get_queryset(form):
             queryset.add(Q(
                 family__jadwal_ronda__in=form.cleaned_data["jadwal_ronda"]
             ), Q.AND)
-            
+
     # Usia - Status Sosial
     if form.cleaned_data["usia"]:
         age = _get_age(form.cleaned_data["usia"])
-        
+
         if form.cleaned_data["usia_rel"] == '1':
             queryset.add(Q(
                 tanggal_lahir__range=(age[0],age[1])
@@ -492,7 +508,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 tanggal_lahir__range=(age[0],age[1])
             ), Q.AND)
-            
+
     if form.cleaned_data["status_sosial"]:
         statuses = form.cleaned_data["status_sosial"]
         status_min = []
@@ -500,10 +516,10 @@ def _get_queryset(form):
         for status in statuses:
             status_min.append(status.score_min)
             status_max.append(status.score_max)
-            
+
         score_min = min(status_min)
         score_max = max(status_max)
-        
+
         if form.cleaned_data["status_sosial_rel"] == '1':
             queryset.add(Q(
                 status_social_score__range=(score_min,score_max)
@@ -512,8 +528,8 @@ def _get_queryset(form):
             queryset.add(Q(
                 status_social_score__range=(score_min,score_max)
             ), Q.AND)
-            
-    # Wilayah 
+
+    # Wilayah
     if form.cleaned_data["desa"]:
         if form.cleaned_data["wilayah_rel"] == '1':
             queryset.add(Q(
@@ -523,7 +539,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 family__alamat_desa__in=form.cleaned_data["desa"]
             ), Q.AND)
-            
+
     if form.cleaned_data["dusun"]:
         if form.cleaned_data["wilayah_rel"] == '1':
             queryset.add(Q(
@@ -533,7 +549,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 family__alamat_dusun__in=form.cleaned_data["dusun"]
             ), Q.AND)
-            
+
     if form.cleaned_data["kampung"]:
         if form.cleaned_data["wilayah_rel"] == '1':
             queryset.add(Q(
@@ -543,7 +559,7 @@ def _get_queryset(form):
             queryset.add(Q(
                 family__alamat_kampung__in=form.cleaned_data["kampung"]
             ), Q.AND)
-            
+
     if form.cleaned_data["rt"]:
         if form.cleaned_data["wilayah_rel"] == '1':
             queryset.add(Q(
@@ -553,21 +569,21 @@ def _get_queryset(form):
             queryset.add(Q(
                 family__alamat_rt__in=form.cleaned_data["rt"]
             ), Q.AND)
-            
+
     return queryset
 
 def _get_age(ages):
     day_in_a_year = 365
     age_min = []
     age_max = []
-    
+
     for age in ages:
         age_min.append(age.umur_min)
         age_max.append(age.umur_max)
-    
+
     min_age = min(age_min)
     max_age = max(age_max)
-    
+
     date_start = datetime.date.today() - datetime.timedelta(
         max_age * day_in_a_year
     )
@@ -575,7 +591,7 @@ def _get_age(ages):
         min_age * day_in_a_year
     )
     result = [date_start,date_finish]
-    
+
     return result
 
 def _send_sms(persons, message):
@@ -587,7 +603,7 @@ def _send_sms(persons, message):
                   VALUES(%s,'Default_No_Compression',%s,'1')",
                 [person.no_handphone,message]
             )
-        
+
     transaction.commit_unless_managed()
 
 def _send_single_sms(destination, message):
@@ -605,7 +621,7 @@ def _write_log(persons, message, msg_id=None):
     log.date = timezone.localtime(timezone.now())
     if msg_id:
         log.queue = msg_id
-    
+
     log.save()
     for person in persons:
         log.persons.add(person)
@@ -616,16 +632,16 @@ def _write_single_log(message, msg_id=None, person=None):
     log.date = timezone.localtime(timezone.now())
     if msg_id:
         log.queue = msg_id
-    
+
     log.save()
     if person:
         log.persons.add(person)
-    
+
 def _fetch_sentitems():
     cursor = connection.cursor()
     cursor.execute("SELECT SendingDateTime,DestinationNumber,\
                    TextDecoded,Status FROM sentitems order by ID DESC")
-    
+
     desc = cursor.description
     return [
         dict(zip([col[0] for col in desc], row))
