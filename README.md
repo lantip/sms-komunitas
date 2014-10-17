@@ -14,6 +14,7 @@ Changelog :
 ===========
 * 17 Oktober 2014
   - Menambahkan halaman statistik 
+  - Menampilkan kata paling sering dipakai dalam sms. Dalam bentuk word cloud
 
 * 17 April 2013
 	- Menambahkan database non member
