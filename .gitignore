@@ -4,6 +4,8 @@
 *.swn
 *.*~
 *.sqlite3
+*.sql
+*.gz
 .project
 .pydevproject
 .settings

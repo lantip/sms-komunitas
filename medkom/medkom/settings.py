@@ -13,9 +13,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'medkom',
+        'NAME': 'smskomunitas',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': 'bankai',
         'HOST': '',
         'PORT': '',
     }

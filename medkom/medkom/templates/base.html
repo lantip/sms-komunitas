@@ -123,6 +123,12 @@
                                 <i class="icon-hdd"></i> Log
                             </a>
                         </li>
+                            <li class="nav-header">Statistik</li>
+                            <li>
+                                <a href="{% url statistics %}">
+                                    <i class="icon-signal"></i> Statistics
+                                </a>
+                            </li>
                         {% if user.is_superuser %}
                             <li class="nav-header">Pengaturan</li>
                             <li>

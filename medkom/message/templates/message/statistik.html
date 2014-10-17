@@ -1,0 +1,310 @@
+{% extends "base.html" %}
+{% block title %}Statistik{% endblock %}
+{% block body %}
+          <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Statistik</th>
+                </tr>
+            </thead>
+          </table>
+              <!-- page start-->
+              <div class="tab-pane" id="chartjs">
+                  <div class="row mt">
+                      <div class="span5">
+                          <div class="content-panel">
+                              <h4><i class="fa fa-angle-right"></i> Pekerjaan</h4>
+                              <div class="panel-body text-center">
+                                  <div id="pekerjaan" height="300" width="400"></div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="span5">
+                          <div class="content-panel">
+                              <h4><i class="fa fa-angle-right"></i> Informasi yang Diminati</h4>
+                              <div class="panel-body text-center">
+                                  <div id="informasi" height="300" width="400"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mt">
+                      <div class="span5">
+                          <div class="content-panel">
+                              <h4><i class="fa fa-angle-right"></i> Usia</h4>
+                              <div class="panel-body text-center">
+                                  <div id="usia" height="300" width="400"></div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="span5">
+                          <div class="content-panel">
+                              <h4><i class="fa fa-angle-right"></i> Golongan Darah</h4>
+                              <div class="panel-body text-center">
+                                  <div id="golongandarah" height="300" width="400"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mt">
+                      <div class="span5">
+                          <div class="content-panel">
+                              <h4><i class="fa fa-angle-right"></i> Trafik</h4>
+                              <div class="panel-body text-center">
+                                  <div id="trafik" height="300" width="400"></div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="span5">
+                          <div class="content-panel">
+                              <h4><i class="fa fa-angle-right"></i> Carrier</h4>
+                              <div class="panel-body text-center">
+                                  <div id="carrier" height="300" width="400"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mt">
+                      <div class="span5">
+                          <div class="content-panel">
+                              <h4><i class="fa fa-angle-right"></i> Word Cloud</h4>
+                              <div class="panel-body text-center">
+                                  <div id="cloud" height="300" width="400"></div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="span5">
+                          <div class="content-panel">
+                              <h4><i class="fa fa-angle-right"></i> Anggota Teraktif</h4>
+                              <div class="panel-body text-center">
+                                  <div id="anggota" height="300" width="400"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- page end-->
+{% endblock %}
+{% block extrajs %}
+<script type="text/javascript" src="{{STATIC_URL}}fusioncharts/fusioncharts.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}fusioncharts/themes/fusioncharts.theme.fint.js"></script>
+<script type="text/javascript">
+  FusionCharts.ready(function(){
+    var employeeChart = new FusionCharts({
+        "type": "bar2d",
+        "renderAt": "pekerjaan",
+        "width": "500",
+        "height": "300",
+        "dataFormat": "json",
+        "dataSource":  {
+          "chart": {
+            "xAxisName": "Profesi",
+            "yAxisName": "Jumlah",
+            "theme": "fint"
+         },
+         "data": {{pekerjaan|safe}}
+      }
+
+  });
+    var informasiChart = new FusionCharts({
+        "type": "bar2d",
+        "renderAt": "informasi",
+        "width": "500",
+        "height": "300",
+        "dataFormat": "json",
+        "dataSource":  {
+          "chart": {
+            "xAxisName": "Tema Informasi",
+            "yAxisName": "Jumlah",
+            "theme": "fint"
+         },
+         "data": {{informasi|safe}}
+      }
+
+  });
+    var usiaChart = new FusionCharts({
+        "type": "pie3d",
+        "renderAt": "usia",
+        "width": "500",
+        "height": "300",
+        "dataFormat": "json",
+        "dataSource":  {
+          "chart": {
+            "startingAngle": "120",
+            "showLabels": "0",
+            "showLegend": "1",
+            "enableMultiSlicing": "0",
+            "slicingDistance": "15",
+            "showPercentValues": "1",
+            "showPercentInTooltip": "0",
+            "plotTooltext": "Age group : $label<br>Total : $datavalue",
+            "theme": "fint"
+         },
+         "data": {{usia|safe}}
+      }
+
+  });
+    var golongandarahChart = new FusionCharts({
+        "type": "pie3d",
+        "renderAt": "golongandarah",
+        "width": "500",
+        "height": "300",
+        "dataFormat": "json",
+        "dataSource":  {
+          "chart": {
+            "startingAngle": "120",
+            "showLabels": "0",
+            "showLegend": "1",
+            "enableMultiSlicing": "0",
+            "slicingDistance": "15",
+            "showPercentValues": "1",
+            "showPercentInTooltip": "0",
+            "plotTooltext": "Golongan Darah : $label<br>Total : $datavalue",
+            "theme": "fint"
+         },
+         "data": {{golongandarah|safe}}
+      }
+
+  });
+  var trafficChart = new FusionCharts({
+        id: "mychart",
+        type: 'msspline',
+        renderAt: 'trafik',
+        width: '500',
+        height: '300',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "xAxisName": "Day",                
+                "yAxisName": "Jumlah SMS",
+                "theme": "fint",
+                "animation": "1",
+                "showValues": "0",
+                "showTooltip": "1"
+            },
+            "categories": [
+                {
+                    "category": [ {% for date, value in sms.iteritems %} 
+                        {
+                            "label": "{{date}}"
+                        }{% if forloop.last %}{% else %},{% endif %} 
+                    {% endfor %}]
+                }
+            ],
+            "annotations": {                
+                "groups": [
+                    {
+                        "id": "ds1tips",
+                        "items": [
+                            {
+                                "id": "indicator-line",
+                                "type": "line",
+                                "dashed": "1"
+                            }, 
+                            {
+                                "id": "tip1_1",
+                                "type": "rectangle",
+                                "visible": "0",
+                                "fillcolor": "#0075c2",
+                                "x": "$dataset.0.set.0.x + 5",
+                                "y": "$dataset.0.set.0.y - 30",
+                                "tox": "$dataset.0.set.0.x + 80",
+                                "toy": "$dataset.0.set.0.y - 10"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "dyn-label-grp",
+                        "items": [
+                            {
+                                "id": "dyn-label-bg",
+                                "type": "rectangle",
+                                "radius": "3"
+                            }, 
+                            {
+                                "id": "dyn-label",
+                                "type": "text",
+                                "fillcolor": "#ffffff",
+                                "fontsize": "11",
+                                "bold": "1"
+                            }, 
+                            {
+                                "id": "dyn-detail-label",
+                                "type": "text",
+                                "align": "right",
+                                "x": "$canvasendx",
+                                "bgcolor": "#ffffff"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "dataset": [
+                {
+                    "seriesname": "SMS Masuk",
+                    "data": [ {% for k,v in sms.iteritems %}
+                        {
+                            "value": {% if v.in %}"{{v.in}}"{% else %}"0"{% endif %}
+                        }{% if forloop.last %}{% else%},{% endif %} 
+                    {% endfor %}]
+                }, 
+                {
+                    "seriesname": "SMS Keluar",
+                    "data": [ {% for k,v in sms.iteritems %}
+                        {
+                            "value": {% if v.out %}"{{v.out}}"{% else %}"0"{% endif %}
+                        }{% if forloop.last %}{% else%},{% endif %} 
+                    {% endfor %}]
+                }
+            ]
+        }
+    }); 
+    var operatorChart = new FusionCharts({
+        "type": "pie3d",
+        "renderAt": "carrier",
+        "width": "500",
+        "height": "300",
+        "dataFormat": "json",
+        "dataSource":  {
+          "chart": {
+            "startingAngle": "120",
+            "showLabels": "0",
+            "showLegend": "1",
+            "enableMultiSlicing": "0",
+            "slicingDistance": "15",
+            "showPercentValues": "1",
+            "showPercentInTooltip": "0",
+            "plotTooltext": "Operator : $label<br>Total : $datavalue",
+            "theme": "fint"
+         },
+         "data": {{operator|safe}}
+      }
+
+  });
+    var mostactiveChart = new FusionCharts({
+        "type": "bar2d",
+        "renderAt": "anggota",
+        "width": "500",
+        "height": "300",
+        "dataFormat": "json",
+        "dataSource":  {
+          "chart": {
+            "xAxisName": "Nama",
+            "yAxisName": "Jumlah",
+            "plotTooltext": "Member : $label<br>Total SMS : $datavalue",
+            "theme": "fint"
+         },
+         "data": {{active|safe}}
+      }
+
+  });
+operatorChart.render();
+trafficChart.render();
+employeeChart.render();
+informasiChart.render();
+usiaChart.render();
+golongandarahChart.render();
+mostactiveChart.render();
+})
+</script>
+{% endblock %}
