@@ -69,7 +69,11 @@
                           <div class="content-panel">
                               <h4><i class="fa fa-angle-right"></i> Word Cloud</h4>
                               <div class="panel-body text-center">
-                                  <div id="cloud" height="300" width="400"></div>
+                                  <div id="cloud" style="height: 300px; width: 100%">
+                                  {% for k,v in cloud %}
+                                    <span data-weight="{{v|safe}}">{{k|safe}}</span>
+                                  {% endfor %}
+                                  </div>
                               </div>
                           </div>
                       </div>
@@ -305,6 +309,20 @@ informasiChart.render();
 usiaChart.render();
 golongandarahChart.render();
 mostactiveChart.render();
-})
+});
+</script>
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.awesomeCloud-0.2.min.js"></script>
+<script>
+    var settings = {
+        "size" : {
+            "grid" : 16
+        },
+        "options" : {
+            "color" : "random-light",
+            "printMultiplier" : 6
+        },
+        "shape" : "circle"
+    }
+    $( "#cloud" ).awesomeCloud( settings );
 </script>
 {% endblock %}

@@ -249,7 +249,7 @@ def statistics(request):
     three = query_operator("THREE")
     axis = query_operator("AXIS")
     lain = query_operator("LAINNYA")
-    operator = [
+    oprtr = [
         { 'label' : 'TELKOMSEL', 'value': tlkmsl },
         { 'label' : 'INDOSAT', 'value': indst},
         { 'label' : 'XL', 'value': xls},
@@ -266,6 +266,22 @@ def statistics(request):
             pma.append({'label': nama.nama_lengkap,'value': pp['dcount']})
 
     sms = collections.OrderedDict(sorted(data.items()))
+
+    txt = Log.objects.all()
+    tt = {}
+    for msg in txt:
+        psn = msg.message.split()
+        for k in psn:
+            if len(k) > 2:
+                try:
+                    tt[k] = tt[k] + 1
+                except:
+                    tt[k] = 1
+    import operator
+    sorted_tt = sorted(tt.items(), key=operator.itemgetter(1))
+    sorted_tt.reverse()
+    cloud_text = sorted_tt[:52]
+
     return render_to_response("message/statistik.html",
                               {
                                 "pekerjaan":json.dumps(pekerjaan),
@@ -273,7 +289,8 @@ def statistics(request):
                                 "usia": json.dumps(prsn),
                                 "golongandarah": json.dumps(gldrh),
                                 "sms": sms,
-                                "operator": json.dumps(operator),
-                                "active": json.dumps(pma)
+                                "operator": json.dumps(oprtr),
+                                "active": json.dumps(pma),
+                                "cloud" : cloud_text
                                },
                               context_instance=RequestContext(request))
