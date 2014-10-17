@@ -12,6 +12,9 @@ Requirement:
 
 Changelog :
 ===========
+* 17 Oktober 2014
+  - Menambahkan halaman statistik 
+
 * 17 April 2013
 	- Menambahkan database non member
 	- Menambahkan field member yang ulang tahun
