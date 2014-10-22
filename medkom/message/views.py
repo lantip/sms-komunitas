@@ -108,16 +108,16 @@ def view_message(request, msg_id):
                 if form.cleaned_data["non_member"]:
                     phones = form.cleaned_data["non_member"]
                     for phone in phones:
-                        person = nonmember.objects.get(id=phone).no_handphone
-                        _send_single_sms(phone, message)
+                        person = nonmember.objects.get(id=int(phone))
+                        _send_single_sms(person.no_handphone, message)
 
             #Send Member Ulang Tahun
             if form.cleaned_data["ultah"]:
                 if form.cleaned_data["ultah_today"]:
                     phones = form.cleaned_data["ultah_today"]
                     for phone in phones:
-                        person = Person.objects.get(id=phone).no_handphone
-                        _send_single_sms(phone, message)
+                        person = Person.objects.get(id=int(phone))
+                        _send_single_sms(person.no_handphone, message)
 
             if form.cleaned_data["external"]:
                 if form.cleaned_data["extra_phones"]:
@@ -165,16 +165,16 @@ def new_message(request):
                 if form.cleaned_data["non_member"]:
                     phones = form.cleaned_data["non_member"]
                     for phone in phones:
-                        person = nonmember.objects.get(id=phone).no_handphone
-                        _send_single_sms(phone, message)
+                        person = nonmember.objects.get(id=int(phone.id))
+                        _send_single_sms(person.no_handphone, message)
 
             #Send Member Ulang Tahun
             if form.cleaned_data["ultah"]:
                 if form.cleaned_data["ultah_today"]:
                     phones = form.cleaned_data["ultah_today"]
                     for phone in phones:
-                        person = Person.objects.get(id=phone).no_handphone
-                        _send_single_sms(phone, message)
+                        person = Person.objects.get(id=phone.id)
+                        _send_single_sms(person.no_handphone, message)
 
             return HttpResponseRedirect(reverse('home'))
     else:

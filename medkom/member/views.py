@@ -194,7 +194,8 @@ def query_operator(opr):
 def statistics(request):
     from django.db.models import Count, Q, Sum
     from datetime import datetime, timedelta
-    import json, collections
+    import json
+    import utils as collections
     person = Person.objects.values('pekerjaan').filter(pekerjaan__isnull=False).annotate(dcount=Count('pekerjaan')).order_by('-dcount')[:6]
     total = Person.objects.all().count()
     suma = 0
@@ -268,15 +269,17 @@ def statistics(request):
     sms = collections.OrderedDict(sorted(data.items()))
 
     txt = Log.objects.all()
+    xcld = ["kita","tes","test","iso","tak","wis","wib.","bn2013","atas","mas","mbak","simak","kirim","sek","bro","idul","fitri","adha","lahir","bathin","bathin","kesalahan","tanya","jawab","smsangkringan","smskomunitas","angkringan","dari","dr","ini","itu","karena","krn","bahwa","bhw","yang","yg","ke","untuk","utk","oleh","saya","sy","aku","anda","mereka","mrk","sehingga","shg","hingga","hanya","cuma","hny","satu","pertama","dua","kedua","tiga","ketiga","empat","keempat","lima","kelima","enam","keenam","tujuh","ketujuh","delapan","kedelapan","sembilan","kesembilan","sepuluh","kesepuluh","1","2","3","4","5","6","7","8","9","0","seperti","spt","bisa","akan","mau","biasa","tujuan","nanti","kemarin","besok","pagi","siang","sore","malam","mlm","selamat","slmt","ulang","tahun","th","thn","mohon","maaf","hari","hr","tanggal","tgl","jam","wib","jadilah","selalu","kekasih","terhebat","seperti","lagu","anji","yuk","aktifkan","iringnya","cuma","rp0","1","per3hr","sms","ketik","anji","808","berlaku","perpanjangan","rp.3190","per7hr","invite","ulang","pinku","yaa","pin","mksih","apa","siapa","bagaimana","bgm","bgmn","mana","dimana","kemana","cara","terima","kasih","terimakasih","thx","trmksh","telah","tlh","sudah","sdh","menjadi","mjd","pelanggan","indosat","kenalan","tanpa","batas","dan","bonus","gratis","nelpon","telpon","telepon","telp","alamat","60","menit","hub","hubungi","*955*1","lalu","ya/ok","topup","pulsa","rp","rupiah","berhasil","via","atm","bri","kode","trx","1006191302714505","pulsa","saat","ini","menggunakan","pakai","memakai","pakai","keluar","masuk","msk","selesai","mulai","indosat","telkomsel","telkom","xl","im3","nomor","nomer","no","ya","yes","memasuki","masa","tenggang","isi","ulang","hari","&dapatkan","dpt","sms","kesesama","2hari","hanya","diberikan1x","info","100.gp471","jangan","lewatkan","promo","ketik","ya","919","gratis","telp","seharian","sesama","cuma","terakhir","mau","punya","barang","artis","tablet","voucher","belanja","aktfkan","iring","di*808*18","kumpulkan","poin","tukar","hadiah","pilihanmu","www.indosat.com/iring80818","pelanggan","&","+","dsb","dll","harap","mohon","minta","penawaran","kak","kok","asalamualaikum","wrwb","swt","otw","www","aq","bapak","bpk","ibu","sdr","yth","ybs","akan","dan","oleh","ada","nek","ya","ya?","kiri","dengan","kalau","kalo","lha","lah","kan","2014","2013","2015","ring","edisi","lewat","gang","pak"]
     tt = {}
     for msg in txt:
         psn = msg.message.split()
         for k in psn:
             if len(k) > 2:
-                try:
-                    tt[k] = tt[k] + 1
-                except:
-                    tt[k] = 1
+                if k.lower().strip().replace('#','') not in xcld:
+                    try:
+                        tt[k] = tt[k] + 1
+                    except:
+                        tt[k] = 1
     import operator
     sorted_tt = sorted(tt.items(), key=operator.itemgetter(1))
     sorted_tt.reverse()
