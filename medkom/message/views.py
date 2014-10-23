@@ -109,7 +109,8 @@ def view_message(request, msg_id):
                     phones = form.cleaned_data["non_member"]
                     for phone in phones:
                         person = nonmember.objects.get(id=int(phone))
-                        _send_single_sms(person.no_handphone, message)
+                        _send_single_sms(phone, message)
+                        _write_single_log(message, queue, person)
 
             #Send Member Ulang Tahun
             if form.cleaned_data["ultah"]:
@@ -117,13 +118,15 @@ def view_message(request, msg_id):
                     phones = form.cleaned_data["ultah_today"]
                     for phone in phones:
                         person = Person.objects.get(id=int(phone))
-                        _send_single_sms(person.no_handphone, message)
+                        _send_single_sms(phone, message)
+                        _write_single_log(message, queue, person)
 
             if form.cleaned_data["external"]:
                 if form.cleaned_data["extra_phones"]:
                     phones = form.cleaned_data["extra_phones"].split(',')
                     for phone in phones:
-                        _send_single_sms(phone, message)
+                        _send_single_sms(phone, message, queue)
+                        _write_single_log(message)
 
             return HttpResponseRedirect(reverse('home'))
     else:
@@ -159,6 +162,7 @@ def new_message(request):
                     phones = form.cleaned_data["extra_phones"].split(',')
                     for phone in phones:
                         _send_single_sms(phone, message)
+                        _write_single_log(message)
 
             #Send Non Member Receiver
             if form.cleaned_data["nonmembers"]:
@@ -166,7 +170,8 @@ def new_message(request):
                     phones = form.cleaned_data["non_member"]
                     for phone in phones:
                         person = nonmember.objects.get(id=int(phone.id))
-                        _send_single_sms(person.no_handphone, message)
+                        _send_single_sms(phone, message)
+                        _write_single_log(message,None,person)
 
             #Send Member Ulang Tahun
             if form.cleaned_data["ultah"]:
@@ -174,7 +179,8 @@ def new_message(request):
                     phones = form.cleaned_data["ultah_today"]
                     for phone in phones:
                         person = Person.objects.get(id=phone.id)
-                        _send_single_sms(person.no_handphone, message)
+                        _send_single_sms(phone, message)
+                        _write_single_log(message,None,person)
 
             return HttpResponseRedirect(reverse('home'))
     else:
