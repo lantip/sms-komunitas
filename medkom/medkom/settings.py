@@ -1,5 +1,9 @@
 import os
+import json
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+location = lambda x: os.path.join(
+    os.path.dirname(os.path.realpath(__file__)), '..', x)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -10,16 +14,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'smskomunitas',
-        'USER': 'root',
-        'PASSWORD': 'bankai',
-        'HOST': '',
-        'PORT': '',
-    }
-}
+with open(PROJECT_PATH + '/../../sql/db.json') as json_file:
+    DATABASES = json.loads(json_file.read())
 
 TIME_ZONE = 'Asia/Jakarta'
 LANGUAGE_CODE = 'en-us'
@@ -56,6 +52,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.auth.middleware.RemoteUserMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -64,10 +61,23 @@ ROOT_URLCONF = 'medkom.urls'
 
 WSGI_APPLICATION = 'medkom.wsgi.application'
 
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_PATH, 'templates'),
-)
+GRAPPELLI_ADMIN_TITLE = 'Media Komunitas'
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(PROJECT_PATH, 'templates'),],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,12 +85,15 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'grappelli',
     'django.contrib.admin',
     'member',
     'message',
     'wilayah',
     'accounts',
     'nonmember',
+    'rest_framework',
+    'rest_framework_swagger',
     'spammers',
     'smart_selects',
     'autocomplete_light',
@@ -111,6 +124,14 @@ LOGGING = {
     }
 }
 
+
 SESSION_COOKIE_AGE = 900
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SAVE_EVERY_REQUEST = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}

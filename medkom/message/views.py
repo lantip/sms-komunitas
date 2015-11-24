@@ -15,6 +15,33 @@ from member.models import Person, Usia, StatusSosial
 from nonmember.models import nonmember
 from spammers.models import Spammers
 import datetime
+from rest_framework import status, generics
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from message.serializers import QueueSerializer, ArchiveSerializer
+import json
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import AllowAny
+from django_remote_forms.forms import RemoteForm
+from message.forms import (DeleteMessagesForm, BroadcastForm,
+                           SettingBroadcastForm, ReplyForm, SearchForm)
+from django.core.serializers.json import DjangoJSONEncoder
+from member.serializers import LargeResultsSetPagination, StandardResultsSetPagination
+
+class incoming_list(generics.ListCreateAPIView):
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (AllowAny,)
+    serializer_class = QueueSerializer
+    pagination_class = StandardResultsSetPagination
+    queryset = Queue.objects.all().exclude(status=3)
+
+class archive_list(generics.ListCreateAPIView):
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (AllowAny,)
+    serializer_class = ArchiveSerializer
+    pagination_class = StandardResultsSetPagination
+    queryset = Log.objects.all()
 
 @login_required
 def home(request):

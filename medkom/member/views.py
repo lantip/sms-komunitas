@@ -1,13 +1,258 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from accounts.decorators import admin_required
-from member.models import Usia, StatusSosial, Person, TemaInformasi, GolonganDarah
+from member.models import Usia, StatusSosial, Person, TemaInformasi, GolonganDarah, Family
 from message.models import Queue, Log
 from member.forms import AgeForm, StatusSosialForm, SearchForm
+from wilayah.models import Desa, Dusun, Kampung, RT
+from rest_framework import status, generics
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from member.serializers import PersonSerializer, LargeResultsSetPagination, StandardResultsSetPagination
+from member.serializers import FamilySerializer, GolonganDarahSerializer
+import json
+from datetime import datetime
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import AllowAny
+from django_remote_forms.forms import RemoteForm
+from message.forms import (DeleteMessagesForm, BroadcastForm,
+                           SettingBroadcastForm, ReplyForm, SearchForm)
+from django.core.serializers.json import DjangoJSONEncoder
+from message.views import _get_queryset, _send_sms, _write_log, _send_single_sms, _write_single_log
+
+class person_list(generics.ListCreateAPIView):
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (AllowAny,)
+    serializer_class = PersonSerializer
+    pagination_class = StandardResultsSetPagination
+    def get_queryset(self):
+        queryset = Family.objects.all()
+        nokk = self.request.query_params.get('no_kk', None)
+        nik = self.request.query_params.get('nik', None)
+        goldar = self.request.query_params.get('goldar', None)
+        sex = self.request.query_params.get('sex', None)
+        agama = self.request.query_params.get('agama', None)
+        hub = self.request.query_params.get('hubungan_keluarga', None)
+        if nokk:
+            queryset = queryset.filter(family__nomor_kk=nokk)
+        if nik:
+            queryset = queryset.filter(nomor_nik=nik)
+        if goldar:
+            queryset = queryset.filter(golongan_darah__golongan_darah=goldar)
+        if sex:
+            if 'laki' in sex:
+                queryset = queryset.filter(jenis_kelamin=0)
+            else:
+                queryset = queryset.filter(jenis_kelamin=1)
+        if agama:
+            queryset = queryset.filter(agama__agama=agama)
+        return queryset
+
+class family_list(generics.ListCreateAPIView):
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (AllowAny,)
+    serializer_class = FamilySerializer
+    pagination_class = StandardResultsSetPagination
+    def get_queryset(self):
+        queryset = Family.objects.all()
+        nokk = self.request.query_params.get('no_kk', None)
+        if nokk:
+            queryset = queryset.filter(nomor_kk=nokk)
+        return queryset
+
+@csrf_exempt
+def receive_json(request):
+    if request.method == "POST":
+        jsondata = json.loads(request.body)
+        for js in jsondata:
+            if 'desa' in js:
+                try:
+                    desa = Desa.objects.get(nama_desa=js['desa'])
+                except:
+                    desa = Desa()
+                    desa.nama_desa = js['desa']
+                    desa.save()
+            else:
+                desa = None
+            if 'dusun' in js and desa:
+                try:
+                    dusun = Dusun.objects.get(nama_dusun=js['dusun'])
+                except:
+                    dusun = Dusun()
+                    dusun.nama_desa = desa
+                    dusun.nama_dusun = js['dusun']
+                    dusun.save()
+            else:
+                dusun = None
+            if 'kampung' in js and dusun:
+                try:
+                    kampung = Kampung.objects.get(nama_kampung=js['kampung'])
+                except:
+                    kampung = Kampung()
+                    kampung.nama_dusun = dusun
+                    kampung.nama_kampun = js['kampun']
+                    kampung.save()
+            else:
+                kampung = None
+            if 'rt' in js:
+                try:
+                    rt = RT.objects.get(nama_rt=js['rt'])
+                except:
+                    rt = RT()
+                    rt.nama_rt = js['rt']
+                    rt.save()
+            else:
+                rt = None
+
+            try:
+                fam = Family.objects.get(nomor_kk=js['nokk'])
+            except:
+                fam = Family()
+                fam.nomor_kk = js['nokk']
+                if desa:
+                    fam.alamat_desa = desa
+                if dusun:
+                    fam.alamat_dusun = dusun
+                if kampung:
+                    fam.alamat_kampung = kampung
+                if rt:
+                    fam.alamat_rt = rt
+                fam.save()
+            for anggota in js['anggota_keluarga']:
+                try:
+                    person = Person.objects.get(family=fam, nomor_nik=anggota['nik'], nama_lengkap=anggota['nama'])
+                except:
+                    person = Person()
+                    person.family = fam
+                    person.nomor_nik = anggota['nik']
+                    person.nama_lengkap = anggota['nama']
+                    if 'laki' in anggota['jenis_kelamin']['name'].lower():
+                        person.jenis_kelamin = 0
+                    else:
+                        person.jenis_kelamin = 1
+                    person.tempat_lahir = anggota['tempat_lahir']
+                    dtm = datetime.strptime(anggota['tanggal_lahir'], '%Y-%m-%d')
+                    person.tanggal_lahir = dtm.date()
+                    try:
+                        goldar = GolonganDarah.objects.get(golongan_darah=anggota['golongan_darah']['name'])
+                    except:
+                        goldar = GolonganDarah()
+                        goldar.golongan_darah = anggota['golongan_darah']['name']
+                        goldar.save()
+                    person.golongan_darah = goldar
+                    try:
+                        agama = Agama.objects.get(agama=anggota['agama']['name'])
+                    except:
+                        agama = Agama()
+                        agama.agama = anggota['agama']['name']
+                        agama.save()
+                    person.agama = agama
+                    try:
+                        kawin = StatusPerkawinan.objects.get(status_perkawinan=anggota['status_kawin']['name'])
+                    except:
+                        kawin = StatusPerkawinan()
+                        kawin.status_perkawinan = anggota['status_kawin']['name']
+                        kawin.save()
+                    person.status_perkawinan = kawin
+                    try:
+                        pendidikan = PendidikanTerakhir.objects.get(pendidikan_terakhir=anggota['pendidikan']['name'])
+                    except:
+                        pendidikan = PendidikanTerakhir()
+                        pendidikan.pendidikan_terakhir = anggota['pendidikan']['name']
+                        pendidikan.save()
+                    person.pendidikan_terakhir = pendidikan
+                    try:
+                        pekerjaan = Pekerjaan.objects.get(pekerjaan=anggota['pekerjaan']['name'])
+                    except:
+                        pekerjaan = Pekerjaan()
+                        pekerjaan.pekerjaan = anggota['pekerjaan']['name']
+                        pekerjaan.save()
+                    person.pekerjaan = pekerjaan
+                    try:
+                        hubkel = HubunganKeluarga.objects.get(hubungan_keluarga=anggota['hubungan_keluarga']['name'])
+                    except:
+                        hubkel = HubunganKeluarga()
+                        hubkel.hubungan_keluarga = anggota['hubungan_keluarga']['name']
+                        hubkel.save()
+                    person.hubungan_keluarga = hubkel
+                    person.save()
+        hasil = '{"status":"'+stat+'","msg": "'+result+'"}'
+        return HttpResponse(hasil, content_type="application/json")
+    else:
+        result = '{"status":"ERROR","msg": "Forbidden"}'
+        return HttpResponse(result, content_type="application/json")
+
+@csrf_exempt
+def newmessage(request):
+    from django.middleware.csrf import CsrfViewMiddleware
+    csrf_middleware = CsrfViewMiddleware()
+    response_data = {}
+    if request.method == 'GET':
+        # Get form definition
+        form = BroadcastForm()
+    elif request.raw_post_data:
+        request.POST = json.loads(request.raw_post_data)
+        # Process request for CSRF
+        csrf_middleware.process_view(request, None, None, None)
+        form_data = request.POST.get('data', {})
+        form = BroadcastForm(form_data)
+        if form.is_valid():
+            message = form.cleaned_data["message"]
+
+            #Send Member
+            if form.cleaned_data["member"]:
+                queryset = _get_queryset(form)
+                if queryset:
+                    persons = Person.objects.filter(queryset)
+                else:
+                    persons = Person.objects.all()
+
+                _send_sms(persons, message)
+                _write_log(persons, message)
+
+            #Send External Receiver
+            if form.cleaned_data["external"]:
+                if form.cleaned_data["extra_phones"]:
+                    phones = form.cleaned_data["extra_phones"].split(',')
+                    for phone in phones:
+                        _send_single_sms(phone, message)
+                        _write_single_log(message)
+
+            #Send Non Member Receiver
+            if form.cleaned_data["nonmembers"]:
+                if form.cleaned_data["non_member"]:
+                    phones = form.cleaned_data["non_member"]
+                    for phone in phones:
+                        person = nonmember.objects.get(id=int(phone.id))
+                        _send_single_sms(phone, message)
+                        _write_single_log(message,None,person)
+
+            #Send Member Ulang Tahun
+            if form.cleaned_data["ultah"]:
+                if form.cleaned_data["ultah_today"]:
+                    phones = form.cleaned_data["ultah_today"]
+                    for phone in phones:
+                        person = Person.objects.get(id=phone.id)
+                        _send_single_sms(phone, message)
+                        _write_single_log(message,None,person)
+
+    remote_form = RemoteForm(form)
+    # Errors in response_data['non_field_errors'] and response_data['errors']
+    response_data.update(remote_form.as_dict())
+
+    response = HttpResponse(
+        json.dumps(response_data, cls=DjangoJSONEncoder),
+        content_type="application/json"
+    )
+
+    # Process response for CSRF
+    csrf_middleware.process_response(request, response)
+    return response
 
 @login_required
 def home(request):

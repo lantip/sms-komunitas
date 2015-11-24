@@ -61,7 +61,7 @@
     <body>
         <div class="container">
             
-            <form method="post" class="form-signin action="{% url django.contrib.auth.views.login %}">
+            <form method="post" class="form-signin action="{% url 'django.contrib.auth.views.login' %}">
                 {% if form.errors %}
                     <div class="alert alert-error">
                         Your username and password didn't match. Please try again.

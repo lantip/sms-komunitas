@@ -13,7 +13,8 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('accounts.urls')),
     url(r'^member/', include('member.urls')),
     url(r'^chaining/', include('smart_selects.urls')),
-    
+    url(r'^api/docs/', include('rest_framework_swagger.urls')),
+    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^autocomplete/', include('autocomplete_light.urls')),
 )

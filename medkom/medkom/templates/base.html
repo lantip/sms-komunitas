@@ -60,7 +60,7 @@
                     <div class="nav-collapse collapse">
                         <div class="pull-right">
                             <ul class="nav">
-                                <li><a href="{% url home %}">Home</a></li>
+                                <li><a href="{% url 'home' %}">Home</a></li>
                                 <li><a href="#about">About</a></li>
                                 <li><a href="#contact">Contact</a></li>
                             {% if user.is_authenticated %}
@@ -99,58 +99,58 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{% url messages %}">
+                            <a href="{% url 'messages' %}">
                                 <i class="icon-envelope"></i> Pesan
                             </a>
                         </li>
                         <li>
-                            <a href="{% url new_message %}">
+                            <a href="{% url 'new_message' %}">
                                 <i class="icon-plus-sign"></i> Pesan Baru
                             </a>
                         </li>
                         <li>
-                            <a href="{% url member %}">
+                            <a href="{% url 'member' %}">
                                 <i class="icon-list-alt"></i> Anggota
                             </a>
                         </li>
                         <li>
-                            <a href="{% url archive %}">
+                            <a href="{% url 'archive' %}">
                                 <i class="icon-align-justify"></i> Arsip
                             </a>
                         </li>
                         <li>
-                            <a href="{% url log %}">
+                            <a href="{% url 'log' %}">
                                 <i class="icon-hdd"></i> Log
                             </a>
                         </li>
                             <li class="nav-header">Statistik</li>
                             <li>
-                                <a href="{% url statistics %}">
+                                <a href="{% url 'statistics' %}">
                                     <i class="icon-signal"></i> Statistics
                                 </a>
                             </li>
                         {% if user.is_superuser %}
                             <li class="nav-header">Pengaturan</li>
                             <li>
-                                <a href="{% url setting_age %}">
+                                <a href="{% url 'setting_age' %}">
                                     <i class="icon-wrench"></i> Usia
                                 </a>
                             </li>
                             <li>
-                                <a href="{% url setting_social %}">
+                                <a href="{% url 'setting_social' %}">
                                     <i class="icon-wrench"></i>
                                     Sosial
                                 </a>
                             </li>
                             <li>
-                                <a href="{% url broadcast %}">
+                                <a href="{% url 'broadcast' %}">
                                     <i class="icon-th-list"></i> Pemberitahuan
                                 </a>
                             </li>
                             
                             <li class="nav-header">Admin</li>
                             <li>
-                                <a href="{% url user_admin %}">
+                                <a href="{% url 'user_admin' %}">
                                     <i class="icon-user"></i> Pengguna
                                 </a>
                             </li>
@@ -165,7 +165,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{% url admin:index %}">
+                                <a href="{% url 'admin:index' %}">
                                     <i class="icon-lock"></i> Area Admin
                                 </a>
                             </li>

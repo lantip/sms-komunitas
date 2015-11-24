@@ -8,7 +8,6 @@
 *.gz
 .project
 .pydevproject
-.settings
 .vagrant
 .DS_Store
 .coverage

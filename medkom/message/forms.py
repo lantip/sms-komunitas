@@ -23,7 +23,6 @@ class DeleteMessagesForm(forms.Form):
     error_css_class = "alert alert-error"
 
 class BroadcastForm(forms.Form):
-
     def _get_unique_domisili(seq):
         seen = set()
         seen_add = seen.add
@@ -320,6 +319,7 @@ class SettingBroadcastForm(forms.ModelForm):
 
     class Meta:
         model = Broadcast
+        fields = ['name', 'phone']
 
 
 class ReplyForm(forms.Form):

@@ -1,4 +1,13 @@
 from django.conf.urls import patterns, include, url
+from rest_framework.urlpatterns import format_suffix_patterns
+from message.views import incoming_list, archive_list
+
+urlpatterna = [
+    url(r'api/incoming/', incoming_list.as_view()),
+    url(r'api/archive/', archive_list.as_view()),
+]
+
+urlpatterna = format_suffix_patterns(urlpatterna)
 
 urlpatterns = patterns('',
     url(r'^$', 'message.views.messages', name='messages'),
@@ -19,5 +28,5 @@ urlpatterns = patterns('',
     url(r'^settings/broadcast/(?P<b_id>\d+)/$', 'message.views.view_broadcast'),
     url(r'^settings/broadcast/(?P<b_id>\d+)/delete/$',
         'message.views.delete_broadcast'),
-)
+) + urlpatterna
 

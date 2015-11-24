@@ -1,0 +1,4798 @@
+[
+{
+    "fields": {
+        "jenis_difable": "Lumpuh"
+    },
+    "model": "member.jenisdifable",
+    "pk": 1
+},
+{
+    "fields": {
+        "jenis_difable": "tunanetra"
+    },
+    "model": "member.jenisdifable",
+    "pk": 2
+},
+{
+    "fields": {
+        "jenis_difable": "Tuna rungu"
+    },
+    "model": "member.jenisdifable",
+    "pk": 3
+},
+{
+    "fields": {
+        "jenis_difable": "Tuna wicara"
+    },
+    "model": "member.jenisdifable",
+    "pk": 4
+},
+{
+    "fields": {
+        "jenis_difable": "Gangguan Mental"
+    },
+    "model": "member.jenisdifable",
+    "pk": 5
+},
+{
+    "fields": {
+        "jenis_difable": "tidak ada"
+    },
+    "model": "member.jenisdifable",
+    "pk": 6
+},
+{
+    "fields": {
+        "jenis_difable": "ADA"
+    },
+    "model": "member.jenisdifable",
+    "pk": 7
+},
+{
+    "fields": {
+        "status_rumah": "Milik Sendiri"
+    },
+    "model": "member.statusrumah",
+    "pk": 1
+},
+{
+    "fields": {
+        "status_rumah": "Kontrakan"
+    },
+    "model": "member.statusrumah",
+    "pk": 2
+},
+{
+    "fields": {
+        "status_rumah": "Menumpang"
+    },
+    "model": "member.statusrumah",
+    "pk": 3
+},
+{
+    "fields": {
+        "status_rumah": "-"
+    },
+    "model": "member.statusrumah",
+    "pk": 4
+},
+{
+    "fields": {
+        "lantai": "Tanah"
+    },
+    "model": "member.lantai",
+    "pk": 1
+},
+{
+    "fields": {
+        "lantai": "Plester/Semen"
+    },
+    "model": "member.lantai",
+    "pk": 2
+},
+{
+    "fields": {
+        "lantai": "Tegel"
+    },
+    "model": "member.lantai",
+    "pk": 3
+},
+{
+    "fields": {
+        "lantai": "Keramik"
+    },
+    "model": "member.lantai",
+    "pk": 4
+},
+{
+    "fields": {
+        "lantai": "batu bata"
+    },
+    "model": "member.lantai",
+    "pk": 5
+},
+{
+    "fields": {
+        "lantai": "ubin"
+    },
+    "model": "member.lantai",
+    "pk": 6
+},
+{
+    "fields": {
+        "lantai": "TIDAK ADA KETERANGAN"
+    },
+    "model": "member.lantai",
+    "pk": 7
+},
+{
+    "fields": {
+        "lantai": "-"
+    },
+    "model": "member.lantai",
+    "pk": 8
+},
+{
+    "fields": {
+        "lantai": "porselen"
+    },
+    "model": "member.lantai",
+    "pk": 9
+},
+{
+    "fields": {
+        "dinding": "Tembok"
+    },
+    "model": "member.dinding",
+    "pk": 1
+},
+{
+    "fields": {
+        "dinding": "Kayu"
+    },
+    "model": "member.dinding",
+    "pk": 2
+},
+{
+    "fields": {
+        "dinding": "Bambu/gedhek"
+    },
+    "model": "member.dinding",
+    "pk": 3
+},
+{
+    "fields": {
+        "dinding": "bata"
+    },
+    "model": "member.dinding",
+    "pk": 4
+},
+{
+    "fields": {
+        "dinding": "gak ada"
+    },
+    "model": "member.dinding",
+    "pk": 5
+},
+{
+    "fields": {
+        "dinding": "semen"
+    },
+    "model": "member.dinding",
+    "pk": 6
+},
+{
+    "fields": {
+        "dinding": "-"
+    },
+    "model": "member.dinding",
+    "pk": 7
+},
+{
+    "fields": {
+        "dinding": "beton"
+    },
+    "model": "member.dinding",
+    "pk": 8
+},
+{
+    "fields": {
+        "dinding": "PLESTER"
+    },
+    "model": "member.dinding",
+    "pk": 9
+},
+{
+    "fields": {
+        "atap": "Seng/asbes"
+    },
+    "model": "member.atap",
+    "pk": 1
+},
+{
+    "fields": {
+        "atap": "Genteng"
+    },
+    "model": "member.atap",
+    "pk": 2
+},
+{
+    "fields": {
+        "atap": "Rapak"
+    },
+    "model": "member.atap",
+    "pk": 3
+},
+{
+    "fields": {
+        "atap": "cor/ dak"
+    },
+    "model": "member.atap",
+    "pk": 4
+},
+{
+    "fields": {
+        "atap": "-"
+    },
+    "model": "member.atap",
+    "pk": 5
+},
+{
+    "fields": {
+        "jamsos_diterima": "Jamsostek"
+    },
+    "model": "member.jamsosditerima",
+    "pk": 1
+},
+{
+    "fields": {
+        "jamsos_diterima": "Jamkesos"
+    },
+    "model": "member.jamsosditerima",
+    "pk": 2
+},
+{
+    "fields": {
+        "jamsos_diterima": "Jamkesmas"
+    },
+    "model": "member.jamsosditerima",
+    "pk": 3
+},
+{
+    "fields": {
+        "jamsos_diterima": "Jamkesda"
+    },
+    "model": "member.jamsosditerima",
+    "pk": 4
+},
+{
+    "fields": {
+        "jamsos_diterima": "Askes"
+    },
+    "model": "member.jamsosditerima",
+    "pk": 5
+},
+{
+    "fields": {
+        "sumber_air_minum": "Sumur"
+    },
+    "model": "member.sumberairminum",
+    "pk": 1
+},
+{
+    "fields": {
+        "sumber_air_minum": "PDAM"
+    },
+    "model": "member.sumberairminum",
+    "pk": 2
+},
+{
+    "fields": {
+        "sumber_air_minum": "lainnya"
+    },
+    "model": "member.sumberairminum",
+    "pk": 3
+},
+{
+    "fields": {
+        "sumber_air_minum": "sumur"
+    },
+    "model": "member.sumberairminum",
+    "pk": 4
+},
+{
+    "fields": {
+        "sumber_air_minum": "-"
+    },
+    "model": "member.sumberairminum",
+    "pk": 5
+},
+{
+    "fields": {
+        "status_listrik": "Meteran Sendiri"
+    },
+    "model": "member.statuslistrik",
+    "pk": 1
+},
+{
+    "fields": {
+        "status_listrik": "Menyalur"
+    },
+    "model": "member.statuslistrik",
+    "pk": 2
+},
+{
+    "fields": {
+        "status_listrik": "Menyalur"
+    },
+    "model": "member.statuslistrik",
+    "pk": 3
+},
+{
+    "fields": {
+        "status_listrik": "Meteran sendiri"
+    },
+    "model": "member.statuslistrik",
+    "pk": 4
+},
+{
+    "fields": {
+        "status_listrik": "TIDAK"
+    },
+    "model": "member.statuslistrik",
+    "pk": 5
+},
+{
+    "fields": {
+        "status_listrik": "-"
+    },
+    "model": "member.statuslistrik",
+    "pk": 6
+},
+{
+    "fields": {
+        "status_listrik": "-"
+    },
+    "model": "member.statuslistrik",
+    "pk": 7
+},
+{
+    "fields": {
+        "besar_daya": 7500
+    },
+    "model": "member.dayalistrik",
+    "pk": 1
+},
+{
+    "fields": {
+        "besar_daya": 450
+    },
+    "model": "member.dayalistrik",
+    "pk": 2
+},
+{
+    "fields": {
+        "besar_daya": 0
+    },
+    "model": "member.dayalistrik",
+    "pk": 3
+},
+{
+    "fields": {
+        "besar_daya": 900
+    },
+    "model": "member.dayalistrik",
+    "pk": 4
+},
+{
+    "fields": {
+        "besar_daya": 1300
+    },
+    "model": "member.dayalistrik",
+    "pk": 5
+},
+{
+    "fields": {
+        "besar_daya": 2600
+    },
+    "model": "member.dayalistrik",
+    "pk": 6
+},
+{
+    "fields": {
+        "besar_daya": 40
+    },
+    "model": "member.dayalistrik",
+    "pk": 7
+},
+{
+    "fields": {
+        "besar_daya": 400
+    },
+    "model": "member.dayalistrik",
+    "pk": 8
+},
+{
+    "fields": {
+        "besar_daya": 900
+    },
+    "model": "member.dayalistrik",
+    "pk": 9
+},
+{
+    "fields": {
+        "besar_daya": 220
+    },
+    "model": "member.dayalistrik",
+    "pk": 10
+},
+{
+    "fields": {
+        "besar_daya": 550
+    },
+    "model": "member.dayalistrik",
+    "pk": 11
+},
+{
+    "fields": {
+        "besar_daya": 35
+    },
+    "model": "member.dayalistrik",
+    "pk": 12
+},
+{
+    "fields": {
+        "besar_daya": 200
+    },
+    "model": "member.dayalistrik",
+    "pk": 13
+},
+{
+    "fields": {
+        "besar_daya": 250
+    },
+    "model": "member.dayalistrik",
+    "pk": 14
+},
+{
+    "fields": {
+        "jadwal_ronda": "Senin"
+    },
+    "model": "member.jadwalronda",
+    "pk": 1
+},
+{
+    "fields": {
+        "jadwal_ronda": "Selasa"
+    },
+    "model": "member.jadwalronda",
+    "pk": 2
+},
+{
+    "fields": {
+        "jadwal_ronda": "Rabu"
+    },
+    "model": "member.jadwalronda",
+    "pk": 3
+},
+{
+    "fields": {
+        "jadwal_ronda": "Kamis"
+    },
+    "model": "member.jadwalronda",
+    "pk": 4
+},
+{
+    "fields": {
+        "jadwal_ronda": "Jumat"
+    },
+    "model": "member.jadwalronda",
+    "pk": 5
+},
+{
+    "fields": {
+        "jadwal_ronda": "Sabtu"
+    },
+    "model": "member.jadwalronda",
+    "pk": 6
+},
+{
+    "fields": {
+        "jadwal_ronda": "Minggu"
+    },
+    "model": "member.jadwalronda",
+    "pk": 7
+},
+{
+    "fields": {
+        "jadwal_ronda": "Rabu"
+    },
+    "model": "member.jadwalronda",
+    "pk": 8
+},
+{
+    "fields": {
+        "jadwal_ronda": "-"
+    },
+    "model": "member.jadwalronda",
+    "pk": 9
+},
+{
+    "fields": {
+        "agama": "Islam"
+    },
+    "model": "member.agama",
+    "pk": 1
+},
+{
+    "fields": {
+        "agama": "Kristen"
+    },
+    "model": "member.agama",
+    "pk": 3
+},
+{
+    "fields": {
+        "agama": "Katholik"
+    },
+    "model": "member.agama",
+    "pk": 4
+},
+{
+    "fields": {
+        "agama": "Hindu"
+    },
+    "model": "member.agama",
+    "pk": 5
+},
+{
+    "fields": {
+        "agama": "Budha"
+    },
+    "model": "member.agama",
+    "pk": 6
+},
+{
+    "fields": {
+        "agama": "Konghucu"
+    },
+    "model": "member.agama",
+    "pk": 7
+},
+{
+    "fields": {
+        "status_perkawinan": "Belum Kawin"
+    },
+    "model": "member.statusperkawinan",
+    "pk": 1
+},
+{
+    "fields": {
+        "status_perkawinan": "Kawin"
+    },
+    "model": "member.statusperkawinan",
+    "pk": 2
+},
+{
+    "fields": {
+        "status_perkawinan": "Cerai Hidup"
+    },
+    "model": "member.statusperkawinan",
+    "pk": 3
+},
+{
+    "fields": {
+        "status_perkawinan": "Cerai Mati"
+    },
+    "model": "member.statusperkawinan",
+    "pk": 4
+},
+{
+    "fields": {
+        "status_perkawinan": "Duda"
+    },
+    "model": "member.statusperkawinan",
+    "pk": 5
+},
+{
+    "fields": {
+        "status_perkawinan": "janda"
+    },
+    "model": "member.statusperkawinan",
+    "pk": 6
+},
+{
+    "fields": {
+        "status_perkawinan": "Belum Kawin"
+    },
+    "model": "member.statusperkawinan",
+    "pk": 7
+},
+{
+    "fields": {
+        "status_perkawinan": "Tidak Kawin"
+    },
+    "model": "member.statusperkawinan",
+    "pk": 8
+},
+{
+    "fields": {
+        "status_perkawinan": "-"
+    },
+    "model": "member.statusperkawinan",
+    "pk": 9
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Kepala Keluarga"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 1
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Suami"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 2
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Istri"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 3
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Anak"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 4
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Cucu"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 5
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Orang Tua"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 6
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Lainnya"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 7
+},
+{
+    "fields": {
+        "hubungan_keluarga": "adek"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 8
+},
+{
+    "fields": {
+        "hubungan_keluarga": "sepupu"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 9
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Menantu"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 10
+},
+{
+    "fields": {
+        "hubungan_keluarga": "mertu"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 11
+},
+{
+    "fields": {
+        "hubungan_keluarga": "mertua"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 12
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Kepala Keluarga"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 13
+},
+{
+    "fields": {
+        "hubungan_keluarga": "cucu"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 14
+},
+{
+    "fields": {
+        "hubungan_keluarga": "cucu"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 15
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Kepala Keluarga"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 16
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Keponakan"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 17
+},
+{
+    "fields": {
+        "hubungan_keluarga": "Kakak"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 18
+},
+{
+    "fields": {
+        "hubungan_keluarga": "IBU"
+    },
+    "model": "member.hubungankeluarga",
+    "pk": 19
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "< SD"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 1
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "SD"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 2
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "SLTP"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 3
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "SLTA"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 4
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "D3"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 5
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "S1"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 6
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "S2"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 7
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "S3"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 8
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "smk"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 9
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "smk"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 10
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "smk"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 11
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "pendidikan_terakhir": "smk"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 12
+},
+{
+    "fields": {
+        "status_social_score": 1,
+        "pendidikan_terakhir": "D1"
+    },
+    "model": "member.pendidikanterakhir",
+    "pk": 13
+},
+{
+    "fields": {
+        "jurusan": "Pertanian"
+    },
+    "model": "member.jurusan",
+    "pk": 1
+},
+{
+    "fields": {
+        "jurusan": "Ekonomi"
+    },
+    "model": "member.jurusan",
+    "pk": 2
+},
+{
+    "fields": {
+        "jurusan": "tidak punya jurusan"
+    },
+    "model": "member.jurusan",
+    "pk": 3
+},
+{
+    "fields": {
+        "jurusan": "Teknik Industri"
+    },
+    "model": "member.jurusan",
+    "pk": 4
+},
+{
+    "fields": {
+        "jurusan": "Ilmu Pengetahuan Alam"
+    },
+    "model": "member.jurusan",
+    "pk": 5
+},
+{
+    "fields": {
+        "jurusan": "Musik"
+    },
+    "model": "member.jurusan",
+    "pk": 6
+},
+{
+    "fields": {
+        "jurusan": "bahasa dan sastra"
+    },
+    "model": "member.jurusan",
+    "pk": 7
+},
+{
+    "fields": {
+        "jurusan": "Dekorasi"
+    },
+    "model": "member.jurusan",
+    "pk": 8
+},
+{
+    "fields": {
+        "jurusan": "pendidikan agama"
+    },
+    "model": "member.jurusan",
+    "pk": 9
+},
+{
+    "fields": {
+        "jurusan": "Listrik"
+    },
+    "model": "member.jurusan",
+    "pk": 10
+},
+{
+    "fields": {
+        "jurusan": "menegemen informatika"
+    },
+    "model": "member.jurusan",
+    "pk": 11
+},
+{
+    "fields": {
+        "jurusan": "sekertaris"
+    },
+    "model": "member.jurusan",
+    "pk": 12
+},
+{
+    "fields": {
+        "jurusan": "otomotif"
+    },
+    "model": "member.jurusan",
+    "pk": 13
+},
+{
+    "fields": {
+        "jurusan": "Ilmu Pengetahuan Sosial"
+    },
+    "model": "member.jurusan",
+    "pk": 14
+},
+{
+    "fields": {
+        "jurusan": "Pendidikan Agama"
+    },
+    "model": "member.jurusan",
+    "pk": 15
+},
+{
+    "fields": {
+        "jurusan": "Hukum"
+    },
+    "model": "member.jurusan",
+    "pk": 16
+},
+{
+    "fields": {
+        "jurusan": "multimedia"
+    },
+    "model": "member.jurusan",
+    "pk": 17
+},
+{
+    "fields": {
+        "jurusan": "Bangunan"
+    },
+    "model": "member.jurusan",
+    "pk": 18
+},
+{
+    "fields": {
+        "jurusan": "Tekhnik Mesin"
+    },
+    "model": "member.jurusan",
+    "pk": 19
+},
+{
+    "fields": {
+        "jurusan": "Keguruan"
+    },
+    "model": "member.jurusan",
+    "pk": 20
+},
+{
+    "fields": {
+        "jurusan": "Hubungan Internasional"
+    },
+    "model": "member.jurusan",
+    "pk": 21
+},
+{
+    "fields": {
+        "jurusan": "Desain Tehnologi Sepatu"
+    },
+    "model": "member.jurusan",
+    "pk": 22
+},
+{
+    "fields": {
+        "jurusan": "fisika"
+    },
+    "model": "member.jurusan",
+    "pk": 23
+},
+{
+    "fields": {
+        "jurusan": "Busana"
+    },
+    "model": "member.jurusan",
+    "pk": 24
+},
+{
+    "fields": {
+        "jurusan": "pertambangan"
+    },
+    "model": "member.jurusan",
+    "pk": 25
+},
+{
+    "fields": {
+        "jurusan": "akutansi"
+    },
+    "model": "member.jurusan",
+    "pk": 26
+},
+{
+    "fields": {
+        "jurusan": "keramik"
+    },
+    "model": "member.jurusan",
+    "pk": 27
+},
+{
+    "fields": {
+        "jurusan": "Antropologi"
+    },
+    "model": "member.jurusan",
+    "pk": 28
+},
+{
+    "fields": {
+        "jurusan": "Pendidikan Sejarah"
+    },
+    "model": "member.jurusan",
+    "pk": 29
+},
+{
+    "fields": {
+        "jurusan": "kedokteran umum"
+    },
+    "model": "member.jurusan",
+    "pk": 30
+},
+{
+    "fields": {
+        "jurusan": "Elektro"
+    },
+    "model": "member.jurusan",
+    "pk": 31
+},
+{
+    "fields": {
+        "jurusan": "kehewanan"
+    },
+    "model": "member.jurusan",
+    "pk": 32
+},
+{
+    "fields": {
+        "jurusan": "keperawatan"
+    },
+    "model": "member.jurusan",
+    "pk": 33
+},
+{
+    "fields": {
+        "jurusan": "IPS"
+    },
+    "model": "member.jurusan",
+    "pk": 34
+},
+{
+    "fields": {
+        "jurusan": "Pendidikan Guru"
+    },
+    "model": "member.jurusan",
+    "pk": 35
+},
+{
+    "fields": {
+        "jurusan": "IPA"
+    },
+    "model": "member.jurusan",
+    "pk": 36
+},
+{
+    "fields": {
+        "jurusan": "Arsitek Pembangunan"
+    },
+    "model": "member.jurusan",
+    "pk": 37
+},
+{
+    "fields": {
+        "jurusan": "perkayuan"
+    },
+    "model": "member.jurusan",
+    "pk": 38
+},
+{
+    "fields": {
+        "jurusan": "teknik las"
+    },
+    "model": "member.jurusan",
+    "pk": 39
+},
+{
+    "fields": {
+        "jurusan": "desain grafis"
+    },
+    "model": "member.jurusan",
+    "pk": 40
+},
+{
+    "fields": {
+        "jurusan": "Olahraga"
+    },
+    "model": "member.jurusan",
+    "pk": 41
+},
+{
+    "fields": {
+        "jurusan": "Ilmu Perpustakaan"
+    },
+    "model": "member.jurusan",
+    "pk": 42
+},
+{
+    "fields": {
+        "jurusan": "perhotelan"
+    },
+    "model": "member.jurusan",
+    "pk": 43
+},
+{
+    "fields": {
+        "jurusan": "keguruan"
+    },
+    "model": "member.jurusan",
+    "pk": 44
+},
+{
+    "fields": {
+        "jurusan": "tata boga"
+    },
+    "model": "member.jurusan",
+    "pk": 45
+},
+{
+    "fields": {
+        "jurusan": "pendidikan THP"
+    },
+    "model": "member.jurusan",
+    "pk": 46
+},
+{
+    "fields": {
+        "jurusan": "komputer"
+    },
+    "model": "member.jurusan",
+    "pk": 47
+},
+{
+    "fields": {
+        "jurusan": "SPI"
+    },
+    "model": "member.jurusan",
+    "pk": 48
+},
+{
+    "fields": {
+        "jurusan": "pembangunan"
+    },
+    "model": "member.jurusan",
+    "pk": 49
+},
+{
+    "fields": {
+        "jurusan": "matematika"
+    },
+    "model": "member.jurusan",
+    "pk": 50
+},
+{
+    "fields": {
+        "jurusan": "tata niaga"
+    },
+    "model": "member.jurusan",
+    "pk": 51
+},
+{
+    "fields": {
+        "jurusan": "outomotif"
+    },
+    "model": "member.jurusan",
+    "pk": 52
+},
+{
+    "fields": {
+        "jurusan": "management"
+    },
+    "model": "member.jurusan",
+    "pk": 53
+},
+{
+    "fields": {
+        "jurusan": "TU"
+    },
+    "model": "member.jurusan",
+    "pk": 54
+},
+{
+    "fields": {
+        "jurusan": "hubungan internasional"
+    },
+    "model": "member.jurusan",
+    "pk": 55
+},
+{
+    "fields": {
+        "jurusan": "seni rupa"
+    },
+    "model": "member.jurusan",
+    "pk": 56
+},
+{
+    "fields": {
+        "jurusan": "instalasi kelistrikan"
+    },
+    "model": "member.jurusan",
+    "pk": 57
+},
+{
+    "fields": {
+        "jurusan": "seni tari"
+    },
+    "model": "member.jurusan",
+    "pk": 58
+},
+{
+    "fields": {
+        "jurusan": "pemasaran"
+    },
+    "model": "member.jurusan",
+    "pk": 59
+},
+{
+    "fields": {
+        "jurusan": "ilmu pemerintahan"
+    },
+    "model": "member.jurusan",
+    "pk": 60
+},
+{
+    "fields": {
+        "jurusan": "karawitan"
+    },
+    "model": "member.jurusan",
+    "pk": 61
+},
+{
+    "fields": {
+        "jurusan": "kimia"
+    },
+    "model": "member.jurusan",
+    "pk": 62
+},
+{
+    "fields": {
+        "jurusan": "PAI"
+    },
+    "model": "member.jurusan",
+    "pk": 63
+},
+{
+    "fields": {
+        "jurusan": "kedokteran hewan"
+    },
+    "model": "member.jurusan",
+    "pk": 64
+},
+{
+    "fields": {
+        "jurusan": "seni tari"
+    },
+    "model": "member.jurusan",
+    "pk": 65
+},
+{
+    "fields": {
+        "jurusan": "Teknik Bangunan"
+    },
+    "model": "member.jurusan",
+    "pk": 66
+},
+{
+    "fields": {
+        "jurusan": "Kulit"
+    },
+    "model": "member.jurusan",
+    "pk": 67
+},
+{
+    "fields": {
+        "jurusan": "Pendidikan"
+    },
+    "model": "member.jurusan",
+    "pk": 68
+},
+{
+    "fields": {
+        "jurusan": "Masak"
+    },
+    "model": "member.jurusan",
+    "pk": 69
+},
+{
+    "fields": {
+        "jurusan": "kriya kayu"
+    },
+    "model": "member.jurusan",
+    "pk": 70
+},
+{
+    "fields": {
+        "jurusan": "permesinan"
+    },
+    "model": "member.jurusan",
+    "pk": 71
+},
+{
+    "fields": {
+        "jurusan": "manejement"
+    },
+    "model": "member.jurusan",
+    "pk": 72
+},
+{
+    "fields": {
+        "jurusan": "smsr"
+    },
+    "model": "member.jurusan",
+    "pk": 73
+},
+{
+    "fields": {
+        "jurusan": "Pariwisata"
+    },
+    "model": "member.jurusan",
+    "pk": 74
+},
+{
+    "fields": {
+        "jurusan": "psikologi"
+    },
+    "model": "member.jurusan",
+    "pk": 75
+},
+{
+    "fields": {
+        "jurusan": "Biologi"
+    },
+    "model": "member.jurusan",
+    "pk": 76
+},
+{
+    "fields": {
+        "jurusan": "Ilmu Pemerintahan"
+    },
+    "model": "member.jurusan",
+    "pk": 77
+},
+{
+    "fields": {
+        "jurusan": "Manajemen"
+    },
+    "model": "member.jurusan",
+    "pk": 78
+},
+{
+    "fields": {
+        "jurusan": "Kebidanan"
+    },
+    "model": "member.jurusan",
+    "pk": 79
+},
+{
+    "fields": {
+        "jurusan": "kriya logam"
+    },
+    "model": "member.jurusan",
+    "pk": 80
+},
+{
+    "fields": {
+        "jurusan": "Tekstil"
+    },
+    "model": "member.jurusan",
+    "pk": 81
+},
+{
+    "fields": {
+        "jurusan": "tehnik sipil"
+    },
+    "model": "member.jurusan",
+    "pk": 82
+},
+{
+    "fields": {
+        "jurusan": "teknik sipil"
+    },
+    "model": "member.jurusan",
+    "pk": 83
+},
+{
+    "fields": {
+        "jurusan": "Boga"
+    },
+    "model": "member.jurusan",
+    "pk": 84
+},
+{
+    "fields": {
+        "jurusan": "Akuntansi"
+    },
+    "model": "member.jurusan",
+    "pk": 85
+},
+{
+    "fields": {
+        "jurusan": "Bahasa Inggris"
+    },
+    "model": "member.jurusan",
+    "pk": 86
+},
+{
+    "fields": {
+        "jurusan": "Ilmu Pengetahuan Sosial"
+    },
+    "model": "member.jurusan",
+    "pk": 87
+},
+{
+    "fields": {
+        "jurusan": "Tekstil"
+    },
+    "model": "member.jurusan",
+    "pk": 88
+},
+{
+    "fields": {
+        "jurusan": "Analis Kesehatan"
+    },
+    "model": "member.jurusan",
+    "pk": 89
+},
+{
+    "fields": {
+        "jurusan": "Filsafat Agama Islam"
+    },
+    "model": "member.jurusan",
+    "pk": 90
+},
+{
+    "fields": {
+        "jurusan": "Bahasa Korea"
+    },
+    "model": "member.jurusan",
+    "pk": 91
+},
+{
+    "fields": {
+        "jurusan": "Teknik Informatika"
+    },
+    "model": "member.jurusan",
+    "pk": 92
+},
+{
+    "fields": {
+        "jurusan": "Kesehatan"
+    },
+    "model": "member.jurusan",
+    "pk": 93
+},
+{
+    "fields": {
+        "jurusan": "Pariwisata"
+    },
+    "model": "member.jurusan",
+    "pk": 94
+},
+{
+    "fields": {
+        "jurusan": "Administrasi Pendidikan"
+    },
+    "model": "member.jurusan",
+    "pk": 95
+},
+{
+    "fields": {
+        "jurusan": "PAUD"
+    },
+    "model": "member.jurusan",
+    "pk": 96
+},
+{
+    "fields": {
+        "jurusan": "PGSD"
+    },
+    "model": "member.jurusan",
+    "pk": 97
+},
+{
+    "fields": {
+        "jurusan": "Perawatan Sosial"
+    },
+    "model": "member.jurusan",
+    "pk": 98
+},
+{
+    "fields": {
+        "jurusan": "jahit"
+    },
+    "model": "member.jurusan",
+    "pk": 99
+},
+{
+    "fields": {
+        "jurusan": "Kecantikan"
+    },
+    "model": "member.jurusan",
+    "pk": 100
+},
+{
+    "fields": {
+        "jurusan": "Seni Ukir"
+    },
+    "model": "member.jurusan",
+    "pk": 101
+},
+{
+    "fields": {
+        "jurusan": "Teknik Nuklir"
+    },
+    "model": "member.jurusan",
+    "pk": 102
+},
+{
+    "fields": {
+        "jurusan": "Seni Dan Budaya"
+    },
+    "model": "member.jurusan",
+    "pk": 103
+},
+{
+    "fields": {
+        "jurusan": "Komunikasi"
+    },
+    "model": "member.jurusan",
+    "pk": 104
+},
+{
+    "fields": {
+        "jurusan": "Sastra Sosial"
+    },
+    "model": "member.jurusan",
+    "pk": 105
+},
+{
+    "fields": {
+        "jurusan": "Farmasi"
+    },
+    "model": "member.jurusan",
+    "pk": 106
+},
+{
+    "fields": {
+        "jurusan": "boga"
+    },
+    "model": "member.jurusan",
+    "pk": 107
+},
+{
+    "fields": {
+        "jurusan": "tatabusana"
+    },
+    "model": "member.jurusan",
+    "pk": 108
+},
+{
+    "fields": {
+        "jurusan": "seni karawitan"
+    },
+    "model": "member.jurusan",
+    "pk": 109
+},
+{
+    "fields": {
+        "jurusan": "sospol"
+    },
+    "model": "member.jurusan",
+    "pk": 110
+},
+{
+    "fields": {
+        "jurusan": "geografi fisik"
+    },
+    "model": "member.jurusan",
+    "pk": 111
+},
+{
+    "fields": {
+        "jurusan": "tarbiyah"
+    },
+    "model": "member.jurusan",
+    "pk": 112
+},
+{
+    "fields": {
+        "jurusan": "keterampilan"
+    },
+    "model": "member.jurusan",
+    "pk": 113
+},
+{
+    "fields": {
+        "jurusan": "kedokteran"
+    },
+    "model": "member.jurusan",
+    "pk": 114
+},
+{
+    "fields": {
+        "jurusan": "bangunan dan gedung"
+    },
+    "model": "member.jurusan",
+    "pk": 115
+},
+{
+    "fields": {
+        "jurusan": "manajemen"
+    },
+    "model": "member.jurusan",
+    "pk": 116
+},
+{
+    "fields": {
+        "jurusan": "PERAWAT"
+    },
+    "model": "member.jurusan",
+    "pk": 117
+},
+{
+    "fields": {
+        "jurusan": "TKR"
+    },
+    "model": "member.jurusan",
+    "pk": 118
+},
+{
+    "fields": {
+        "jurusan": "kriya tekstil"
+    },
+    "model": "member.jurusan",
+    "pk": 119
+},
+{
+    "fields": {
+        "jurusan": "Teknik Arsitektur"
+    },
+    "model": "member.jurusan",
+    "pk": 120
+},
+{
+    "fields": {
+        "jurusan": "Fisip"
+    },
+    "model": "member.jurusan",
+    "pk": 121
+},
+{
+    "fields": {
+        "jurusan": "Geografi"
+    },
+    "model": "member.jurusan",
+    "pk": 122
+},
+{
+    "fields": {
+        "jurusan": "Teknologi Transfusi Darah"
+    },
+    "model": "member.jurusan",
+    "pk": 123
+},
+{
+    "fields": {
+        "jurusan": "Administrasi Perkantoran"
+    },
+    "model": "member.jurusan",
+    "pk": 124
+},
+{
+    "fields": {
+        "jurusan": "MESIN"
+    },
+    "model": "member.jurusan",
+    "pk": 125
+},
+{
+    "fields": {
+        "jurusan": "AGAMA"
+    },
+    "model": "member.jurusan",
+    "pk": 126
+},
+{
+    "fields": {
+        "jurusan": "PLB"
+    },
+    "model": "member.jurusan",
+    "pk": 127
+},
+{
+    "fields": {
+        "jurusan": "TATA BUKU"
+    },
+    "model": "member.jurusan",
+    "pk": 128
+},
+{
+    "fields": {
+        "jurusan": "BIMBINGAN PENYULUHAN ISLAM"
+    },
+    "model": "member.jurusan",
+    "pk": 129
+},
+{
+    "fields": {
+        "jurusan": "SKI"
+    },
+    "model": "member.jurusan",
+    "pk": 130
+},
+{
+    "fields": {
+        "jurusan": "TEKNIK ELEKTRO"
+    },
+    "model": "member.jurusan",
+    "pk": 131
+},
+{
+    "fields": {
+        "jurusan": "PENDIDIKAN EKONOMI"
+    },
+    "model": "member.jurusan",
+    "pk": 132
+},
+{
+    "fields": {
+        "jurusan": "TATA BUSANA"
+    },
+    "model": "member.jurusan",
+    "pk": 133
+},
+{
+    "fields": {
+        "jurusan": "PERKANTORAN"
+    },
+    "model": "member.jurusan",
+    "pk": 134
+},
+{
+    "fields": {
+        "jurusan": "KETERAMPILAN"
+    },
+    "model": "member.jurusan",
+    "pk": 135
+},
+{
+    "fields": {
+        "jurusan": "PENDIDIKAN"
+    },
+    "model": "member.jurusan",
+    "pk": 136
+},
+{
+    "fields": {
+        "pekerjaan": "Tani"
+    },
+    "model": "member.pekerjaan",
+    "pk": 1
+},
+{
+    "fields": {
+        "pekerjaan": "PNS"
+    },
+    "model": "member.pekerjaan",
+    "pk": 2
+},
+{
+    "fields": {
+        "pekerjaan": "PNS"
+    },
+    "model": "member.pekerjaan",
+    "pk": 3
+},
+{
+    "fields": {
+        "pekerjaan": "Konstruksi"
+    },
+    "model": "member.pekerjaan",
+    "pk": 5
+},
+{
+    "fields": {
+        "pekerjaan": "Wirausaha"
+    },
+    "model": "member.pekerjaan",
+    "pk": 6
+},
+{
+    "fields": {
+        "pekerjaan": "Buruh Tidak Tetap"
+    },
+    "model": "member.pekerjaan",
+    "pk": 7
+},
+{
+    "fields": {
+        "pekerjaan": "Swasta"
+    },
+    "model": "member.pekerjaan",
+    "pk": 8
+},
+{
+    "fields": {
+        "pekerjaan": "Ibu Rumah Tangga"
+    },
+    "model": "member.pekerjaan",
+    "pk": 9
+},
+{
+    "fields": {
+        "pekerjaan": "Pelajar"
+    },
+    "model": "member.pekerjaan",
+    "pk": 10
+},
+{
+    "fields": {
+        "pekerjaan": "Karyawan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 11
+},
+{
+    "fields": {
+        "pekerjaan": "guru PTT"
+    },
+    "model": "member.pekerjaan",
+    "pk": 12
+},
+{
+    "fields": {
+        "pekerjaan": "Mahasiswa"
+    },
+    "model": "member.pekerjaan",
+    "pk": 13
+},
+{
+    "fields": {
+        "pekerjaan": "Mahasiswa"
+    },
+    "model": "member.pekerjaan",
+    "pk": 14
+},
+{
+    "fields": {
+        "pekerjaan": "Pensiunan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 15
+},
+{
+    "fields": {
+        "pekerjaan": "Guru"
+    },
+    "model": "member.pekerjaan",
+    "pk": 16
+},
+{
+    "fields": {
+        "pekerjaan": "Pedagang"
+    },
+    "model": "member.pekerjaan",
+    "pk": 17
+},
+{
+    "fields": {
+        "pekerjaan": "Peneliti"
+    },
+    "model": "member.pekerjaan",
+    "pk": 18
+},
+{
+    "fields": {
+        "pekerjaan": "dokter swasta"
+    },
+    "model": "member.pekerjaan",
+    "pk": 19
+},
+{
+    "fields": {
+        "pekerjaan": "Karyawan Swasta"
+    },
+    "model": "member.pekerjaan",
+    "pk": 20
+},
+{
+    "fields": {
+        "pekerjaan": "Pramusaji"
+    },
+    "model": "member.pekerjaan",
+    "pk": 21
+},
+{
+    "fields": {
+        "pekerjaan": "Buruh Tidak Tetap"
+    },
+    "model": "member.pekerjaan",
+    "pk": 22
+},
+{
+    "fields": {
+        "pekerjaan": "sales"
+    },
+    "model": "member.pekerjaan",
+    "pk": 23
+},
+{
+    "fields": {
+        "pekerjaan": "sales"
+    },
+    "model": "member.pekerjaan",
+    "pk": 24
+},
+{
+    "fields": {
+        "pekerjaan": "buruh pabrik"
+    },
+    "model": "member.pekerjaan",
+    "pk": 25
+},
+{
+    "fields": {
+        "pekerjaan": "Tukang Finishing"
+    },
+    "model": "member.pekerjaan",
+    "pk": 26
+},
+{
+    "fields": {
+        "pekerjaan": "Buruh Bangunan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 27
+},
+{
+    "fields": {
+        "pekerjaan": "Penjaga sekolah"
+    },
+    "model": "member.pekerjaan",
+    "pk": 28
+},
+{
+    "fields": {
+        "pekerjaan": "Pedagang"
+    },
+    "model": "member.pekerjaan",
+    "pk": 29
+},
+{
+    "fields": {
+        "pekerjaan": "SPG"
+    },
+    "model": "member.pekerjaan",
+    "pk": 30
+},
+{
+    "fields": {
+        "pekerjaan": "Jasa Potong Rambut"
+    },
+    "model": "member.pekerjaan",
+    "pk": 31
+},
+{
+    "fields": {
+        "pekerjaan": "TKI"
+    },
+    "model": "member.pekerjaan",
+    "pk": 32
+},
+{
+    "fields": {
+        "pekerjaan": "Wiraswasta"
+    },
+    "model": "member.pekerjaan",
+    "pk": 33
+},
+{
+    "fields": {
+        "pekerjaan": "Tutor PKBM"
+    },
+    "model": "member.pekerjaan",
+    "pk": 34
+},
+{
+    "fields": {
+        "pekerjaan": "Satpam"
+    },
+    "model": "member.pekerjaan",
+    "pk": 35
+},
+{
+    "fields": {
+        "pekerjaan": "Pensiunan Veteran"
+    },
+    "model": "member.pekerjaan",
+    "pk": 36
+},
+{
+    "fields": {
+        "pekerjaan": "buruh"
+    },
+    "model": "member.pekerjaan",
+    "pk": 37
+},
+{
+    "fields": {
+        "pekerjaan": "pelajar"
+    },
+    "model": "member.pekerjaan",
+    "pk": 38
+},
+{
+    "fields": {
+        "pekerjaan": "karyawan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 39
+},
+{
+    "fields": {
+        "pekerjaan": "guru"
+    },
+    "model": "member.pekerjaan",
+    "pk": 40
+},
+{
+    "fields": {
+        "pekerjaan": "menjahit"
+    },
+    "model": "member.pekerjaan",
+    "pk": 41
+},
+{
+    "fields": {
+        "pekerjaan": "buruh pabrik"
+    },
+    "model": "member.pekerjaan",
+    "pk": 42
+},
+{
+    "fields": {
+        "pekerjaan": "modiste"
+    },
+    "model": "member.pekerjaan",
+    "pk": 43
+},
+{
+    "fields": {
+        "pekerjaan": "tukang bangunan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 44
+},
+{
+    "fields": {
+        "pekerjaan": "seniman"
+    },
+    "model": "member.pekerjaan",
+    "pk": 45
+},
+{
+    "fields": {
+        "pekerjaan": "kariyawan pabrik"
+    },
+    "model": "member.pekerjaan",
+    "pk": 46
+},
+{
+    "fields": {
+        "pekerjaan": "buruh tenda"
+    },
+    "model": "member.pekerjaan",
+    "pk": 47
+},
+{
+    "fields": {
+        "pekerjaan": "memasak"
+    },
+    "model": "member.pekerjaan",
+    "pk": 48
+},
+{
+    "fields": {
+        "pekerjaan": "polri"
+    },
+    "model": "member.pekerjaan",
+    "pk": 49
+},
+{
+    "fields": {
+        "pekerjaan": "Dosen"
+    },
+    "model": "member.pekerjaan",
+    "pk": 50
+},
+{
+    "fields": {
+        "pekerjaan": "dalang"
+    },
+    "model": "member.pekerjaan",
+    "pk": 51
+},
+{
+    "fields": {
+        "pekerjaan": "tata rias"
+    },
+    "model": "member.pekerjaan",
+    "pk": 52
+},
+{
+    "fields": {
+        "pekerjaan": "pensiunan TNI_AD"
+    },
+    "model": "member.pekerjaan",
+    "pk": 53
+},
+{
+    "fields": {
+        "pekerjaan": "honorer"
+    },
+    "model": "member.pekerjaan",
+    "pk": 54
+},
+{
+    "fields": {
+        "pekerjaan": "pamong"
+    },
+    "model": "member.pekerjaan",
+    "pk": 55
+},
+{
+    "fields": {
+        "pekerjaan": "jaga warnet"
+    },
+    "model": "member.pekerjaan",
+    "pk": 56
+},
+{
+    "fields": {
+        "pekerjaan": "supir"
+    },
+    "model": "member.pekerjaan",
+    "pk": 57
+},
+{
+    "fields": {
+        "pekerjaan": "dokter hewan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 58
+},
+{
+    "fields": {
+        "pekerjaan": "TNI"
+    },
+    "model": "member.pekerjaan",
+    "pk": 59
+},
+{
+    "fields": {
+        "pekerjaan": "Buruh"
+    },
+    "model": "member.pekerjaan",
+    "pk": 60
+},
+{
+    "fields": {
+        "pekerjaan": "Ternak Burung"
+    },
+    "model": "member.pekerjaan",
+    "pk": 61
+},
+{
+    "fields": {
+        "pekerjaan": "Buruh Industri Peyek"
+    },
+    "model": "member.pekerjaan",
+    "pk": 62
+},
+{
+    "fields": {
+        "pekerjaan": "Catering"
+    },
+    "model": "member.pekerjaan",
+    "pk": 63
+},
+{
+    "fields": {
+        "pekerjaan": "kerajinan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 64
+},
+{
+    "fields": {
+        "pekerjaan": "Jual Beli Barang Bekas"
+    },
+    "model": "member.pekerjaan",
+    "pk": 65
+},
+{
+    "fields": {
+        "pekerjaan": "Buruh Bengkel"
+    },
+    "model": "member.pekerjaan",
+    "pk": 66
+},
+{
+    "fields": {
+        "pekerjaan": "Buruh Harian Lepas"
+    },
+    "model": "member.pekerjaan",
+    "pk": 67
+},
+{
+    "fields": {
+        "pekerjaan": "Pramuniaga"
+    },
+    "model": "member.pekerjaan",
+    "pk": 68
+},
+{
+    "fields": {
+        "pekerjaan": "Swasta"
+    },
+    "model": "member.pekerjaan",
+    "pk": 69
+},
+{
+    "fields": {
+        "pekerjaan": "TNI AD"
+    },
+    "model": "member.pekerjaan",
+    "pk": 70
+},
+{
+    "fields": {
+        "pekerjaan": "Bidan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 71
+},
+{
+    "fields": {
+        "pekerjaan": "Guru TK, PAUD"
+    },
+    "model": "member.pekerjaan",
+    "pk": 72
+},
+{
+    "fields": {
+        "pekerjaan": "Asper"
+    },
+    "model": "member.pekerjaan",
+    "pk": 73
+},
+{
+    "fields": {
+        "pekerjaan": "pengrajin"
+    },
+    "model": "member.pekerjaan",
+    "pk": 74
+},
+{
+    "fields": {
+        "pekerjaan": "Ibu Rumah Tangga"
+    },
+    "model": "member.pekerjaan",
+    "pk": 75
+},
+{
+    "fields": {
+        "pekerjaan": "Ibu Rumah Tangga"
+    },
+    "model": "member.pekerjaan",
+    "pk": 76
+},
+{
+    "fields": {
+        "pekerjaan": "Tukang Becak"
+    },
+    "model": "member.pekerjaan",
+    "pk": 77
+},
+{
+    "fields": {
+        "pekerjaan": "perawat"
+    },
+    "model": "member.pekerjaan",
+    "pk": 78
+},
+{
+    "fields": {
+        "pekerjaan": "Bengkel"
+    },
+    "model": "member.pekerjaan",
+    "pk": 79
+},
+{
+    "fields": {
+        "pekerjaan": "Buruh tidak tetap"
+    },
+    "model": "member.pekerjaan",
+    "pk": 80
+},
+{
+    "fields": {
+        "pekerjaan": "Tukang Parkir"
+    },
+    "model": "member.pekerjaan",
+    "pk": 81
+},
+{
+    "fields": {
+        "pekerjaan": "Sopir"
+    },
+    "model": "member.pekerjaan",
+    "pk": 82
+},
+{
+    "fields": {
+        "pekerjaan": "Konsultan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 83
+},
+{
+    "fields": {
+        "pekerjaan": "Satpol PP"
+    },
+    "model": "member.pekerjaan",
+    "pk": 84
+},
+{
+    "fields": {
+        "pekerjaan": "Penulis"
+    },
+    "model": "member.pekerjaan",
+    "pk": 85
+},
+{
+    "fields": {
+        "pekerjaan": "Wartawan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 86
+},
+{
+    "fields": {
+        "pekerjaan": "peternakan burung kicau"
+    },
+    "model": "member.pekerjaan",
+    "pk": 87
+},
+{
+    "fields": {
+        "pekerjaan": "arsitektur"
+    },
+    "model": "member.pekerjaan",
+    "pk": 88
+},
+{
+    "fields": {
+        "pekerjaan": "mekanik"
+    },
+    "model": "member.pekerjaan",
+    "pk": 89
+},
+{
+    "fields": {
+        "pekerjaan": "laundry"
+    },
+    "model": "member.pekerjaan",
+    "pk": 90
+},
+{
+    "fields": {
+        "pekerjaan": "Pelayan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 91
+},
+{
+    "fields": {
+        "pekerjaan": "penjahit"
+    },
+    "model": "member.pekerjaan",
+    "pk": 92
+},
+{
+    "fields": {
+        "pekerjaan": "Teknisi Elektronik"
+    },
+    "model": "member.pekerjaan",
+    "pk": 93
+},
+{
+    "fields": {
+        "pekerjaan": "Buruh Tani"
+    },
+    "model": "member.pekerjaan",
+    "pk": 94
+},
+{
+    "fields": {
+        "pekerjaan": "TNI"
+    },
+    "model": "member.pekerjaan",
+    "pk": 95
+},
+{
+    "fields": {
+        "pekerjaan": "Staff Kademik"
+    },
+    "model": "member.pekerjaan",
+    "pk": 96
+},
+{
+    "fields": {
+        "pekerjaan": "Guru Seni"
+    },
+    "model": "member.pekerjaan",
+    "pk": 97
+},
+{
+    "fields": {
+        "pekerjaan": "Atlet"
+    },
+    "model": "member.pekerjaan",
+    "pk": 98
+},
+{
+    "fields": {
+        "pekerjaan": "PTT"
+    },
+    "model": "member.pekerjaan",
+    "pk": 99
+},
+{
+    "fields": {
+        "pekerjaan": "bidan PTT"
+    },
+    "model": "member.pekerjaan",
+    "pk": 100
+},
+{
+    "fields": {
+        "pekerjaan": "bidan"
+    },
+    "model": "member.pekerjaan",
+    "pk": 101
+},
+{
+    "fields": {
+        "pekerjaan": "ketua b pppp"
+    },
+    "model": "member.pekerjaan",
+    "pk": 102
+},
+{
+    "fields": {
+        "pekerjaan": "-"
+    },
+    "model": "member.pekerjaan",
+    "pk": 103
+},
+{
+    "fields": {
+        "pekerjaan": "tour guide"
+    },
+    "model": "member.pekerjaan",
+    "pk": 104
+},
+{
+    "fields": {
+        "pekerjaan": "sablon"
+    },
+    "model": "member.pekerjaan",
+    "pk": 105
+},
+{
+    "fields": {
+        "pekerjaan": "tukang batu"
+    },
+    "model": "member.pekerjaan",
+    "pk": 106
+},
+{
+    "fields": {
+        "pekerjaan": "wirasuwasta"
+    },
+    "model": "member.pekerjaan",
+    "pk": 107
+},
+{
+    "fields": {
+        "pekerjaan": "Editor"
+    },
+    "model": "member.pekerjaan",
+    "pk": 108
+},
+{
+    "fields": {
+        "pekerjaan": "Perawat"
+    },
+    "model": "member.pekerjaan",
+    "pk": 109
+},
+{
+    "fields": {
+        "pekerjaan": "Tukang Kayu"
+    },
+    "model": "member.pekerjaan",
+    "pk": 110
+},
+{
+    "fields": {
+        "pekerjaan": "Bengkel"
+    },
+    "model": "member.pekerjaan",
+    "pk": 111
+},
+{
+    "fields": {
+        "pekerjaan": "PETANI"
+    },
+    "model": "member.pekerjaan",
+    "pk": 112
+},
+{
+    "fields": {
+        "pekerjaan": "GYPSUN"
+    },
+    "model": "member.pekerjaan",
+    "pk": 113
+},
+{
+    "fields": {
+        "pekerjaan": "ADVOKAT"
+    },
+    "model": "member.pekerjaan",
+    "pk": 114
+},
+{
+    "fields": {
+        "golongan_darah": "A"
+    },
+    "model": "member.golongandarah",
+    "pk": 1
+},
+{
+    "fields": {
+        "golongan_darah": "B"
+    },
+    "model": "member.golongandarah",
+    "pk": 2
+},
+{
+    "fields": {
+        "golongan_darah": "AB"
+    },
+    "model": "member.golongandarah",
+    "pk": 3
+},
+{
+    "fields": {
+        "golongan_darah": "O"
+    },
+    "model": "member.golongandarah",
+    "pk": 4
+},
+{
+    "fields": {
+        "nilai_min": "0.00",
+        "status_social_score": 0,
+        "nilai_max": "500000.00"
+    },
+    "model": "member.penghasilanbulanan",
+    "pk": 1
+},
+{
+    "fields": {
+        "nilai_min": "500000.00",
+        "status_social_score": 0,
+        "nilai_max": "1000000.00"
+    },
+    "model": "member.penghasilanbulanan",
+    "pk": 2
+},
+{
+    "fields": {
+        "nilai_min": "1000000.00",
+        "status_social_score": 0,
+        "nilai_max": "3000000.00"
+    },
+    "model": "member.penghasilanbulanan",
+    "pk": 3
+},
+{
+    "fields": {
+        "nilai_min": "3000000.00",
+        "status_social_score": 0,
+        "nilai_max": "5000000.00"
+    },
+    "model": "member.penghasilanbulanan",
+    "pk": 4
+},
+{
+    "fields": {
+        "nilai_min": "5000000.00",
+        "status_social_score": 0,
+        "nilai_max": "8000000.00"
+    },
+    "model": "member.penghasilanbulanan",
+    "pk": 5
+},
+{
+    "fields": {
+        "hobi": "Olahraga"
+    },
+    "model": "member.hobi",
+    "pk": 1
+},
+{
+    "fields": {
+        "hobi": "Menulis"
+    },
+    "model": "member.hobi",
+    "pk": 2
+},
+{
+    "fields": {
+        "hobi": "Musik"
+    },
+    "model": "member.hobi",
+    "pk": 3
+},
+{
+    "fields": {
+        "hobi": "Membaca"
+    },
+    "model": "member.hobi",
+    "pk": 4
+},
+{
+    "fields": {
+        "hobi": "Masak"
+    },
+    "model": "member.hobi",
+    "pk": 5
+},
+{
+    "fields": {
+        "hobi": "Masak"
+    },
+    "model": "member.hobi",
+    "pk": 6
+},
+{
+    "fields": {
+        "hobi": "Menggambar"
+    },
+    "model": "member.hobi",
+    "pk": 7
+},
+{
+    "fields": {
+        "hobi": "Mengembala Kambing"
+    },
+    "model": "member.hobi",
+    "pk": 8
+},
+{
+    "fields": {
+        "hobi": "menari"
+    },
+    "model": "member.hobi",
+    "pk": 9
+},
+{
+    "fields": {
+        "hobi": "jalan-jalan"
+    },
+    "model": "member.hobi",
+    "pk": 10
+},
+{
+    "fields": {
+        "hobi": "menjahit"
+    },
+    "model": "member.hobi",
+    "pk": 11
+},
+{
+    "fields": {
+        "hobi": "Nonton"
+    },
+    "model": "member.hobi",
+    "pk": 12
+},
+{
+    "fields": {
+        "hobi": "Bulu tangksi"
+    },
+    "model": "member.hobi",
+    "pk": 13
+},
+{
+    "fields": {
+        "hobi": "gabur merpati"
+    },
+    "model": "member.hobi",
+    "pk": 14
+},
+{
+    "fields": {
+        "hobi": "bermain merpati"
+    },
+    "model": "member.hobi",
+    "pk": 15
+},
+{
+    "fields": {
+        "hobi": "mancing"
+    },
+    "model": "member.hobi",
+    "pk": 16
+},
+{
+    "fields": {
+        "hobi": "menyanyi"
+    },
+    "model": "member.hobi",
+    "pk": 17
+},
+{
+    "fields": {
+        "hobi": "sholawatan"
+    },
+    "model": "member.hobi",
+    "pk": 18
+},
+{
+    "fields": {
+        "hobi": "sholawatan"
+    },
+    "model": "member.hobi",
+    "pk": 19
+},
+{
+    "fields": {
+        "hobi": "internet"
+    },
+    "model": "member.hobi",
+    "pk": 20
+},
+{
+    "fields": {
+        "hobi": "belajar"
+    },
+    "model": "member.hobi",
+    "pk": 21
+},
+{
+    "fields": {
+        "hobi": "kuliner"
+    },
+    "model": "member.hobi",
+    "pk": 22
+},
+{
+    "fields": {
+        "hobi": "fotografi"
+    },
+    "model": "member.hobi",
+    "pk": 23
+},
+{
+    "fields": {
+        "hobi": "mengaji"
+    },
+    "model": "member.hobi",
+    "pk": 24
+},
+{
+    "fields": {
+        "hobi": "main"
+    },
+    "model": "member.hobi",
+    "pk": 25
+},
+{
+    "fields": {
+        "hobi": "main"
+    },
+    "model": "member.hobi",
+    "pk": 26
+},
+{
+    "fields": {
+        "hobi": "berburu"
+    },
+    "model": "member.hobi",
+    "pk": 27
+},
+{
+    "fields": {
+        "hobi": "ternak ayam"
+    },
+    "model": "member.hobi",
+    "pk": 28
+},
+{
+    "fields": {
+        "hobi": "tidur"
+    },
+    "model": "member.hobi",
+    "pk": 29
+},
+{
+    "fields": {
+        "hobi": "ekerja"
+    },
+    "model": "member.hobi",
+    "pk": 30
+},
+{
+    "fields": {
+        "hobi": "mendengarkan musik"
+    },
+    "model": "member.hobi",
+    "pk": 31
+},
+{
+    "fields": {
+        "hobi": "Bela Diri"
+    },
+    "model": "member.hobi",
+    "pk": 32
+},
+{
+    "fields": {
+        "hobi": "Sepak Bola"
+    },
+    "model": "member.hobi",
+    "pk": 33
+},
+{
+    "fields": {
+        "hobi": "Elektro"
+    },
+    "model": "member.hobi",
+    "pk": 34
+},
+{
+    "fields": {
+        "hobi": "Futsal"
+    },
+    "model": "member.hobi",
+    "pk": 35
+},
+{
+    "fields": {
+        "hobi": "Senam"
+    },
+    "model": "member.hobi",
+    "pk": 36
+},
+{
+    "fields": {
+        "hobi": "Berkebun"
+    },
+    "model": "member.hobi",
+    "pk": 37
+},
+{
+    "fields": {
+        "hobi": "Berkebun"
+    },
+    "model": "member.hobi",
+    "pk": 38
+},
+{
+    "fields": {
+        "hobi": "Ayam Bangkok"
+    },
+    "model": "member.hobi",
+    "pk": 39
+},
+{
+    "fields": {
+        "hobi": "berenang"
+    },
+    "model": "member.hobi",
+    "pk": 40
+},
+{
+    "fields": {
+        "hobi": "Pedagang"
+    },
+    "model": "member.hobi",
+    "pk": 41
+},
+{
+    "fields": {
+        "hobi": "Game Play Station"
+    },
+    "model": "member.hobi",
+    "pk": 42
+},
+{
+    "fields": {
+        "hobi": "VOLLEY"
+    },
+    "model": "member.hobi",
+    "pk": 43
+},
+{
+    "fields": {
+        "hobi": "lomba burung kicau"
+    },
+    "model": "member.hobi",
+    "pk": 44
+},
+{
+    "fields": {
+        "hobi": "ngegosip"
+    },
+    "model": "member.hobi",
+    "pk": 45
+},
+{
+    "fields": {
+        "hobi": "Pelihara Burung"
+    },
+    "model": "member.hobi",
+    "pk": 46
+},
+{
+    "fields": {
+        "hobi": "Sepeda"
+    },
+    "model": "member.hobi",
+    "pk": 47
+},
+{
+    "fields": {
+        "hobi": "Makan"
+    },
+    "model": "member.hobi",
+    "pk": 48
+},
+{
+    "fields": {
+        "hobi": "batik"
+    },
+    "model": "member.hobi",
+    "pk": 49
+},
+{
+    "fields": {
+        "hobi": "kemanusiaan"
+    },
+    "model": "member.hobi",
+    "pk": 50
+},
+{
+    "fields": {
+        "hobi": "BACA AL-QURAN"
+    },
+    "model": "member.hobi",
+    "pk": 51
+},
+{
+    "fields": {
+        "hobi": "melukis"
+    },
+    "model": "member.hobi",
+    "pk": 52
+},
+{
+    "fields": {
+        "hobi": "kuliner"
+    },
+    "model": "member.hobi",
+    "pk": 53
+},
+{
+    "fields": {
+        "hobi": "berternak"
+    },
+    "model": "member.hobi",
+    "pk": 54
+},
+{
+    "fields": {
+        "hobi": "Kartu Bridge"
+    },
+    "model": "member.hobi",
+    "pk": 55
+},
+{
+    "fields": {
+        "hobi": "MENGAJI"
+    },
+    "model": "member.hobi",
+    "pk": 56
+},
+{
+    "fields": {
+        "keahlian": "Pertukangan"
+    },
+    "model": "member.keahlian",
+    "pk": 1
+},
+{
+    "fields": {
+        "keahlian": "Kerajinan"
+    },
+    "model": "member.keahlian",
+    "pk": 2
+},
+{
+    "fields": {
+        "keahlian": "Penjahit"
+    },
+    "model": "member.keahlian",
+    "pk": 4
+},
+{
+    "fields": {
+        "keahlian": "Penjahit"
+    },
+    "model": "member.keahlian",
+    "pk": 5
+},
+{
+    "fields": {
+        "keahlian": "Penjahit"
+    },
+    "model": "member.keahlian",
+    "pk": 6
+},
+{
+    "fields": {
+        "keahlian": "Menggambar"
+    },
+    "model": "member.keahlian",
+    "pk": 7
+},
+{
+    "fields": {
+        "keahlian": "bengkel"
+    },
+    "model": "member.keahlian",
+    "pk": 8
+},
+{
+    "fields": {
+        "keahlian": "listrik"
+    },
+    "model": "member.keahlian",
+    "pk": 9
+},
+{
+    "fields": {
+        "keahlian": "membuat lempeng"
+    },
+    "model": "member.keahlian",
+    "pk": 10
+},
+{
+    "fields": {
+        "keahlian": "potong rambut"
+    },
+    "model": "member.keahlian",
+    "pk": 11
+},
+{
+    "fields": {
+        "keahlian": "Programer PC"
+    },
+    "model": "member.keahlian",
+    "pk": 12
+},
+{
+    "fields": {
+        "keahlian": "menyanyi"
+    },
+    "model": "member.keahlian",
+    "pk": 13
+},
+{
+    "fields": {
+        "keahlian": "wasit"
+    },
+    "model": "member.keahlian",
+    "pk": 14
+},
+{
+    "fields": {
+        "keahlian": "dokter"
+    },
+    "model": "member.keahlian",
+    "pk": 15
+},
+{
+    "fields": {
+        "keahlian": "Merawat Kuda"
+    },
+    "model": "member.keahlian",
+    "pk": 16
+},
+{
+    "fields": {
+        "keahlian": "memasak"
+    },
+    "model": "member.keahlian",
+    "pk": 17
+},
+{
+    "fields": {
+        "keahlian": "reparasi kompor"
+    },
+    "model": "member.keahlian",
+    "pk": 18
+},
+{
+    "fields": {
+        "keahlian": "reparasi kompora gas dan Lpg"
+    },
+    "model": "member.keahlian",
+    "pk": 19
+},
+{
+    "fields": {
+        "keahlian": "Tukang Finishing"
+    },
+    "model": "member.keahlian",
+    "pk": 20
+},
+{
+    "fields": {
+        "keahlian": "Mengelas"
+    },
+    "model": "member.keahlian",
+    "pk": 21
+},
+{
+    "fields": {
+        "keahlian": "Menggambar Proyek Pembangunan"
+    },
+    "model": "member.keahlian",
+    "pk": 22
+},
+{
+    "fields": {
+        "keahlian": "Jasa Pijat"
+    },
+    "model": "member.keahlian",
+    "pk": 23
+},
+{
+    "fields": {
+        "keahlian": "Cleaning Servis"
+    },
+    "model": "member.keahlian",
+    "pk": 24
+},
+{
+    "fields": {
+        "keahlian": "Tukang Batu"
+    },
+    "model": "member.keahlian",
+    "pk": 25
+},
+{
+    "fields": {
+        "keahlian": "ngelas"
+    },
+    "model": "member.keahlian",
+    "pk": 26
+},
+{
+    "fields": {
+        "keahlian": "foto grafis"
+    },
+    "model": "member.keahlian",
+    "pk": 27
+},
+{
+    "fields": {
+        "keahlian": "bertani"
+    },
+    "model": "member.keahlian",
+    "pk": 28
+},
+{
+    "fields": {
+        "keahlian": "Memanjat Pohon Kelapa"
+    },
+    "model": "member.keahlian",
+    "pk": 29
+},
+{
+    "fields": {
+        "keahlian": "Olahraga Bulu Tangkis"
+    },
+    "model": "member.keahlian",
+    "pk": 30
+},
+{
+    "fields": {
+        "keahlian": "memijat"
+    },
+    "model": "member.keahlian",
+    "pk": 31
+},
+{
+    "fields": {
+        "keahlian": "pencari ikan tawar(nyetrum)"
+    },
+    "model": "member.keahlian",
+    "pk": 32
+},
+{
+    "fields": {
+        "keahlian": "tukang becak"
+    },
+    "model": "member.keahlian",
+    "pk": 33
+},
+{
+    "fields": {
+        "keahlian": "berdagang"
+    },
+    "model": "member.keahlian",
+    "pk": 34
+},
+{
+    "fields": {
+        "keahlian": "musik (gitaris)"
+    },
+    "model": "member.keahlian",
+    "pk": 35
+},
+{
+    "fields": {
+        "keahlian": "jual-beli montor"
+    },
+    "model": "member.keahlian",
+    "pk": 36
+},
+{
+    "fields": {
+        "keahlian": "komputer"
+    },
+    "model": "member.keahlian",
+    "pk": 37
+},
+{
+    "fields": {
+        "keahlian": "desain grafis"
+    },
+    "model": "member.keahlian",
+    "pk": 38
+},
+{
+    "fields": {
+        "keahlian": "advetising"
+    },
+    "model": "member.keahlian",
+    "pk": 39
+},
+{
+    "fields": {
+        "keahlian": "membuat tape ketan"
+    },
+    "model": "member.keahlian",
+    "pk": 40
+},
+{
+    "fields": {
+        "keahlian": "musik"
+    },
+    "model": "member.keahlian",
+    "pk": 41
+},
+{
+    "fields": {
+        "keahlian": "sholawatan"
+    },
+    "model": "member.keahlian",
+    "pk": 42
+},
+{
+    "fields": {
+        "keahlian": "bahasa inggris"
+    },
+    "model": "member.keahlian",
+    "pk": 43
+},
+{
+    "fields": {
+        "keahlian": "internet"
+    },
+    "model": "member.keahlian",
+    "pk": 44
+},
+{
+    "fields": {
+        "keahlian": "hias sanggan"
+    },
+    "model": "member.keahlian",
+    "pk": 45
+},
+{
+    "fields": {
+        "keahlian": "tukang bangunan"
+    },
+    "model": "member.keahlian",
+    "pk": 46
+},
+{
+    "fields": {
+        "keahlian": "salon rias"
+    },
+    "model": "member.keahlian",
+    "pk": 47
+},
+{
+    "fields": {
+        "keahlian": "dekorasi"
+    },
+    "model": "member.keahlian",
+    "pk": 48
+},
+{
+    "fields": {
+        "keahlian": "membuat telur asin"
+    },
+    "model": "member.keahlian",
+    "pk": 49
+},
+{
+    "fields": {
+        "keahlian": "malawak"
+    },
+    "model": "member.keahlian",
+    "pk": 50
+},
+{
+    "fields": {
+        "keahlian": "sopir"
+    },
+    "model": "member.keahlian",
+    "pk": 51
+},
+{
+    "fields": {
+        "keahlian": "menguliti kambing"
+    },
+    "model": "member.keahlian",
+    "pk": 52
+},
+{
+    "fields": {
+        "keahlian": "buruh tani"
+    },
+    "model": "member.keahlian",
+    "pk": 53
+},
+{
+    "fields": {
+        "keahlian": "seni karawitan"
+    },
+    "model": "member.keahlian",
+    "pk": 54
+},
+{
+    "fields": {
+        "keahlian": "rias pengantin"
+    },
+    "model": "member.keahlian",
+    "pk": 55
+},
+{
+    "fields": {
+        "keahlian": "MC"
+    },
+    "model": "member.keahlian",
+    "pk": 56
+},
+{
+    "fields": {
+        "keahlian": "guru ngaji TPA"
+    },
+    "model": "member.keahlian",
+    "pk": 57
+},
+{
+    "fields": {
+        "keahlian": "guru tari(kreator)"
+    },
+    "model": "member.keahlian",
+    "pk": 58
+},
+{
+    "fields": {
+        "keahlian": "Tandur Padi"
+    },
+    "model": "member.keahlian",
+    "pk": 59
+},
+{
+    "fields": {
+        "keahlian": "Serba Bisa"
+    },
+    "model": "member.keahlian",
+    "pk": 60
+},
+{
+    "fields": {
+        "keahlian": "Olahraga"
+    },
+    "model": "member.keahlian",
+    "pk": 61
+},
+{
+    "fields": {
+        "keahlian": "Medis"
+    },
+    "model": "member.keahlian",
+    "pk": 62
+},
+{
+    "fields": {
+        "keahlian": "sol sepatu"
+    },
+    "model": "member.keahlian",
+    "pk": 63
+},
+{
+    "fields": {
+        "keahlian": "baby sister"
+    },
+    "model": "member.keahlian",
+    "pk": 64
+},
+{
+    "fields": {
+        "keahlian": "Tukang Kayu"
+    },
+    "model": "member.keahlian",
+    "pk": 65
+},
+{
+    "fields": {
+        "keahlian": "Perternakan"
+    },
+    "model": "member.keahlian",
+    "pk": 66
+},
+{
+    "fields": {
+        "keahlian": "Tukang Ledeng"
+    },
+    "model": "member.keahlian",
+    "pk": 67
+},
+{
+    "fields": {
+        "keahlian": "Tukang Cat"
+    },
+    "model": "member.keahlian",
+    "pk": 68
+},
+{
+    "fields": {
+        "keahlian": "Menulis Cerpen"
+    },
+    "model": "member.keahlian",
+    "pk": 69
+},
+{
+    "fields": {
+        "keahlian": "Menembak"
+    },
+    "model": "member.keahlian",
+    "pk": 70
+},
+{
+    "fields": {
+        "keahlian": "Mencari Rumput"
+    },
+    "model": "member.keahlian",
+    "pk": 71
+},
+{
+    "fields": {
+        "keahlian": "Membuat kue"
+    },
+    "model": "member.keahlian",
+    "pk": 72
+},
+{
+    "fields": {
+        "keahlian": "Dukun Bayi"
+    },
+    "model": "member.keahlian",
+    "pk": 73
+},
+{
+    "fields": {
+        "keahlian": "KETERAMPILAN TANGAN"
+    },
+    "model": "member.keahlian",
+    "pk": 74
+},
+{
+    "fields": {
+        "keahlian": "buruh bangunan"
+    },
+    "model": "member.keahlian",
+    "pk": 75
+},
+{
+    "fields": {
+        "keahlian": "Ternak burung kicau"
+    },
+    "model": "member.keahlian",
+    "pk": 76
+},
+{
+    "fields": {
+        "keahlian": "tambal ban"
+    },
+    "model": "member.keahlian",
+    "pk": 77
+},
+{
+    "fields": {
+        "keahlian": "Penggergajian Kayu"
+    },
+    "model": "member.keahlian",
+    "pk": 78
+},
+{
+    "fields": {
+        "keahlian": "Ukir Kayu"
+    },
+    "model": "member.keahlian",
+    "pk": 79
+},
+{
+    "fields": {
+        "keahlian": "Ilmu Keperawatan"
+    },
+    "model": "member.keahlian",
+    "pk": 80
+},
+{
+    "fields": {
+        "keahlian": "Ibu Rumah Tangga"
+    },
+    "model": "member.keahlian",
+    "pk": 81
+},
+{
+    "fields": {
+        "keahlian": "Melukis"
+    },
+    "model": "member.keahlian",
+    "pk": 82
+},
+{
+    "fields": {
+        "keahlian": "Musik (drummer)"
+    },
+    "model": "member.keahlian",
+    "pk": 83
+},
+{
+    "fields": {
+        "keahlian": "menari"
+    },
+    "model": "member.keahlian",
+    "pk": 84
+},
+{
+    "fields": {
+        "keahlian": "bikin shuttle kok"
+    },
+    "model": "member.keahlian",
+    "pk": 85
+},
+{
+    "fields": {
+        "keahlian": "tenaga medis"
+    },
+    "model": "member.keahlian",
+    "pk": 86
+},
+{
+    "fields": {
+        "keahlian": "bahasa"
+    },
+    "model": "member.keahlian",
+    "pk": 87
+},
+{
+    "fields": {
+        "keahlian": "olah raga ping-pong"
+    },
+    "model": "member.keahlian",
+    "pk": 88
+},
+{
+    "fields": {
+        "keahlian": "teknik tukang batu"
+    },
+    "model": "member.keahlian",
+    "pk": 89
+},
+{
+    "fields": {
+        "keahlian": "akutansi"
+    },
+    "model": "member.keahlian",
+    "pk": 90
+},
+{
+    "fields": {
+        "keahlian": "TAMAN"
+    },
+    "model": "member.keahlian",
+    "pk": 91
+},
+{
+    "fields": {
+        "keahlian": "pembuat peta"
+    },
+    "model": "member.keahlian",
+    "pk": 92
+},
+{
+    "fields": {
+        "keahlian": "Konsultan Perencana Bangunan"
+    },
+    "model": "member.keahlian",
+    "pk": 93
+},
+{
+    "fields": {
+        "keahlian": "Tukang Kursi"
+    },
+    "model": "member.keahlian",
+    "pk": 94
+},
+{
+    "fields": {
+        "keahlian": "Hafalan Al-Qur'an"
+    },
+    "model": "member.keahlian",
+    "pk": 95
+},
+{
+    "fields": {
+        "keahlian": "SENI BACA ALQURAN"
+    },
+    "model": "member.keahlian",
+    "pk": 96
+},
+{
+    "fields": {
+        "keahlian": "GIPSUN"
+    },
+    "model": "member.keahlian",
+    "pk": 97
+},
+{
+    "fields": {
+        "keahlian": "MEDIATOR INS"
+    },
+    "model": "member.keahlian",
+    "pk": 98
+},
+{
+    "fields": {
+        "keahlian": "BIDANG SENI"
+    },
+    "model": "member.keahlian",
+    "pk": 99
+},
+{
+    "fields": {
+        "keahlian": "BIDANG MAKANAN"
+    },
+    "model": "member.keahlian",
+    "pk": 100
+},
+{
+    "fields": {
+        "keahlian": "PENYIARAN"
+    },
+    "model": "member.keahlian",
+    "pk": 101
+},
+{
+    "fields": {
+        "keahlian": "ELEKTRO"
+    },
+    "model": "member.keahlian",
+    "pk": 102
+},
+{
+    "fields": {
+        "keahlian": "TUKANG BATU"
+    },
+    "model": "member.keahlian",
+    "pk": 103
+},
+{
+    "fields": {
+        "keahlian": "TUKANG ALUMUNIUM"
+    },
+    "model": "member.keahlian",
+    "pk": 104
+},
+{
+    "fields": {
+        "keahlian": "TERNAK"
+    },
+    "model": "member.keahlian",
+    "pk": 105
+},
+{
+    "fields": {
+        "keahlian": "MEMBUAT CETAKKAN"
+    },
+    "model": "member.keahlian",
+    "pk": 106
+},
+{
+    "fields": {
+        "keahlian": "PERTANIAN"
+    },
+    "model": "member.keahlian",
+    "pk": 107
+},
+{
+    "fields": {
+        "jenis_usaha": "Toko Kelontong"
+    },
+    "model": "member.jenisusaha",
+    "pk": 1
+},
+{
+    "fields": {
+        "jenis_usaha": "Kerajinan"
+    },
+    "model": "member.jenisusaha",
+    "pk": 2
+},
+{
+    "fields": {
+        "jenis_usaha": "Bengkel"
+    },
+    "model": "member.jenisusaha",
+    "pk": 4
+},
+{
+    "fields": {
+        "jenis_usaha": "Laundry"
+    },
+    "model": "member.jenisusaha",
+    "pk": 5
+},
+{
+    "fields": {
+        "jenis_usaha": "Pengrajin Lempeng"
+    },
+    "model": "member.jenisusaha",
+    "pk": 10
+},
+{
+    "fields": {
+        "jenis_usaha": "bengkel las"
+    },
+    "model": "member.jenisusaha",
+    "pk": 11
+},
+{
+    "fields": {
+        "jenis_usaha": "bengkel las"
+    },
+    "model": "member.jenisusaha",
+    "pk": 12
+},
+{
+    "fields": {
+        "jenis_usaha": "penjual bubur"
+    },
+    "model": "member.jenisusaha",
+    "pk": 13
+},
+{
+    "fields": {
+        "jenis_usaha": "Pedagang"
+    },
+    "model": "member.jenisusaha",
+    "pk": 14
+},
+{
+    "fields": {
+        "jenis_usaha": "klinik swasta"
+    },
+    "model": "member.jenisusaha",
+    "pk": 15
+},
+{
+    "fields": {
+        "jenis_usaha": "freelance gambar rancang bangunan"
+    },
+    "model": "member.jenisusaha",
+    "pk": 16
+},
+{
+    "fields": {
+        "jenis_usaha": "toko material"
+    },
+    "model": "member.jenisusaha",
+    "pk": 17
+},
+{
+    "fields": {
+        "jenis_usaha": "Ternak Ayam"
+    },
+    "model": "member.jenisusaha",
+    "pk": 18
+},
+{
+    "fields": {
+        "jenis_usaha": "Ternak bebek dan Penjual telur bebek"
+    },
+    "model": "member.jenisusaha",
+    "pk": 19
+},
+{
+    "fields": {
+        "jenis_usaha": "Ternak Ikan Lele dan pembesaran"
+    },
+    "model": "member.jenisusaha",
+    "pk": 20
+},
+{
+    "fields": {
+        "jenis_usaha": "Ternak Kambing"
+    },
+    "model": "member.jenisusaha",
+    "pk": 21
+},
+{
+    "fields": {
+        "jenis_usaha": "konter pulsa"
+    },
+    "model": "member.jenisusaha",
+    "pk": 22
+},
+{
+    "fields": {
+        "jenis_usaha": "pedagang lempeng"
+    },
+    "model": "member.jenisusaha",
+    "pk": 23
+},
+{
+    "fields": {
+        "jenis_usaha": "sablon batik"
+    },
+    "model": "member.jenisusaha",
+    "pk": 24
+},
+{
+    "fields": {
+        "jenis_usaha": "jual air mineral"
+    },
+    "model": "member.jenisusaha",
+    "pk": 25
+},
+{
+    "fields": {
+        "jenis_usaha": "jahitan"
+    },
+    "model": "member.jenisusaha",
+    "pk": 26
+},
+{
+    "fields": {
+        "jenis_usaha": "warung makan"
+    },
+    "model": "member.jenisusaha",
+    "pk": 27
+},
+{
+    "fields": {
+        "jenis_usaha": "shopping/belanja"
+    },
+    "model": "member.jenisusaha",
+    "pk": 28
+},
+{
+    "fields": {
+        "jenis_usaha": "bakul sayuran"
+    },
+    "model": "member.jenisusaha",
+    "pk": 29
+},
+{
+    "fields": {
+        "jenis_usaha": "mie ayam"
+    },
+    "model": "member.jenisusaha",
+    "pk": 30
+},
+{
+    "fields": {
+        "jenis_usaha": "toko baju"
+    },
+    "model": "member.jenisusaha",
+    "pk": 31
+},
+{
+    "fields": {
+        "jenis_usaha": "peersewaan tenda kursi"
+    },
+    "model": "member.jenisusaha",
+    "pk": 32
+},
+{
+    "fields": {
+        "jenis_usaha": "dekorasi"
+    },
+    "model": "member.jenisusaha",
+    "pk": 33
+},
+{
+    "fields": {
+        "jenis_usaha": "angkringan"
+    },
+    "model": "member.jenisusaha",
+    "pk": 34
+},
+{
+    "fields": {
+        "jenis_usaha": "jual aran/kayu"
+    },
+    "model": "member.jenisusaha",
+    "pk": 35
+},
+{
+    "fields": {
+        "jenis_usaha": "memasak"
+    },
+    "model": "member.jenisusaha",
+    "pk": 36
+},
+{
+    "fields": {
+        "jenis_usaha": "setrika baju kiloan"
+    },
+    "model": "member.jenisusaha",
+    "pk": 37
+},
+{
+    "fields": {
+        "jenis_usaha": "sopir mobil"
+    },
+    "model": "member.jenisusaha",
+    "pk": 38
+},
+{
+    "fields": {
+        "jenis_usaha": "jual merpati"
+    },
+    "model": "member.jenisusaha",
+    "pk": 39
+},
+{
+    "fields": {
+        "jenis_usaha": "jualan kambing"
+    },
+    "model": "member.jenisusaha",
+    "pk": 40
+},
+{
+    "fields": {
+        "jenis_usaha": "petani"
+    },
+    "model": "member.jenisusaha",
+    "pk": 41
+},
+{
+    "fields": {
+        "jenis_usaha": "salon"
+    },
+    "model": "member.jenisusaha",
+    "pk": 42
+},
+{
+    "fields": {
+        "jenis_usaha": "jualan batik"
+    },
+    "model": "member.jenisusaha",
+    "pk": 43
+},
+{
+    "fields": {
+        "jenis_usaha": "budidaya jamur"
+    },
+    "model": "member.jenisusaha",
+    "pk": 44
+},
+{
+    "fields": {
+        "jenis_usaha": "ternak sapi"
+    },
+    "model": "member.jenisusaha",
+    "pk": 45
+},
+{
+    "fields": {
+        "jenis_usaha": "Jamu"
+    },
+    "model": "member.jenisusaha",
+    "pk": 46
+},
+{
+    "fields": {
+        "jenis_usaha": "Jual Keripik Tempe"
+    },
+    "model": "member.jenisusaha",
+    "pk": 47
+},
+{
+    "fields": {
+        "jenis_usaha": "Sembako"
+    },
+    "model": "member.jenisusaha",
+    "pk": 48
+},
+{
+    "fields": {
+        "jenis_usaha": "Ternak Burung"
+    },
+    "model": "member.jenisusaha",
+    "pk": 49
+},
+{
+    "fields": {
+        "jenis_usaha": "Catering Kecil"
+    },
+    "model": "member.jenisusaha",
+    "pk": 50
+},
+{
+    "fields": {
+        "jenis_usaha": "adverteising"
+    },
+    "model": "member.jenisusaha",
+    "pk": 51
+},
+{
+    "fields": {
+        "jenis_usaha": "kantin"
+    },
+    "model": "member.jenisusaha",
+    "pk": 52
+},
+{
+    "fields": {
+        "jenis_usaha": "salon pria"
+    },
+    "model": "member.jenisusaha",
+    "pk": 53
+},
+{
+    "fields": {
+        "jenis_usaha": "Bisnis"
+    },
+    "model": "member.jenisusaha",
+    "pk": 54
+},
+{
+    "fields": {
+        "jenis_usaha": "wirausaha"
+    },
+    "model": "member.jenisusaha",
+    "pk": 55
+},
+{
+    "fields": {
+        "jenis_usaha": "Entertaint"
+    },
+    "model": "member.jenisusaha",
+    "pk": 56
+},
+{
+    "fields": {
+        "jenis_usaha": "Tambal Ban"
+    },
+    "model": "member.jenisusaha",
+    "pk": 57
+},
+{
+    "fields": {
+        "jenis_usaha": "Wiraswasta"
+    },
+    "model": "member.jenisusaha",
+    "pk": 58
+},
+{
+    "fields": {
+        "jenis_usaha": "Ayam Potong"
+    },
+    "model": "member.jenisusaha",
+    "pk": 59
+},
+{
+    "fields": {
+        "jenis_usaha": "Ternak Sapi"
+    },
+    "model": "member.jenisusaha",
+    "pk": 60
+},
+{
+    "fields": {
+        "jenis_usaha": "pengrajin kursi bambu"
+    },
+    "model": "member.jenisusaha",
+    "pk": 61
+},
+{
+    "fields": {
+        "jenis_usaha": "Jual Jenang"
+    },
+    "model": "member.jenisusaha",
+    "pk": 62
+},
+{
+    "fields": {
+        "jenis_usaha": "Pembuat Wingko Babat"
+    },
+    "model": "member.jenisusaha",
+    "pk": 63
+},
+{
+    "fields": {
+        "jenis_usaha": "Jual Nasi/Mie Goreng"
+    },
+    "model": "member.jenisusaha",
+    "pk": 64
+},
+{
+    "fields": {
+        "jenis_usaha": "Jual Bakso"
+    },
+    "model": "member.jenisusaha",
+    "pk": 65
+},
+{
+    "fields": {
+        "jenis_usaha": "Jual Jadah Tempe"
+    },
+    "model": "member.jenisusaha",
+    "pk": 66
+},
+{
+    "fields": {
+        "jenis_usaha": "Jual beli rosok"
+    },
+    "model": "member.jenisusaha",
+    "pk": 67
+},
+{
+    "fields": {
+        "jenis_usaha": "Servis Komputer dan HP"
+    },
+    "model": "member.jenisusaha",
+    "pk": 68
+},
+{
+    "fields": {
+        "jenis_usaha": "Warung Kelontong"
+    },
+    "model": "member.jenisusaha",
+    "pk": 69
+},
+{
+    "fields": {
+        "jenis_usaha": "GYPSUM"
+    },
+    "model": "member.jenisusaha",
+    "pk": 70
+},
+{
+    "fields": {
+        "jenis_usaha": "menyewa sawah untuk ditanami padi / jagung"
+    },
+    "model": "member.jenisusaha",
+    "pk": 71
+},
+{
+    "fields": {
+        "jenis_usaha": "Jasa"
+    },
+    "model": "member.jenisusaha",
+    "pk": 72
+},
+{
+    "fields": {
+        "jenis_usaha": "servis"
+    },
+    "model": "member.jenisusaha",
+    "pk": 73
+},
+{
+    "fields": {
+        "jenis_usaha": "Praktek Pengobatan"
+    },
+    "model": "member.jenisusaha",
+    "pk": 74
+},
+{
+    "fields": {
+        "jenis_usaha": "Berdagang Online"
+    },
+    "model": "member.jenisusaha",
+    "pk": 75
+},
+{
+    "fields": {
+        "jenis_usaha": "Studio Musik"
+    },
+    "model": "member.jenisusaha",
+    "pk": 76
+},
+{
+    "fields": {
+        "jenis_usaha": "Jual Lukisan"
+    },
+    "model": "member.jenisusaha",
+    "pk": 77
+},
+{
+    "fields": {
+        "jenis_usaha": "Jual Baju"
+    },
+    "model": "member.jenisusaha",
+    "pk": 78
+},
+{
+    "fields": {
+        "jenis_usaha": "Simpan Pinjam"
+    },
+    "model": "member.jenisusaha",
+    "pk": 79
+},
+{
+    "fields": {
+        "jenis_usaha": "Pengrajin Lempeng"
+    },
+    "model": "member.jenisusaha",
+    "pk": 80
+},
+{
+    "fields": {
+        "jenis_usaha": "jual sate"
+    },
+    "model": "member.jenisusaha",
+    "pk": 81
+},
+{
+    "fields": {
+        "jenis_usaha": "serfis hp"
+    },
+    "model": "member.jenisusaha",
+    "pk": 82
+},
+{
+    "fields": {
+        "jenis_usaha": "DAGANG"
+    },
+    "model": "member.jenisusaha",
+    "pk": 83
+},
+{
+    "fields": {
+        "jenis_usaha": "SABLON"
+    },
+    "model": "member.jenisusaha",
+    "pk": 84
+},
+{
+    "fields": {
+        "jenis_usaha": "aroma therapy"
+    },
+    "model": "member.jenisusaha",
+    "pk": 85
+},
+{
+    "fields": {
+        "jenis_usaha": "Tukang Becak"
+    },
+    "model": "member.jenisusaha",
+    "pk": 86
+},
+{
+    "fields": {
+        "jenis_usaha": "Perencana Bangunan"
+    },
+    "model": "member.jenisusaha",
+    "pk": 87
+},
+{
+    "fields": {
+        "jenis_usaha": "Toko Buku"
+    },
+    "model": "member.jenisusaha",
+    "pk": 88
+},
+{
+    "fields": {
+        "jenis_usaha": "Makanan Ringan"
+    },
+    "model": "member.jenisusaha",
+    "pk": 89
+},
+{
+    "fields": {
+        "jenis_usaha": "SERVIS JOK MOTOR/MOBIL"
+    },
+    "model": "member.jenisusaha",
+    "pk": 90
+},
+{
+    "fields": {
+        "jenis_usaha": "GYPSUN"
+    },
+    "model": "member.jenisusaha",
+    "pk": 91
+},
+{
+    "fields": {
+        "jenis_usaha": "MAKANAN KERING"
+    },
+    "model": "member.jenisusaha",
+    "pk": 92
+},
+{
+    "fields": {
+        "jenis_usaha": "TERNAK BEBEK"
+    },
+    "model": "member.jenisusaha",
+    "pk": 93
+},
+{
+    "fields": {
+        "jenis_usaha": "JUAL SAYUR"
+    },
+    "model": "member.jenisusaha",
+    "pk": 94
+},
+{
+    "fields": {
+        "jenis_usaha": "PERTANIAN"
+    },
+    "model": "member.jenisusaha",
+    "pk": 95
+},
+{
+    "fields": {
+        "jenis_usaha": "WARUNG"
+    },
+    "model": "member.jenisusaha",
+    "pk": 96
+},
+{
+    "fields": {
+        "jenis_usaha": "TERNAK"
+    },
+    "model": "member.jenisusaha",
+    "pk": 97
+},
+{
+    "fields": {
+        "media_yang_dipakai": "TV"
+    },
+    "model": "member.media",
+    "pk": 1
+},
+{
+    "fields": {
+        "media_yang_dipakai": "Cetak"
+    },
+    "model": "member.media",
+    "pk": 2
+},
+{
+    "fields": {
+        "media_yang_dipakai": "Radio"
+    },
+    "model": "member.media",
+    "pk": 3
+},
+{
+    "fields": {
+        "media_yang_dipakai": "Internet"
+    },
+    "model": "member.media",
+    "pk": 4
+},
+{
+    "fields": {
+        "media_yang_dipakai": "hp"
+    },
+    "model": "member.media",
+    "pk": 7
+},
+{
+    "fields": {
+        "tema_informasi": "Pertanian"
+    },
+    "model": "member.temainformasi",
+    "pk": 1
+},
+{
+    "fields": {
+        "tema_informasi": "Seni Budaya"
+    },
+    "model": "member.temainformasi",
+    "pk": 2
+},
+{
+    "fields": {
+        "tema_informasi": "Sosial Kemasyarakatan"
+    },
+    "model": "member.temainformasi",
+    "pk": 3
+},
+{
+    "fields": {
+        "tema_informasi": "Peluang Usaha"
+    },
+    "model": "member.temainformasi",
+    "pk": 4
+},
+{
+    "fields": {
+        "tema_informasi": "Keagamaan"
+    },
+    "model": "member.temainformasi",
+    "pk": 5
+},
+{
+    "fields": {
+        "tema_informasi": "Pendidikan"
+    },
+    "model": "member.temainformasi",
+    "pk": 6
+},
+{
+    "fields": {
+        "tema_informasi": "Keluarga/Anak"
+    },
+    "model": "member.temainformasi",
+    "pk": 7
+},
+{
+    "fields": {
+        "tema_informasi": "Lowongan Kerja"
+    },
+    "model": "member.temainformasi",
+    "pk": 8
+},
+{
+    "fields": {
+        "tema_informasi": "Politik"
+    },
+    "model": "member.temainformasi",
+    "pk": 9
+},
+{
+    "fields": {
+        "tema_informasi": "kesehatan"
+    },
+    "model": "member.temainformasi",
+    "pk": 12
+},
+{
+    "fields": {
+        "tema_informasi": "perternakan"
+    },
+    "model": "member.temainformasi",
+    "pk": 13
+},
+{
+    "fields": {
+        "tema_informasi": "Musik"
+    },
+    "model": "member.temainformasi",
+    "pk": 14
+},
+{
+    "fields": {
+        "tema_informasi": "Berita"
+    },
+    "model": "member.temainformasi",
+    "pk": 15
+},
+{
+    "fields": {
+        "tema_informasi": "Berita"
+    },
+    "model": "member.temainformasi",
+    "pk": 16
+},
+{
+    "fields": {
+        "tema_informasi": "Film Kartun"
+    },
+    "model": "member.temainformasi",
+    "pk": 17
+},
+{
+    "fields": {
+        "tema_informasi": "entertaiment"
+    },
+    "model": "member.temainformasi",
+    "pk": 18
+},
+{
+    "fields": {
+        "tema_informasi": "Infotainment"
+    },
+    "model": "member.temainformasi",
+    "pk": 19
+},
+{
+    "fields": {
+        "tema_informasi": "Olah Raga"
+    },
+    "model": "member.temainformasi",
+    "pk": 20
+},
+{
+    "fields": {
+        "tema_informasi": "Reality show"
+    },
+    "model": "member.temainformasi",
+    "pk": 21
+},
+{
+    "fields": {
+        "tema_informasi": "hiburan"
+    },
+    "model": "member.temainformasi",
+    "pk": 22
+},
+{
+    "fields": {
+        "tema_informasi": "sinetron"
+    },
+    "model": "member.temainformasi",
+    "pk": 23
+},
+{
+    "fields": {
+        "tema_informasi": "Keterampilan"
+    },
+    "model": "member.temainformasi",
+    "pk": 24
+},
+{
+    "fields": {
+        "tema_informasi": "PENDIDIKAN"
+    },
+    "model": "member.temainformasi",
+    "pk": 25
+},
+{
+    "fields": {
+        "tema_informasi": "PENDIDIKAN"
+    },
+    "model": "member.temainformasi",
+    "pk": 26
+},
+{
+    "fields": {
+        "tema_informasi": "PENDIDIKAN"
+    },
+    "model": "member.temainformasi",
+    "pk": 27
+},
+{
+    "fields": {
+        "tema_informasi": "pariwisata"
+    },
+    "model": "member.temainformasi",
+    "pk": 28
+},
+{
+    "fields": {
+        "tema_informasi": "HIBURAN"
+    },
+    "model": "member.temainformasi",
+    "pk": 29
+},
+{
+    "fields": {
+        "tema_informasi": "OLAHRAGA"
+    },
+    "model": "member.temainformasi",
+    "pk": 30
+},
+{
+    "fields": {
+        "tema_informasi": "geografi"
+    },
+    "model": "member.temainformasi",
+    "pk": 31
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "alat_transportasi": "Sepeda"
+    },
+    "model": "member.alattransportasi",
+    "pk": 1
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "alat_transportasi": "Motor"
+    },
+    "model": "member.alattransportasi",
+    "pk": 2
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "alat_transportasi": "Mobil"
+    },
+    "model": "member.alattransportasi",
+    "pk": 3
+},
+{
+    "fields": {
+        "status_social_score": 0,
+        "alat_transportasi": "Angkutan Umum"
+    },
+    "model": "member.alattransportasi",
+    "pk": 4
+},
+{
+    "fields": {
+        "umur_min": 12,
+        "umur_max": 16,
+        "name": "Remaja"
+    },
+    "model": "member.usia",
+    "pk": 1
+},
+{
+    "fields": {
+        "umur_min": 17,
+        "umur_max": 40,
+        "name": "Dewasa"
+    },
+    "model": "member.usia",
+    "pk": 2
+},
+{
+    "fields": {
+        "umur_min": 41,
+        "umur_max": 100,
+        "name": "Orang Tua"
+    },
+    "model": "member.usia",
+    "pk": 3
+},
+{
+    "fields": {
+        "score_min": 13,
+        "score_max": 15,
+        "name": "Atas"
+    },
+    "model": "member.statussosial",
+    "pk": 1
+},
+{
+    "fields": {
+        "score_min": 10,
+        "score_max": 12,
+        "name": "Menengah Atas"
+    },
+    "model": "member.statussosial",
+    "pk": 2
+},
+{
+    "fields": {
+        "score_min": 7,
+        "score_max": 9,
+        "name": "Menengah"
+    },
+    "model": "member.statussosial",
+    "pk": 3
+},
+{
+    "fields": {
+        "score_min": 4,
+        "score_max": 6,
+        "name": "Menengah Bawah"
+    },
+    "model": "member.statussosial",
+    "pk": 4
+},
+{
+    "fields": {
+        "score_min": 0,
+        "score_max": 3,
+        "name": "Bawah"
+    },
+    "model": "member.statussosial",
+    "pk": 5
+}
+]

@@ -2,8 +2,14 @@ from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, Text, DateTime, TIMESTAMP
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import os
+import json
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-engine = create_engine('mysql://root:password@localhost/database')
+#engine = create_engine('mysql://root:password@localhost/database')
+with open(PROJECT_PATH + '/../sql/db.json') as json_file:
+    DATABASES = json.loads(json_file.read())
+engine = create_engine('mysql://'+DATABASES['default']['USER']+':'+DATABASES['default']['PASSWORD']+'@localhost/'+DATABASES['default']['NAME'])
 
 Base = declarative_base()
 

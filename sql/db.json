@@ -1,0 +1,10 @@
+{
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "medkomdes",
+        "USER": "lantip",
+        "PASSWORD": "bankai",
+        "HOST": "",
+        "PORT": 8889
+    }
+}
