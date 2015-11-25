@@ -196,7 +196,7 @@ class ProgramKB(models.Model):
         verbose_name        = 'Program KB'
 
 class Agama(models.Model):
-    agama = models.CharField(max_length=30)
+    agama = models.CharField(max_length=80)
     
     def __unicode__(self):
         return u'%s' %(self.agama)
@@ -205,7 +205,7 @@ class Agama(models.Model):
         verbose_name        = 'Agama'
 
 class StatusPerkawinan(models.Model):
-    status_perkawinan = models.CharField(max_length=15)
+    status_perkawinan = models.CharField(max_length=200)
 
     def __unicode__(self):
         return u'%s' %(self.status_perkawinan)
@@ -214,7 +214,7 @@ class StatusPerkawinan(models.Model):
         verbose_name        = 'Status Perkawinan'
 
 class HubunganKeluarga(models.Model):
-    hubungan_keluarga = models.CharField(max_length=20)
+    hubungan_keluarga = models.CharField(max_length=200)
 
     def __unicode__(self):
         return u'%s' %(self.hubungan_keluarga)
@@ -223,7 +223,7 @@ class HubunganKeluarga(models.Model):
         verbose_name        = 'Hubungan Keluarga'
 
 class PendidikanTerakhir(models.Model):
-    pendidikan_terakhir = models.CharField(max_length=5)
+    pendidikan_terakhir = models.CharField(max_length=200)
     status_social_score = models.PositiveIntegerField(default=0)
 
     def __unicode__(self):
@@ -233,7 +233,7 @@ class PendidikanTerakhir(models.Model):
         verbose_name        = 'Pendidikan Terakhir'
 
 class Jurusan(models.Model):
-    jurusan = models.CharField(max_length=50)
+    jurusan = models.CharField(max_length=200)
 
     def __unicode__(self):
         return u'%s' %(self.jurusan)
@@ -242,7 +242,7 @@ class Jurusan(models.Model):
         verbose_name        = 'Jurusan'
 
 class Pekerjaan(models.Model):
-    pekerjaan = models.CharField(max_length=50)
+    pekerjaan = models.CharField(max_length=200)
 
     def __unicode__(self):
         return u'%s' %(self.pekerjaan)
@@ -251,7 +251,7 @@ class Pekerjaan(models.Model):
         verbose_name        = 'Jenis Pekerjaan'
 
 class GolonganDarah(models.Model):
-    golongan_darah = models.CharField(max_length=2)
+    golongan_darah = models.CharField(max_length=200)
 
     def __unicode__(self):
         return u'%s' %(self.golongan_darah)

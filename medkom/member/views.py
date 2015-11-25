@@ -32,7 +32,7 @@ class person_list(generics.ListCreateAPIView):
     serializer_class = PersonSerializer
     pagination_class = StandardResultsSetPagination
     def get_queryset(self):
-        queryset = Family.objects.all()
+        queryset = Person.objects.all()
         nokk = self.request.query_params.get('no_kk', None)
         nik = self.request.query_params.get('nik', None)
         goldar = self.request.query_params.get('goldar', None)
