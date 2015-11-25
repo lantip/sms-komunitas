@@ -182,7 +182,7 @@ def receive_json(request):
                         hubkel.save()
                     person.hubungan_keluarga = hubkel
                     person.save()
-        hasil = '{"status":"'+stat+'","msg": "'+result+'"}'
+        hasil = '{"status":"OK","msg": "SUCCESS"}'
         return HttpResponse(hasil, content_type="application/json")
     else:
         result = '{"status":"ERROR","msg": "Forbidden"}'
