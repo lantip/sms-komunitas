@@ -5,7 +5,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from accounts.decorators import admin_required
-from member.models import Usia, StatusSosial, Person, TemaInformasi, GolonganDarah, Family
+from member.models import Usia, StatusSosial, Person, TemaInformasi, GolonganDarah, Family, Agama, StatusPerkawinan
+from member.models import Pekerjaan, PendidikanTerakhir, HubunganKeluarga
 from message.models import Queue, Log
 from member.forms import AgeForm, StatusSosialForm, SearchForm
 from wilayah.models import Desa, Dusun, Kampung, RT
