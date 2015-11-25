@@ -90,8 +90,8 @@
               <!-- page end-->
 {% endblock %}
 {% block extrajs %}
-<script type="text/javascript" src="{{STATIC_URL}}fusioncharts/fusioncharts.js"></script>
-<script type="text/javascript" src="{{STATIC_URL}}fusioncharts/themes/fusioncharts.theme.fint.js"></script>
+<script type="text/javascript" src="/static/fusioncharts/fusioncharts.js"></script>
+<script type="text/javascript" src="/static/fusioncharts/themes/fusioncharts.theme.fint.js"></script>
 <script type="text/javascript">
   FusionCharts.ready(function(){
     var employeeChart = new FusionCharts({
@@ -311,7 +311,7 @@ golongandarahChart.render();
 mostactiveChart.render();
 });
 </script>
-<script type="text/javascript" src="{{STATIC_URL}}js/jquery.awesomeCloud-0.2.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.awesomeCloud-0.2.min.js"></script>
 <script>
     var settings = {
         "size" : {
