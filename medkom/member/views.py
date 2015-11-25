@@ -96,7 +96,7 @@ def receive_json(request):
                 except:
                     kampung = Kampung()
                     kampung.nama_dusun = dusun
-                    kampung.nama_kampung = js['kampun']
+                    kampung.nama_kampung = js['kampung']
                     kampung.save()
             else:
                 kampung = None
