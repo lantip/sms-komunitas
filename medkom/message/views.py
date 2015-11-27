@@ -637,7 +637,7 @@ def _send_sms(persons, message):
                 [person.no_handphone,message]
             )
 
-    transaction.commit_unless_managed()
+    transaction.atomic()
 
 def _send_single_sms(destination, message):
     cursor = connection.cursor()
@@ -646,7 +646,7 @@ def _send_single_sms(destination, message):
           VALUES(%s,'Default_No_Compression',%s,'1')",
         [destination,message]
     )
-    transaction.commit_unless_managed()
+    transaction.atomic()
 
 def _write_log(persons, message, msg_id=None):
     log = Log()
