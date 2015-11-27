@@ -651,7 +651,8 @@ def _send_single_sms(destination, message):
 def _write_log(persons, message, msg_id=None):
     log = Log()
     log.message = message
-    log.date = timezone.localtime(timezone.now())
+    #log.date = timezone.localtime(timezone.now())
+    log.date = timezone.now()
     if msg_id:
         log.queue = msg_id
 
@@ -662,7 +663,8 @@ def _write_log(persons, message, msg_id=None):
 def _write_single_log(message, msg_id=None, person=None):
     log = Log()
     log.message = message
-    log.date = timezone.localtime(timezone.now())
+    #log.date = timezone.localtime(timezone.now())
+    log.date = timezone.now()
     if msg_id:
         log.queue = msg_id
 
