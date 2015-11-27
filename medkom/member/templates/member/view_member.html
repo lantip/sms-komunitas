@@ -14,7 +14,7 @@
     </div>
     
     {% if person.no_handphone %}
-    <a href="#" onclick="redirect('{% url new_message %}{{person.no_handphone}}')"
+    <a href="#" onclick="redirect('{% url 'new_message' %}{{person.no_handphone}}')"
        class="btn btn-primary">
         Kirim SMS
     </a>
