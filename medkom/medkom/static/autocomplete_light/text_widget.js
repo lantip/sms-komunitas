@@ -18,30 +18,35 @@ For now, the script is composed of these parts:
   autocompletes (ie. admin inlines)
 */
 
-jQuery.fn.getSelectionStart = function(){
+$.fn.getSelectionStart = function(){
+    var r;
     // Written by jQuery4U
     // http://www.jquery4u.com/snippets/6-jquery-cursor-functions/#.UDPQ9xXtFw8
-    if(this.lengh == 0) return -1;
-    input = this[0];
- 
-    var pos = input.value.length;
- 
-    if (input.createTextRange) {
-        var r = document.selection.createRange().duplicate();
-        r.moveEnd('character', input.value.length);
-        if (r.text == '')
-        pos = input.value.length;
-        pos = input.value.lastIndexOf(r.text);
-    } else if(typeof(input.selectionStart)!="undefined")
-    pos = input.selectionStart;
- 
-    return pos;
+    if(this.lengh === 0) return -1;
+    input = this[0];
+
+    var pos = input.value.length;
+
+    if (input.createTextRange) {
+        if (window.getSelection) {
+            r = window.getSelection(); //IE11
+        } else {
+            r = document.selection.createRange().duplicate();
+            r.moveEnd('character', input.value.length);
+        }
+        if (r.text === '')
+            pos = input.value.length;
+        pos = input.value.lastIndexOf(r.text);
+    } else if (typeof(input.selectionStart) !== undefined)
+    pos = input.selectionStart;
+
+    return pos;
 }
 
-jQuery.fn.getCursorPosition = function(){
+$.fn.getCursorPosition = function(){
     // Written by jQuery4U
-    if(this.lengh == 0) return -1;
-    return $(this).getSelectionStart();
+    if (this.lengh === 0) return -1;
+    return $(this).getSelectionStart();
 }
 
 // Return the word on which the cursor is on.
@@ -52,7 +57,7 @@ jQuery.fn.getCursorPosition = function(){
 //     foo, bar|, baz
 //
 // getCursorWord would return 'bar'.
-jQuery.fn.getCursorWord = function() {
+$.fn.getCursorWord = function() {
     var value = $(this).val();
     var positions = $(this).getCursorWordPositions();
     return value.substring(positions[0], positions[1]);
@@ -66,14 +71,13 @@ jQuery.fn.getCursorWord = function() {
 //     foo, bar|, baz
 //
 // getCursorWord would return [6, 8].
-jQuery.fn.getCursorWordPositions = function() {
+$.fn.getCursorWordPositions = function() {
     var position = $(this).getCursorPosition();
     var value = $(this).val();
-    var word = '';
 
     // find start of word
     for(var start=position - 1; start >= 0; start--) {
-        if (value[start] == ',') {
+        if (value[start] === ',') {
             break;
         }
     }
@@ -81,13 +85,13 @@ jQuery.fn.getCursorWordPositions = function() {
 
     // find end of word
     for(var end=position; end <= value.length - 1; end++) {
-        if (value[end] == ',') {
+        if (value[end] === ',') {
             break;
         }
     }
 
-    while(value[start] == ',' || value[start] == ' ') start++;
-    while(value[end] == ',' || value[end] == ' ') end--;
+    while(value[start] === ',' || value[start] === ' ') start++;
+    while(value[end] === ',' || value[end] === ' ') end--;
 
     return [start, end + 1];
 }
@@ -133,11 +137,12 @@ yourlabs.TextWidget.prototype.selectChoice = function(choice) {
     newValue += inputValue.substring(positions[1]);
 
     this.input.val(newValue);
+    this.input.focus();
 }
 
 // Return the value of an HTML choice, used to fill the input.
 yourlabs.TextWidget.prototype.getValue = function(choice) {
-    return choice.html();
+    return $.trim(choice.text());
 }
 
 // Initialize the widget.
@@ -146,13 +151,31 @@ yourlabs.TextWidget.prototype.initialize = function() {
     this.bindSelectChoice();
 }
 
-// TextWidget factory and registry, as jQuery extension.
-$.fn.yourlabsTextWidget = function(overrides) {
-    var overrides = overrides ? overrides : {};
+// Destroy the widget. Takes a widget element because a cloned widget element
+// will be dirty, ie. have wrong .input and .widget properties.
+yourlabs.TextWidget.prototype.destroy = function(input) {
+    input
+        .unbind('selectChoice')
+        .yourlabsAutocomplete('destroy');
+}
 
-    if (this.data('widget') == undefined) {
+// TextWidget factory, registry and destroyer, as jQuery extension.
+$.fn.yourlabsTextWidget = function(overrides) {
+    var widget;
+    overrides = overrides ? overrides : {};
+
+    if (overrides === 'destroy') {
+        widget = this.data('widget');
+        if (widget) {
+            widget.destroy(this);
+            this.removeData('widget');
+        }
+        return
+    }
+
+    if (this.data('widget') === undefined) {
         // Instanciate the widget
-        var widget = new yourlabs.TextWidget(this);
+        widget = new yourlabs.TextWidget(this);
 
         // Pares data-*
         var data = this.data();
@@ -171,10 +194,12 @@ $.fn.yourlabsTextWidget = function(overrides) {
         for (var key in data) {
             if (!key) continue;
 
-            if (key.substr(0, 12) == 'autocomplete') {
+            if (key.substr(0, 12) === 'autocomplete') {
+                if (key === 'autocomplete') continue;
+
                 var newKey = key.replace('autocomplete', '');
                 newKey = newKey.replace(newKey[0], newKey[0].toLowerCase())
-                dataOverrides['autocompleteOptions'][newKey] = data[key];
+                dataOverrides.autocompleteOptions[newKey] = data[key];
             } else {
                 dataOverrides[key] = data[key];
             }
@@ -200,11 +225,12 @@ $.fn.yourlabsTextWidget = function(overrides) {
 }
 
 $(document).ready(function() {
-    $('body').on('initialize', 'input[data-bootstrap=normal]', function() {
+    $('body').on('initialize', 'input[data-widget-bootstrap=text]', function() {
         /*
-        Only setup autocompletes on inputs which have data-bootstrap=normal,
-        if you want to initialize some autocompletes with custom code, then set
-        data-boostrap=yourbootstrap or something like that.
+        Only setup autocompletes on inputs which have
+        data-widget-bootstrap=text, if you want to initialize some
+        autocompletes with custom code, then set
+        data-widget-boostrap=yourbootstrap or something like that.
         */
         $(this).yourlabsTextWidget();
     });
@@ -212,7 +238,7 @@ $(document).ready(function() {
     // Solid initialization, usage::
     //
     //      $(document).bind('yourlabsTextWidgetReady', function() {
-    //          $('body').on('initialize', 'input[data-bootstrap=normal]', function() {
+    //          $('body').on('initialize', 'input[data-widget-bootstrap=text]', function() {
     //              $(this).yourlabsTextWidget({
     //                  yourCustomArgs: // ...
     //              })
@@ -234,6 +260,15 @@ $(document).ready(function() {
                 return;
             }
         }
+
+        // Ignore inserted autocomplete box elements.
+        if (widget.is('.yourlabs-autocomplete')) {
+            return;
+        }
+
+        // Ensure that the newly added widget is clean, in case it was cloned.
+        widget.yourlabsWidget('destroy');
+        widget.find('input').yourlabsAutocomplete('destroy');
 
         widget.trigger('initialize');
     });

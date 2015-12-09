@@ -6,7 +6,7 @@ location = lambda x: os.path.join(
     os.path.dirname(os.path.realpath(__file__)), '..', x)
 
 DEBUG = True
-#TEMPLATE_DEBUG = DEBUG
+TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Admin', 'admin@example.com'),

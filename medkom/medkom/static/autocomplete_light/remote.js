@@ -1,4 +1,6 @@
-var RemoteAutocompleteWidget = {
+if (window.yourlabs === undefined) window.yourlabs = {};
+
+yourlabs.RemoteAutocompleteWidget = {
     /*
     The default deck getValue() implementation just returns the PK from the
     choice HTML. RemoteAutocompleteWidget.getValue's implementation checks for
@@ -11,12 +13,12 @@ var RemoteAutocompleteWidget = {
     getValue: function(choice) {
         var value = choice.data('value');
 
-        if (typeof(value)=='string' && isNaN(value) && value.match(/^http:/)) {
+        if (typeof(value) === 'string' && isNaN(value) && value.match(/^https?:/)) {
             $.ajax(this.autocompleteOptions.url, {
                 async: false,
                 type: 'post',
                 data: {
-                    'value': value,
+                    'value': value
                 },
                 success: function(text, jqXHR, textStatus) {
                     value = text;
@@ -34,6 +36,6 @@ $(document).bind('yourlabsWidgetReady', function() {
     // Instanciate decks with RemoteAutocompleteWidget as override for all widgets with
     // autocomplete 'remote'.
     $('body').on('initialize', '.autocomplete-light-widget[data-bootstrap=rest_model]', function() {
-        $(this).yourlabsWidget(RemoteAutocompleteWidget);
+        $(this).yourlabsWidget(yourlabs.RemoteAutocompleteWidget);
     });
 });

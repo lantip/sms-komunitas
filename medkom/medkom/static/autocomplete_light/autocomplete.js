@@ -10,7 +10,6 @@ Let's establish the vocabulary used in this script, so that we speak the
 same language:
 
 - The text input element is "input",
-- The default text in the input is "placeholder",
 - The box that contains a list of choices is "box",
 - Each result in the "autocomplete" is a "choice",
 - With a capital A, "Autocomplete", is the class or an instance of the
@@ -56,12 +55,112 @@ Also, note that this script is composed of two main parts:
 `$.fn.yourlabsAutocomplete`
 */
 
+if (window.isOpera === undefined) {
+    var isOpera = (navigator.userAgent.indexOf('Opera')>=0) && parseFloat(navigator.appVersion);
+}
+
+if (window.isIE === undefined) {
+    var isIE = ((document.all) && (!isOpera)) && parseFloat(navigator.appVersion.split('MSIE ')[1].split(';')[0]);
+}
+
+if (window.findPosX === undefined) {
+    window.findPosX = function(obj) {
+        var curleft = 0;
+        if (obj.offsetParent) {
+            while (obj.offsetParent) {
+                curleft += obj.offsetLeft - ((isOpera) ? 0 : obj.scrollLeft);
+                obj = obj.offsetParent;
+            }
+            // IE offsetParent does not include the top-level
+            if (isIE && obj.parentElement){
+                curleft += obj.offsetLeft - obj.scrollLeft;
+            }
+        } else if (obj.x) {
+            curleft += obj.x;
+        }
+        return curleft;
+    }
+}
+
+if (window.findPosY === undefined) {
+    window.findPosY = function(obj) {
+        var curtop = 0;
+        if (obj.offsetParent) {
+            while (obj.offsetParent) {
+                curtop += obj.offsetTop - ((isOpera) ? 0 : obj.scrollTop);
+                obj = obj.offsetParent;
+            }
+            // IE offsetParent does not include the top-level
+            if (isIE && obj.parentElement){
+                curtop += obj.offsetTop - obj.scrollTop;
+            }
+        } else if (obj.y) {
+            curtop += obj.y;
+        }
+        return curtop;
+    }
+}
+
 // Our class will live in the yourlabs global namespace.
-if (window.yourlabs == undefined) window.yourlabs = {};
+if (window.yourlabs === undefined) window.yourlabs = {};
 
 // Fix #25: Prevent accidental inclusion of autocomplete_light/static.html
-if (window.yourlabs.Autocomplete != undefined) 
+if (window.yourlabs.Autocomplete !== undefined)
     console.log('WARNING ! You are loading autocomplete.js **again**.');
+
+yourlabs.getInternetExplorerVersion = function()
+// Returns the version of Internet Explorer or a -1
+// (indicating the use of another browser).
+{
+  var rv = -1; // Return value assumes failure.
+  if (navigator.appName === 'Microsoft Internet Explorer')
+  {
+    var ua = navigator.userAgent;
+    var re  = new RegExp('MSIE ([0-9]{1,}[.0-9]{0,})');
+    if (re.exec(ua) !== null)
+      rv = parseFloat( RegExp.$1 );
+  }
+  return rv;
+};
+
+$.fn.yourlabsRegistry = function(key, value) {
+    var ie = yourlabs.getInternetExplorerVersion();
+
+    if (ie === -1 || ie > 8) {
+        // If not on IE8 and friends, that's all we need to do.
+        return value === undefined ? this.data(key) : this.data(key, value);
+    }
+
+    if ($.fn.yourlabsRegistry.data === undefined) {
+        $.fn.yourlabsRegistry.data = {};
+    }
+
+    if ($.fn.yourlabsRegistry.guid === undefined) {
+        $.fn.yourlabsRegistry.guid = function() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+                /[xy]/g,
+                function(c) {
+                    var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
+                    return v.toString(16);
+                }
+            );
+        };
+    }
+
+    var attributeName = 'data-yourlabs-' + key + '-registry-id';
+    var id = this.attr(attributeName);
+
+    if (id === undefined) {
+        id = $.fn.yourlabsRegistry.guid();
+        this.attr(attributeName, id);
+    }
+
+    if (value !== undefined) {
+        $.fn.yourlabsRegistry.data[id] = value;
+    }
+
+    return $.fn.yourlabsRegistry.data[id];
+};
 
 /*
 The autocomplete class constructor:
@@ -82,10 +181,7 @@ yourlabs.Autocomplete = function (input) {
 
     // The value of the input. It is kept as an attribute for optimisation
     // purposes.
-    this.value = '';
-
-    // When the input is empty, show this text.
-    this.placeholder = 'type your search here';
+    this.value = null;
 
     /*
     It is possible to wait until a certain number of characters have been
@@ -106,7 +202,7 @@ yourlabs.Autocomplete = function (input) {
     When the input looses focus, wait for this number of milliseconds before
     hiding the autocomplete.
      */
-    this.hideAfter = 500;
+    this.hideAfter = 200;
 
     /*
     The server should have a URL that takes the input value, and responds
@@ -114,6 +210,16 @@ yourlabs.Autocomplete = function (input) {
     better.
      */
     this.url = false;
+
+    /*
+    Although this script will make sure that it doesn't have multiple ajax
+    requests at the time, it also supports debouncing.
+
+    Set a number of milliseconds here, it is the number of milliseconds that it
+    will wait before querying the server. The higher it is, the less it will
+    spam the server but the more the user will wait.
+    */
+    this.xhrWait = 200;
 
     /*
     As the server responds with plain HTML, we need a selector to find the
@@ -137,6 +243,12 @@ yourlabs.Autocomplete = function (input) {
     'dehilighted'.
      */
     this.hilightClass = 'hilight';
+
+    /*
+    When the user starts to type, the first choice is hilighted by default.
+    If you don't want this behaviour, change this variable.
+    */
+    this.autoHilightFirst = true;
 
     /*
     The value of the input is passed to the server via a GET variable. This
@@ -176,8 +288,24 @@ yourlabs.Autocomplete = function (input) {
     this.lastData = {};
 
     // The autocomplete box HTML.
-    this.box = $('<span class="yourlabs-autocomplete"></span>')
-}
+    this.box = $('<span class="yourlabs-autocomplete" ' +
+        'data-input-id="' + this.input.attr('id') + '"></span>');
+
+    /*
+    We'll append the box to the container and calculate an absolute position
+    every time the autocomplete is shown in the fixPosition method.
+
+    By default, this traverses this.input's parents to find the nearest parent
+    with an 'absolute' or 'fixed' position. This prevents scrolling issues. If
+    we can't find a parent that would be correct to append to, default to
+    <body>.
+    */
+    this.container = this.input.parents().filter(function() {
+        var position = $(this).css('position');
+        return position === 'absolute' || position === 'fixed';
+    }).first();
+    if (!this.container.length) this.container = $('body');
+};
 
 /*
 Rather than directly setting up the autocomplete (DOM events etc ...) in
@@ -188,15 +316,39 @@ the constructor, setup is done in this method. This allows to:
 - and *then* setup the instance.
  */
 yourlabs.Autocomplete.prototype.initialize = function() {
-    // Set the HTML placeholder attribute on the input.
-    this.input.attr('placeholder', this.placeholder);
+    var ie = yourlabs.getInternetExplorerVersion();
 
     this.input
-        .on('blur', $.proxy(this.inputBlur, this))
-        .on('click', $.proxy(this.inputClick, this))
-        .on('keypress', $.proxy(this.inputKeypress, this))
-        .on('keyup', $.proxy(this.inputKeyup, this))
-        .on('keydown', $.proxy(this.inputKeydown, this))
+        .on('blur.autocomplete', $.proxy(this.inputBlur, this))
+        .on('focus.autocomplete', $.proxy(this.inputClick, this))
+        .on('keydown.autocomplete', $.proxy(this.inputKeyup, this));
+
+    $(window).on('resize', $.proxy(function() {
+        if (this.box.is(':visible')) this.fixPosition();
+    }, this));
+
+    // Currently, our positioning doesn't work well in Firefox. Since it's not
+    // the first option on mobile phones and small devices, we'll hide the bug
+    // until this is fixed.
+    if (/Firefox/i.test(navigator.userAgent))
+        $(window).on('scroll', $.proxy(this.hide, this));
+
+    if (ie === -1 || ie > 9) {
+        this.input.on('input.autocomplete', $.proxy(this.refresh, this));
+    }
+    else
+    {
+        var events = [
+            'keyup.autocomplete',
+            'keypress.autocomplete',
+            'cut.autocomplete',
+            'paste.autocomplete'
+        ]
+
+        this.input.on(events.join(' '), function($e) {
+            $.proxy(this.inputKeyup, this);
+        })
+    }
 
     /*
     Bind mouse events to fire signals. Because the same signals will be
@@ -205,17 +357,36 @@ yourlabs.Autocomplete.prototype.initialize = function() {
     this.box
         .on('mouseenter', this.choiceSelector, $.proxy(this.boxMouseenter, this))
         .on('mouseleave', this.choiceSelector, $.proxy(this.boxMouseleave, this))
-        .on('click', this.choiceSelector, $.proxy(this.boxClick, this))
-}
+        .on('mousedown', this.choiceSelector, $.proxy(this.boxClick, this));
+
+    /*
+    Initially - empty data queried
+    */
+    this.data[this.queryVariable] = '';
+};
+
+// Unbind callbacks on input.
+yourlabs.Autocomplete.prototype.destroy = function(input) {
+    input
+        .unbind('blur.autocomplete')
+        .unbind('focus.autocomplete')
+        .unbind('input.autocomplete')
+        .unbind('keydown.autocomplete')
+        .unbind('keypress.autocomplete')
+        .unbind('keyup.autocomplete')
+};
 
 yourlabs.Autocomplete.prototype.inputBlur = function(e) {
     window.setTimeout($.proxy(this.hide, this), this.hideAfter);
-}
+};
 
 yourlabs.Autocomplete.prototype.inputClick = function(e) {
+    if (this.value === null)
+        this.value = this.getQuery();
+
     if (this.value.length >= this.minimumCharacters)
         this.show();
-}
+};
 
 // When mouse enters the box:
 yourlabs.Autocomplete.prototype.boxMouseenter = function(e) {
@@ -225,31 +396,31 @@ yourlabs.Autocomplete.prototype.boxMouseenter = function(e) {
 
     this.input.trigger('dehilightChoice',
         [current, this]);
-    
+
     // ... and then sent the hilight signal for the choice.
     this.input.trigger('hilightChoice',
         [$(e.currentTarget), this]);
-}
+};
 
 // When mouse leaves the box:
 yourlabs.Autocomplete.prototype.boxMouseleave = function(e) {
     // Send dehilightChoice when the mouse leaves a choice.
     this.input.trigger('dehilightChoice',
         [this.box.find('.' + this.hilightClass), this]);
-}
+};
 
 // When mouse clicks in the box:
 yourlabs.Autocomplete.prototype.boxClick = function(e) {
     var current = this.box.find('.' + this.hilightClass);
-    
+
     this.input.trigger('selectChoice', [current, this]);
-}
+};
 
 // Return the value to pass to this.queryVariable.
 yourlabs.Autocomplete.prototype.getQuery = function() {
     // Return the input's value by default.
     return this.input.val();
-}
+};
 
 yourlabs.Autocomplete.prototype.inputKeyup = function(e) {
     if (!this.input.is(':visible'))
@@ -262,12 +433,13 @@ yourlabs.Autocomplete.prototype.inputKeyup = function(e) {
         case 16: // shift
         case 17: // ctrl
         case 18: // alt
-            break
+            this.move(e);
+            break;
 
         case 9: // tab
         case 13: // enter
-            if (!this.box.is(':visible')) return
-            
+            if (!this.box.is(':visible')) return;
+
             var choice = this.box.find('.' + this.hilightClass);
 
             if (!choice.length) {
@@ -275,43 +447,22 @@ yourlabs.Autocomplete.prototype.inputKeyup = function(e) {
                 // on next element.
                 return;
             }
-            
+
             e.preventDefault();
             e.stopPropagation();
 
             this.input.trigger('selectChoice', [choice, this]);
-            break
+            break;
 
         case 27: // escape
-            if (!this.box.is(':visible')) return
-            this.hide()
-            break
+            if (!this.box.is(':visible')) return;
+            this.hide();
+            break;
 
         default:
-            this.refresh()
+            this.refresh();
     }
-}
-
-yourlabs.Autocomplete.prototype.inputKeydown = function(e) {
-    // Don't handle keypresses on hidden inputs (ie. with limited choices)
-    if (!this.input.is(':visible')) return;
-
-    // Avoid double call to move().
-    this.suppressKeyPressRepeat = ~$.inArray(e.keyCode, [40,38,9,13,27])
-
-    this.move(e);
-}
-
-// This function is in charge of keyboard usage.
-yourlabs.Autocomplete.prototype.inputKeypress = function(e) {
-    // Don't handle keypresses on hidden inputs (ie. with limited choices)
-    if (!this.input.is(':visible')) return;
-
-    // Return if it already handled by inputKeydown.
-    if (this.suppressKeyPressRepeat) return;
-
-    this.move(e);
-}
+};
 
 // This function is in charge of ensuring that a relevant autocomplete is
 // shown.
@@ -321,7 +472,7 @@ yourlabs.Autocomplete.prototype.show = function(html) {
     this.fixPosition();
 
     // Is autocomplete empty ?
-    var empty = $.trim(this.box.find(this.choiceSelector)).length == 0;
+    var empty = $.trim(this.box.find(this.choiceSelector)).length === 0;
 
     // If the inner container is empty or data has changed and there is no
     // current pending request, rely on fetch(), which should show the
@@ -333,20 +484,34 @@ yourlabs.Autocomplete.prototype.show = function(html) {
 
     // And actually, fetch() will call show() with the response
     // body as argument.
-    if (html != undefined) {
+    if (html !== undefined) {
         this.box.html(html);
+    }
+
+    // Don't display empty boxes.
+    if (this.box.is(':empty')) {
+        if (this.box.is(':visible')) {
+            this.hide();
+        }
+        return;
+    }
+
+    var current = this.box.find('.' + this.hilightClass);
+    var first = this.box.find(this.choiceSelector + ':first');
+    if (first && !current.length && this.autoHilightFirst) {
+        first.addClass(this.hilightClass);
     }
 
     // Show the inner and outer container only if necessary.
     if (!this.box.is(':visible')) {
         this.box.css('display', 'block');
     }
-}
+};
 
 // This function is in charge of the opposite.
 yourlabs.Autocomplete.prototype.hide = function() {
     this.box.hide();
-}
+};
 
 // This function is in charge of hilighting the right result from keyboard
 // navigation.
@@ -364,8 +529,12 @@ yourlabs.Autocomplete.prototype.move = function(e) {
     }
 
     // If not KEY_UP or KEY_DOWN, then return.
-    if (e.keyCode == 38) var way = 'up';
-    else if (e.keyCode == 40) var way = 'down';
+    // NOTE: with Webkit, both keyCode and charCode are set to 38/40 for &/(.
+    //       charCode is 0 for arrow keys.
+    //       Ref: http://stackoverflow.com/a/12046935/15690
+    var way;
+    if (e.keyCode === 38 && !e.charCode) way = 'up';
+    else if (e.keyCode === 40 && !e.charCode) way = 'down';
     else return;
 
     // The first and last choices. If the user presses down on the last
@@ -382,7 +551,7 @@ yourlabs.Autocomplete.prototype.move = function(e) {
 
     // If a choice is currently hilighted:
     if (current.length) {
-        if (way == 'up') {
+        if (way === 'up') {
             // The target choice becomes the first previous choice.
             target = current.prevAll(this.choiceSelector + ':first');
 
@@ -400,7 +569,7 @@ yourlabs.Autocomplete.prototype.move = function(e) {
         this.input.trigger('dehilightChoice',
             [current, this]);
     } else {
-        target = way == 'up' ? last : first;
+        target = way === 'up' ? last : first;
     }
 
     // Avoid moving the cursor in the input.
@@ -409,18 +578,46 @@ yourlabs.Autocomplete.prototype.move = function(e) {
     // Trigger hilightChoice on the target choice.
     this.input.trigger('hilightChoice',
         [target, this]);
-}
+};
 
-// Calculate and set the outer container's absolute positionning.
+/*
+Calculate and set the outer container's absolute positionning. We're copying
+the system from Django admin's JS widgets like the date calendar, which means:
+
+- the autocomplete box is an element appended to this.co,
+-
+*/
 yourlabs.Autocomplete.prototype.fixPosition = function() {
-    // Insert the autocomplete container after the input.
-    var pos = $.extend({}, this.input.position(), {
-        height: this.input.offsetHeight
-    })
+    var el = this.input.get(0);
 
-    this.box.insertAfter(this.input).css(
-            {top: pos.top + pos.height, left: pos.left});
-}
+    var zIndex = this.input.parents().filter(function() {
+        return $(this).css('z-index') !== 'auto' && $(this).css('z-index') !== '0';
+    }).first().css('z-index');
+
+    var absolute_parent = this.input.parents().filter(function(){
+      return $(this).css('position') === 'absolute';
+    }).get(0);
+
+    var top = (findPosY(el) + this.input.outerHeight()) + 'px';
+    var left = findPosX(el) + 'px';
+
+    if(absolute_parent !== undefined){
+        var parentTop = findPosY(absolute_parent);
+        var parentLeft = findPosX(absolute_parent);
+        var inputBottom = findPosY(el) + this.input.outerHeight();
+        var inputLeft = findPosX(el);
+        top = (inputBottom - parentTop) + 'px';
+        left = (inputLeft - parentLeft) + 'px';
+    }
+
+    this.box.appendTo(this.container).css({
+        position: 'absolute',
+        minWidth: parseInt(this.input.outerWidth()),
+        top: top,
+        left: left,
+        zIndex: zIndex
+    });
+};
 
 // Proxy fetch(), with some sanity checks.
 yourlabs.Autocomplete.prototype.refresh = function() {
@@ -428,18 +625,21 @@ yourlabs.Autocomplete.prototype.refresh = function() {
     this.value = this.getQuery();
 
     // If the input doesn't contain enought characters then abort, else fetch.
-    this.value.length < this.minimumCharacters ? this.hide() : this.fetch();
-}
+    if (this.value.length < this.minimumCharacters)
+      this.hide();
+    else
+      this.fetch();
+};
 
 // Return true if the data for this query has changed from last query.
 yourlabs.Autocomplete.prototype.hasChanged = function() {
     for(var key in this.data) {
-        if (!key in this.lastData || this.data[key] != this.lastData[key]) {
+        if (!(key in this.lastData) || this.data[key] !== this.lastData[key]) {
             return true;
         }
     }
     return false;
-}
+};
 
 // Manage requests to this.url.
 yourlabs.Autocomplete.prototype.fetch = function() {
@@ -458,21 +658,43 @@ yourlabs.Autocomplete.prototype.fetch = function() {
         this.lastData[key] = this.data[key];
     }
 
-    // Abort any current request.
-    if (this.xhr) this.xhr.abort();
+    // Abort any unsent requests.
+    if (this.xhr && this.xhr.readyState === 0) this.xhr.abort();
 
-    // Make an asynchronous GET request to this.url.
+    // Abort any request that we planned to make.
+    if (this.timeoutId) clearTimeout(this.timeoutId);
+
+    // Make an asynchronous GET request to this.url in this.xhrWait ms
+    this.timeoutId = setTimeout($.proxy(this.makeXhr, this), this.xhrWait);
+};
+
+// Wrapped ajax call to use with setTimeout in fetch().
+yourlabs.Autocomplete.prototype.makeXhr = function() {
+    this.input.addClass('xhr-pending');
+
     this.xhr = $.ajax(this.url, {
+        type: 'GET',
         data: this.data,
         complete: $.proxy(this.fetchComplete, this)
     });
-}
+};
 
+// Callback for the ajax response.
 yourlabs.Autocomplete.prototype.fetchComplete = function(jqXHR, textStatus) {
-    if (this.xhr == jqXHR) this.xhr = false;
-    if (textStatus == 'abort') return;
+    if (this.xhr === jqXHR) {
+        // Current request finished.
+        this.xhr = false;
+    } else {
+        // Ignore response from earlier request.
+        return;
+    }
+
+    // Current request done, nothing else pending.
+    this.input.removeClass('xhr-pending');
+
+    if (textStatus === 'abort') return;
     this.show(jqXHR.responseText);
-}
+};
 
 /*
 The jQuery plugin that manages Autocomplete instances across the various
@@ -501,6 +723,8 @@ Also, it implements a simple identity map, which means that:
   $('input#your-autocomplete').yourlabsAutocomplete().data = {
       newData: $('#foo').val(),
   }
+
+To destroy an autocomplete, call yourlabsAutocomplete('destroy').
 */
 $.fn.yourlabsAutocomplete = function(overrides) {
     if (this.length < 1) {
@@ -508,39 +732,58 @@ $.fn.yourlabsAutocomplete = function(overrides) {
         return;
     }
 
-    var overrides = overrides ? overrides : {};
+    overrides = overrides ? overrides : {};
+    var autocomplete = this.yourlabsRegistry('autocomplete');
+
+    if (overrides === 'destroy') {
+        if (autocomplete) {
+            autocomplete.destroy(this);
+            this.removeData('autocomplete');
+        }
+        return;
+    }
 
     // Disable the browser's autocomplete features on that input.
     this.attr('autocomplete', 'off');
 
     // If no Autocomplete instance is defined for this id, make one.
-    if (this.data('autocomplete') == undefined) {
-        if (overrides.url == undefined) {
-            alert('Autocomplete needs a url !');
-            return;
-        }
-
+    if (autocomplete === undefined) {
         // Instanciate Autocomplete.
-        var autocomplete = new yourlabs.Autocomplete(this);
+        autocomplete = new yourlabs.Autocomplete(this);
+
+        // Extend the instance with data-autocomplete-* overrides
+        for (var key in this.data()) {
+            if (!key) continue;
+            if (key.substr(0, 12) !== 'autocomplete' || key === 'autocomplete')
+                continue;
+            var newKey = key.replace('autocomplete', '');
+            newKey = newKey.charAt(0).toLowerCase() + newKey.slice(1);
+            autocomplete[newKey] = this.data(key);
+        }
 
         // Extend the instance with overrides.
         autocomplete = $.extend(autocomplete, overrides);
 
-        this.data('autocomplete', autocomplete);
+        if (!autocomplete.url) {
+            alert('Autocomplete needs a url !');
+            return;
+        }
+
+        this.yourlabsRegistry('autocomplete', autocomplete);
 
         // All set, call initialize().
         autocomplete.initialize();
     }
 
     // Return the Autocomplete instance for this id from the registry.
-    return this.data('autocomplete');
+    return autocomplete;
 };
 
 // Binding some default behaviors.
 $(document).ready(function() {
     function removeHilightClass(e, choice, autocomplete) {
         choice.removeClass(autocomplete.hilightClass);
-    };
+    }
     $(document).bind('hilightChoice', function(e, choice, autocomplete) {
         choice.addClass(autocomplete.hilightClass);
     });

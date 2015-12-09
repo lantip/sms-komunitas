@@ -11,7 +11,6 @@ class PersonInline(admin.StackedInline):
     extra = 1
     formfield_overrides = {
         models.DateField: {'widget': SelectDateWidget(years=range(1910,2020))},
-        models.ManyToManyField: {'widget': chosenwidg.ChosenSelectMultiple(), 'help_text':'Type and click, to select more than one. '},
     }
     
     fieldsets = (
@@ -40,7 +39,6 @@ class PersonAdmin(admin.ModelAdmin):
     search_fields = ['nama_lengkap', 'nama_panggilan', 'no_handphone']
     formfield_overrides = {
         models.DateField: {'widget': SelectDateWidget(years=range(1910,2020))},
-        models.ManyToManyField: {'widget': chosenwidg.ChosenSelectMultiple(), 'help_text':'Type and click, to select more than one. '},
     }
     inlines = [HandphoneInline]
 

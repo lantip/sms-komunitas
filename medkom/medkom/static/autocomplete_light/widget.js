@@ -40,7 +40,7 @@ override Widget.getValue() to implement your own logic.
 */
 
 // Our class will live in the yourlabs global namespace.
-if (window.yourlabs == undefined) window.yourlabs = {};
+if (window.yourlabs === undefined) window.yourlabs = {};
 
 $.ajaxSettings.traditional = true
 
@@ -50,14 +50,17 @@ Instanciate a Widget.
 yourlabs.Widget = function(widget) {
     // These attributes where described above.
     this.widget = widget;
-    this.input = this.widget.find('input');
+    this.input = this.widget.find('input[data-autocomplete-url]');
     this.select = this.widget.find('select');
     this.deck = this.widget.find('.deck');
     this.choiceTemplate = this.widget.find('.choice-template .choice');
 
     // The number of choices that the user may select with this widget. Set 0
     // for no limit. In the case of a foreign key you want to set it to 1.
-    this.maxValues = 0;
+    this.maximumValues = 0;
+
+    // Clear input when choice made? 1 for yes, 0 for no
+    this.clearInputOnSelectChoice = '1';
 }
 
 // When a choice is selected from the autocomplete of this widget,
@@ -68,12 +71,10 @@ yourlabs.Widget.prototype.getValue = function(choice) {
 
 // The widget is in charge of managing its Autocomplete.
 yourlabs.Widget.prototype.initializeAutocomplete = function() {
-    this.autocomplete = this.input.yourlabsAutocomplete(
-        this.autocompleteOptions);
+    this.autocomplete = this.input.yourlabsAutocomplete()
 
     // Add a class to ease css selection of autocompletes for widgets
-    this.autocomplete.box.addClass(
-        'autocomplete-light-widget');
+    this.autocomplete.box.addClass('autocomplete-light-widget');
 };
 
 // Bind Autocomplete.selectChoice signal to Widget.selectChoice()
@@ -86,6 +87,8 @@ yourlabs.Widget.prototype.bindSelectChoice = function() {
             ).yourlabsWidget();
 
         widget.selectChoice(choice);
+
+        widget.widget.trigger('widgetSelectChoice', [choice, widget]);
     });
 };
 
@@ -102,17 +105,29 @@ yourlabs.Widget.prototype.selectChoice = function(choice) {
     this.freeDeck();
     this.addToDeck(choice, value);
     this.addToSelect(choice, value);
+
+    var index = $(':input:visible').index(this.input);
     this.resetDisplay();
 
-    this.input.val('');
+    if (this.clearInputOnSelectChoice === '1') {
+        this.input.val('');
+        this.autocomplete.value = '';
+    }
+
+    if (this.input.is(':visible')) {
+        this.input.focus();
+    } else {
+        var next = $(':input:visible:eq('+ index +')');
+        next.focus();
+    }
 }
 
 // Unselect a value if the maximum number of selected values has been
 // reached.
 yourlabs.Widget.prototype.freeDeck = function() {
-    var slots = this.maxValues - this.deck.children().length;
+    var slots = this.maximumValues - this.deck.children().length;
 
-    if (this.maxValues && slots < 1) {
+    if (this.maximumValues && slots < 1) {
         // We'll remove the first choice which is supposed to be the oldest
         var choice = $(this.deck.children()[0]);
 
@@ -120,15 +135,12 @@ yourlabs.Widget.prototype.freeDeck = function() {
     }
 }
 
-// Empty the search input and hide it if maxValues has been reached.
+// Empty the search input and hide it if maximumValues has been reached.
 yourlabs.Widget.prototype.resetDisplay = function() {
     var selected = this.select.find('option:selected').length;
 
-    if (this.maxValues && selected == this.maxValues) {
-        var index = $(':input:visible').index(this.input);
+    if (this.maximumValues && selected === this.maximumValues) {
         this.input.hide();
-        var next = $(':input:visible:eq('+ index +')');
-        next.focus()
     } else {
         this.input.show();
     }
@@ -149,7 +161,7 @@ yourlabs.Widget.prototype.deckChoiceHtml = function(choice, value) {
 
 yourlabs.Widget.prototype.optionChoice = function(option) {
     var optionChoice = this.choiceTemplate.clone();
-    
+
     var target = optionChoice.find('.append-option-html');
 
     if (target.length) {
@@ -162,7 +174,8 @@ yourlabs.Widget.prototype.optionChoice = function(option) {
 }
 
 yourlabs.Widget.prototype.addRemove = function(choices) {
-    var removeTemplate = this.widget.find('.remove:last').clone().show();
+    var removeTemplate = this.widget.find('.remove:last')
+        .clone().css('display', 'inline-block');
 
     var target = choices.find('.prepend-remove');
 
@@ -171,7 +184,7 @@ yourlabs.Widget.prototype.addRemove = function(choices) {
     } else {
         // Add the remove icon to each choice
         choices.prepend(removeTemplate);
-    } 
+    }
 }
 
 // Add a selected choice of a given value to the deck.
@@ -215,20 +228,22 @@ yourlabs.Widget.prototype.deselectChoice = function(choice) {
 
     choice.remove();
 
-    if (this.deck.children().length == 0) {
+    if (this.deck.children().length === 0) {
         this.deck.hide();
     }
 
     this.updateAutocompleteExclude();
     this.resetDisplay();
+
+    this.widget.trigger('widgetDeselectChoice', [choice, this]);
 };
 
 yourlabs.Widget.prototype.updateAutocompleteExclude = function() {
     var widget = this;
     var choices = this.deck.find(this.autocomplete.choiceSelector);
 
-    this.autocomplete.data['exclude'] = $.map(choices, function(choice) { 
-        return widget.getValue($(choice)); 
+    this.autocomplete.data.exclude = $.map(choices, function(choice) {
+        return widget.getValue($(choice));
     });
 }
 
@@ -240,7 +255,7 @@ yourlabs.Widget.prototype.initialize = function() {
     this.deck.find(this.autocomplete.choiceSelector).each(function() {
         var value = widget.getValue($(this));
         var option = widget.select.find('option[value="'+value+'"]');
-        if (!option.attr('selected')) option.attr('selected', true);
+        if (!option.prop('selected')) option.prop('selected', true);
     });
 
     var choices = this.deck.find(
@@ -252,35 +267,54 @@ yourlabs.Widget.prototype.initialize = function() {
     this.bindSelectChoice();
 }
 
+// Destroy the widget. Takes a widget element because a cloned widget element
+// will be dirty, ie. have wrong .input and .widget properties.
+yourlabs.Widget.prototype.destroy = function(widget) {
+    widget.find('input')
+        .unbind('selectChoice')
+        .yourlabsAutocomplete('destroy');
+}
+
+// Get or create or destroy a widget instance.
+//
+// On first call, yourlabsWidget() will instanciate a widget applying all
+// passed overrides.
+//
+// On later calls, yourlabsWidget() will return the previously created widget
+// instance, which is stored in widget.data('widget').
+//
+// Calling yourlabsWidget('destroy') will destroy the widget. Useful if the
+// element was blindly cloned with .clone(true) for example.
 $.fn.yourlabsWidget = function(overrides) {
-    var overrides = overrides ? overrides : {};
+    overrides = overrides ? overrides : {};
 
-    if (this.data('widget') == undefined) {
-        // Instanciate the widget
-        var widget = new yourlabs.Widget(this);
+    var widget = this.yourlabsRegistry('widget');
 
-        // Pares data-*
-        var data = this.data();
-        var dataOverrides = {autocompleteOptions: {}};
-        for (var key in data) {
-            if (!key) continue;
-
-            if (key.substr(0, 12) == 'autocomplete') {
-                var newKey = key.replace('autocomplete', '');
-                newKey = newKey.replace(newKey[0], newKey[0].toLowerCase())
-                dataOverrides['autocompleteOptions'][newKey] = data[key];
-            } else {
-                dataOverrides[key] = data[key];
-            }
+    if (overrides === 'destroy') {
+        if (widget) {
+            widget.destroy(this);
+            this.removeData('widget');
         }
+        return
+    }
 
-        // Allow attribute overrides
-        widget = $.extend(widget, dataOverrides);
+    if (widget === undefined) {
+        // Instanciate the widget
+        widget = new yourlabs.Widget(this);
+
+        // Extend the instance with data-widget-* overrides
+        for (var key in this.data()) {
+            if (!key) continue;
+            if (key.substr(0, 6) !== 'widget' || key === 'widget') continue;
+            var newKey = key.replace('widget', '');
+            newKey = newKey.charAt(0).toLowerCase() + newKey.slice(1);
+            widget[newKey] = this.data(key);
+        }
 
         // Allow javascript object overrides
         widget = $.extend(widget, overrides);
 
-        this.data('widget', widget);
+        $(this).yourlabsRegistry('widget', widget);
 
         // Setup for usage
         widget.initialize();
@@ -290,15 +324,15 @@ $.fn.yourlabsWidget = function(overrides) {
         widget.widget.trigger('widget-ready');
     }
 
-    return this.data('widget');
+    return widget;
 }
 
 $(document).ready(function() {
-    $('body').on('initialize', '.autocomplete-light-widget[data-bootstrap=normal]', function() {
+    $('body').on('initialize', '.autocomplete-light-widget[data-widget-bootstrap=normal]', function() {
         /*
-        Only setup widgets which have data-bootstrap=normal, if you want to
+        Only setup widgets which have data-widget-bootstrap=normal, if you want to
         initialize some Widgets with custom code, then set
-        data-boostrap=yourbootstrap or something like that.
+        data-widget-boostrap=yourbootstrap or something like that.
         */
         $(this).yourlabsWidget();
     });
@@ -315,6 +349,7 @@ $(document).ready(function() {
     });
 
     // Solid initialization, usage:
+    //
     //
     //      $(document).bind('yourlabsWidgetReady', function() {
     //          $('.your.autocomplete-light-widget').on('initialize', function() {
@@ -335,15 +370,17 @@ $(document).ready(function() {
         modal or popup).
 
         For this, we listen to DOMNodeInserted and intercept insert of <option> nodes.
-        
+
         The reason for that is that change is not triggered when options are
         added like this:
 
             $('select#id-dependencies').append(
                 '<option value="9999" selected="selected">blabla</option>')
         */
+        var widget;
+
         if ($(e.target).is('option')) { // added an option ?
-            var widget = $(e.target).parents('.autocomplete-light-widget');
+            widget = $(e.target).parents('.autocomplete-light-widget');
 
             if (!widget.length) {
                 return;
@@ -362,18 +399,46 @@ $(document).ready(function() {
                 widget.selectChoice(deckChoice);
             }
         } else { // added a widget ?
-            var widget = $(e.target).find('.autocomplete-light-widget');
+            var notReady = '.autocomplete-light-widget:not([data-widget-ready])'
+            widget = $(e.target).find(notReady);
 
             if (!widget.length) {
-                widget = $(e.target).is('.autocomplete-light-widget') ? $(e.target) : false;
-
-                if (!widget) {
-                    return;
-                }
+                return;
             }
+
+            // Ignore inserted autocomplete box elements.
+            if (widget.is('.yourlabs-autocomplete')) {
+                return;
+            }
+
+            // Ensure that the newly added widget is clean, in case it was
+            // cloned with data.
+            widget.yourlabsWidget('destroy');
+            widget.find('input').yourlabsAutocomplete('destroy');
 
             // added a widget: initialize the widget.
             widget.trigger('initialize');
         }
     });
+
+    var ie = yourlabs.getInternetExplorerVersion();
+    if (ie !== -1 && ie < 9) {
+        observe = [
+            '.autocomplete-light-widget:not([data-yourlabs-skip])',
+            '.autocomplete-light-widget option:not([data-yourlabs-skip])'
+        ].join();
+        $(observe).attr('data-yourlabs-skip', 1);
+
+        var ieDOMNodeInserted = function() {
+            // http://msdn.microsoft.com/en-us/library/ms536957
+            $(observe).each(function() {
+                $(document).trigger(jQuery.Event('DOMNodeInserted', {target: $(this)}));
+                $(this).attr('data-yourlabs-skip', 1);
+            });
+
+            setTimeout(ieDOMNodeInserted, 500);
+        }
+        setTimeout(ieDOMNodeInserted, 500);
+    }
+
 });
