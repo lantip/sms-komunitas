@@ -14,6 +14,7 @@ class Dusun(models.Model):
         return u'%s' % self.nama_dusun
 
 class Kampung(models.Model):
+    nama_desa = models.ForeignKey('Desa')
     nama_dusun = models.ForeignKey('Dusun')
     nama_kampung = models.CharField(max_length=20)
 

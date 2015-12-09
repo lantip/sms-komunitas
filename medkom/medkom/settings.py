@@ -6,7 +6,7 @@ location = lambda x: os.path.join(
     os.path.dirname(os.path.realpath(__file__)), '..', x)
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+#TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Admin', 'admin@example.com'),
@@ -47,6 +47,8 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -68,6 +70,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(PROJECT_PATH, 'templates'),],
         'APP_DIRS': True,
+        'DEBUG': DEBUG,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -98,6 +101,7 @@ INSTALLED_APPS = (
     'smart_selects',
     'autocomplete_light',
     'chosen',
+    'corsheaders',
 )
 
 LOGGING = {
@@ -128,6 +132,7 @@ LOGGING = {
 SESSION_COOKIE_AGE = 900
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SAVE_EVERY_REQUEST = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

@@ -11,7 +11,7 @@ class Family(models.Model):
     nomor_kk = models.CharField(max_length=100, blank=True)
     alamat_desa = models.ForeignKey('wilayah.Desa', null=True, blank=True)
     alamat_dusun = ChainedForeignKey('wilayah.Dusun', chained_field='alamat_desa', chained_model_field='nama_desa', show_all=False, auto_choose=True, blank=True, null=True)
-    alamat_kampung = ChainedForeignKey('wilayah.Kampung', chained_field='alamat_dusun', chained_model_field='nama_dusun', show_all=False, auto_choose=True, blank=True, null=True)
+    alamat_kampung = ChainedForeignKey('wilayah.Kampung', chained_field='alamat_desa', chained_model_field='nama_desa', show_all=False, auto_choose=True, blank=True, null=True)
     alamat_rt = models.ForeignKey('wilayah.RT', null=True, blank=True)
     status_rumah = models.ForeignKey('StatusRumah', null=True, blank=True)
     lantai = models.ForeignKey('Lantai', null=True, blank=True)

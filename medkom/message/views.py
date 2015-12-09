@@ -14,7 +14,6 @@ from message.forms import (DeleteMessagesForm, BroadcastForm,
 from member.models import Person, Usia, StatusSosial
 from nonmember.models import nonmember
 from spammers.models import Spammers
-import datetime
 from rest_framework import status, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -28,13 +27,15 @@ from message.forms import (DeleteMessagesForm, BroadcastForm,
                            SettingBroadcastForm, ReplyForm, SearchForm)
 from django.core.serializers.json import DjangoJSONEncoder
 from member.serializers import LargeResultsSetPagination, StandardResultsSetPagination
+import textwrap
+import datetime, requests, random
 
 class incoming_list(generics.ListCreateAPIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (AllowAny,)
     serializer_class = QueueSerializer
     pagination_class = StandardResultsSetPagination
-    queryset = Queue.objects.all().exclude(status=3)
+    queryset = Queue.objects.all().exclude(status=3).order_by('-date')
 
 class archive_list(generics.ListCreateAPIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
@@ -152,8 +153,8 @@ def view_message(request, msg_id):
                 if form.cleaned_data["extra_phones"]:
                     phones = form.cleaned_data["extra_phones"].split(',')
                     for phone in phones:
-                        _send_single_sms(phone, message, queue)
-                        _write_single_log(message)
+                        _send_single_sms(phone, message)
+                        _write_single_log(message, queue)
 
             return HttpResponseRedirect(reverse('home'))
     else:
@@ -627,6 +628,7 @@ def _get_age(ages):
 
     return result
 
+'''
 def _send_sms(persons, message):
     cursor = connection.cursor()
     for person in persons:
@@ -647,6 +649,52 @@ def _send_single_sms(destination, message):
         [destination,message]
     )
     transaction.atomic()
+'''
+def random_udh():
+    """ random alnum string """
+    return unicode('050003' + hex(random.randint(0, 255))[2:].upper().zfill(2))
+
+def _send_sms(persons, message):
+    cursor = connection.cursor()
+    for person in persons:
+        if person.no_handphone != '':
+            cursor.execute(
+                "INSERT INTO outbox(DestinationNumber,Coding,TextDecoded,CreatorID) \
+                  VALUES(%s,'Default_No_Compression',%s,'1')",
+                [person.no_handphone,message]
+            )
+
+    transaction.commit()
+
+def _send_single_sms(destination, message):
+    cursor = connection.cursor()
+    if len(message) > 160:
+        mes = textwrap.wrap(message,153)
+        udh = random_udh()
+        for i in range(len(mes)):
+            ems = unicode(str(len(mes)).zfill(2))
+            ams = unicode(str(i + 1).zfill(2))
+            kode = udh+ems+ams
+            if i == 0:
+                cursor.execute(
+                    "INSERT INTO outbox (DestinationNumber, UDH, TextDecoded, MultiPart, CreatorID)\
+                    VALUES (%s, %s, %s, 'true', '1')",
+                    [destination,kode,mes[i]]
+                )
+                lastid = cursor.lastrowid
+            else:
+                cursor.execute(
+                    "INSERT INTO outbox_multipart(UDH, TextDecoded, ID, SequencePosition)\
+                    VALUES (%s, %s, %s, %s)",
+                    [kode,mes[i],lastid,i+1]
+                )
+    else:
+        cursor.execute(
+            "INSERT INTO outbox(DestinationNumber,Coding,TextDecoded,CreatorID) \
+              VALUES(%s,'Default_No_Compression',%s,'1')",
+            [destination,message]
+        )
+    transaction.commit()
 
 def _write_log(persons, message, msg_id=None):
     log = Log()

@@ -196,8 +196,8 @@ def newmessage(request):
     if request.method == 'GET':
         # Get form definition
         form = BroadcastForm()
-    elif request.raw_post_data:
-        request.POST = json.loads(request.raw_post_data)
+    elif request.method == 'POST':
+        request.POST = json.loads(request.body)
         # Process request for CSRF
         csrf_middleware.process_view(request, None, None, None)
         form_data = request.POST.get('data', {})
